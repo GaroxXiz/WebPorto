@@ -1,4 +1,6 @@
 import { ExternalLink } from "lucide-react";
+import AbyssWalkerImg from "../../public/img/Abyss-Walker.png";
+import AbyssWalkerVid from "../../public/video/Demo-Abyss-Walker.mp4";
 
 const Projects = () => {
   const projects = [
@@ -7,8 +9,8 @@ const Projects = () => {
       description:
         "Full-stack created 2D Pixel Games with aseprite and unity using C#",
       tech: ["Aseprite", "Unity", "C#"],
-      image: "/img/Abyss-Walker.png",
-      demo: "/video/Demo-Abyss-Walker.mp4",
+      image: AbyssWalkerImg,
+      demo: AbyssWalkerVid,
       download:
         "https://drive.google.com/drive/folders/1FKSyG56EY9pZadOPE-2npYCThdWzyX-q?usp=sharing",
     },
