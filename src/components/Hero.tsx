@@ -50,19 +50,19 @@ const Hero = () => {
             <div className="flex justify-center space-x-6 mb-8 animate-fadeInUp animate-delay-700">
               <a
                 href="https://github.com/GaroxXiz"
-                className="p-3 rounded-full backdrop-blur-lg bg-white/10 border border-white/20 hover:bg-[#00d4ff]/20 hover:border-[#00d4ff]/50 transition-all duration-300 hover:scale-110 hover:rotate-12 animate-scaleIn animate-delay-900"
+                className="p-3 rounded-full backdrop-blur-lg bg-white/10 border border-white/20 hover:bg-[#00d4ff]/20 hover:border-[#00d4ff]/50 transition-all duration-300 hover:scale-110 hover:rotate-12"
               >
                 <Github size={24} className="text-white" />
               </a>
               <a
                 href="https://www.linkedin.com/in/maulana-rizwan-ahmad-8a831728b"
-                className="p-3 rounded-full backdrop-blur-lg bg-white/10 border border-white/20 hover:bg-[#00d4ff]/20 hover:border-[#00d4ff]/50 transition-all duration-300 hover:scale-110 hover:rotate-12 animate-scaleIn animate-delay-1000"
+                className="p-3 rounded-full backdrop-blur-lg bg-white/10 border border-white/20 hover:bg-[#00d4ff]/20 hover:border-[#00d4ff]/50 transition-all duration-300 hover:scale-110 hover:rotate-12 animate-delay-100"
               >
                 <Linkedin size={24} className="text-white" />
               </a>
               <a
                 href="https://api.whatsapp.com/send?phone=+6289530085684&text=Hello, Give me more information about you!"
-                className="p-3 rounded-full backdrop-blur-lg bg-white/10 border border-white/20 hover:bg-[#00d4ff]/20 hover:border-[#00d4ff]/50 transition-all duration-300 hover:scale-110 hover:rotate-12 animate-scaleIn animate-delay-1100"
+                className="p-3 rounded-full backdrop-blur-lg bg-white/10 border border-white/20 hover:bg-[#00d4ff]/20 hover:border-[#00d4ff]/50 transition-all duration-300 hover:scale-110 hover:rotate-12 animate-delay-200"
               >
                 <MessageCircle size={24} className="text-white" />
               </a>
@@ -71,13 +71,13 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp animate-delay-800">
               <a
                 href="#projects"
-                className="px-8 py-3 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black font-semibold rounded-lg hover:shadow-lg hover:shadow-[#00d4ff]/25 transition-all duration-300 hover:scale-105 hover:-translate-y-1 animate-scaleIn animate-delay-1300"
+                className="px-8 py-3 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black font-semibold rounded-lg hover:shadow-lg hover:shadow-[#00d4ff]/25 transition-all duration-300 hover:scale-105 hover:-translate-y-1"
               >
                 View Projects
               </a>
               <a
                 href="/pdf/Curriculum Vitae.pdf"
-                className="px-8 py-3 backdrop-blur-lg bg-white/10 border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 flex items-center gap-2 animate-scaleIn animate-delay-1400"
+                className="px-8 py-3 backdrop-blur-lg bg-white/10 border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 flex items-center gap-2"
               >
                 <Download size={20} className="animate-bounce-slow" />
                 Download CV

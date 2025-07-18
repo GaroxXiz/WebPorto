@@ -81,7 +81,7 @@ const Projects = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             My <span className="text-[#00d4ff]">Projects</span>
           </h2>
-          <p className="text-white/60 max-w-2xl mx-auto animate-fadeInUp animate-delay-300">
+          <p className="text-white/60 max-w-2xl mx-auto">
             Here are some of my recent projects that showcase my skills and
             creativity
           </p>
@@ -91,9 +91,7 @@ const Projects = () => {
           {projects.map((project, index) => (
             <div
               key={index}
-              className={`group rounded-xl backdrop-blur-lg bg-white/5 border border-white/10 overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#00d4ff]/10 animate-fadeInUp animate-delay-${
-                (index + 1) * 100 + 400
-              }`}
+              className="group rounded-xl backdrop-blur-lg bg-white/5 border border-white/10 overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105"
             >
               <div className="relative overflow-hidden h-48">
                 {/* Gambar selalu ditampilkan */}
@@ -132,17 +130,18 @@ const Projects = () => {
               </div>
 
               <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#00d4ff] transition-colors duration-300">
+                <h3 className="text-xl font-bold text-white mb-3">
                   {project.title}
                 </h3>
-                <p className="text-white/80 mb-4 text-sm group-hover:text-white/90 transition-colors duration-300">
+                <p className="text-white/80 mb-4 text-sm">
                   {project.description}
                 </p>
+
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-3 py-1 text-xs bg-[#00d4ff]/20 text-[#00d4ff] rounded-full border border-[#00d4ff]/30 hover:bg-[#00d4ff]/30 transition-all duration-300 hover:scale-105"
+                      className="px-3 py-1 text-xs bg-[#00d4ff]/20 text-[#00d4ff] rounded-full border border-[#00d4ff]/30"
                     >
                       {tech}
                     </span>
@@ -151,20 +150,17 @@ const Projects = () => {
 
                 <div className="flex gap-4">
                   {project.status === "development" ? (
-                    <span className="flex items-center gap-2 px-4 py-2 bg-yellow-500/20 border border-yellow-500/30 text-yellow-400 rounded-lg text-sm cursor-not-allowed animate-pulse">
-                      <ExternalLink size={16} className="animate-bounce-slow" />
+                    <span className="flex items-center gap-2 px-4 py-2 bg-yellow-500/20 border border-yellow-500/30 text-yellow-400 rounded-lg text-sm cursor-not-allowed">
+                      <ExternalLink size={16} />
                       Coming Soon
                     </span>
                   ) : (
                     <a
                       href={project.download}
                       download
-                      className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black rounded-lg hover:shadow-lg hover:shadow-[#00d4ff]/25 transition-all duration-300 text-sm hover:scale-105 hover:-translate-y-1"
+                      className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black rounded-lg hover:shadow-lg hover:shadow-[#00d4ff]/25 transition-all duration-300 text-sm"
                     >
-                      <ExternalLink
-                        size={16}
-                        className="group-hover:rotate-12 transition-transform duration-300"
-                      />
+                      <ExternalLink size={16} />
                       Download
                     </a>
                   )}
