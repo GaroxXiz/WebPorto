@@ -1,8 +1,27 @@
+import { useEffect, useState } from "react";
 import { Github, Linkedin, MessageCircle, Download } from "lucide-react";
 import profileImg from "/img/Profile.png";
 import CV from "/pdf/CV Rizwan.pdf";
 
 const Hero = () => {
+  const fullText =
+    "A highly motivated Informatics student at President University with a concentration in Game Development. Passionate about creating immersive games using Unity, Blender, Aseprite. Looking for an opportunity to apply my technical and creative skills in a professional game development environment.";
+
+  const [typedText, setTypedText] = useState("");
+
+  useEffect(() => {
+    let index = 0;
+    const typingInterval = setInterval(() => {
+      setTypedText((prev) => prev + fullText[index]);
+      index++;
+      if (index === fullText.length) {
+        clearInterval(typingInterval);
+      }
+    }, 15); // Kecepatan ketik
+
+    return () => clearInterval(typingInterval);
+  }, []);
+
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Animated Background */}
@@ -17,7 +36,7 @@ const Hero = () => {
           <div className="inline-block p-8 rounded-2xl backdrop-blur-lg bg-white/5 border border-white/10 shadow-2xl animate-scaleIn animate-delay-200">
             {/* Profile Photo */}
             <div className="mb-8 flex justify-center animate-fadeInUp animate-delay-300">
-              <div className="relative">
+              <div className="relative group">
                 <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-[#00d4ff]/30 shadow-lg shadow-[#00d4ff]/25 hover:scale-110 transition-transform duration-300">
                   <img
                     src={profileImg}
@@ -25,7 +44,7 @@ const Hero = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-[#0a0a0a] flex items-center justify-center animate-bounce-slow">
+                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-[#0a0a0a] flex items-center justify-center transition-all duration-300 group-hover:animate-bounce">
                   <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
                 </div>
               </div>
@@ -40,12 +59,13 @@ const Hero = () => {
             <p className="text-xl md:text-2xl text-white/80 mb-6">
               Game Developer
             </p>
-            <p className="text-white/60 mb-8 max-w-2xl mx-auto">
-              A highly motivated Informatics student at President University
-              with a concentration in Game Development. Passionate about
-              creating immersive games using Unity, Blender, Aseprite. Looking
-              for an opportunity to apply my technical and creative skills in a
-              professional game development environment.
+
+            {/* Typing Animation */}
+            <p className="text-white/60 mb-8 max-w-2xl mx-auto whitespace-pre-line font-mono">
+              {typedText}
+              {typedText.length < fullText.length && (
+                <span className="animate-pulse">|</span>
+              )}
             </p>
 
             <div className="flex justify-center space-x-6 mb-8 animate-fadeInUp animate-delay-700">
