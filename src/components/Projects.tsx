@@ -7,8 +7,8 @@ const Projects = () => {
       description:
         "Full-stack created 2D Pixel Games with aseprite and unity using C#",
       tech: ["Aseprite", "Unity", "C#"],
-      image: "/img/Abyss Walker.png",
-      demo: "/video/Demo Abyss Walker.mp4",
+      image: "/img/Abyss-Walker.png",
+      demo: "/video/Demo-Abyss-Walker.mp4",
       download:
         "https://drive.google.com/drive/folders/1FKSyG56EY9pZadOPE-2npYCThdWzyX-q?usp=sharing",
     },
@@ -18,7 +18,7 @@ const Projects = () => {
         "Created the Game Character, Game mechanics and Debugging the codes",
       tech: ["Blender", "Unity", "C#"],
       image: "/img/Anomaly.jpg",
-      demo: "/video/Demo Anomaly.mp4",
+      demo: "/video/Demo-Anomaly.mp4",
       download:
         "https://drive.google.com/drive/folders/1UB4JwxtIXJ0uAskvVuYqfE6oUMoKOJWq?usp=sharing",
     },
@@ -28,7 +28,7 @@ const Projects = () => {
         "Created a 3D low poly design for the Game Environment, Game Icon, and thumbnail",
       tech: ["Blender", "Unity"],
       image: "/img/Raturu.jpg",
-      demo: "/video/Demo Raturu.mp4",
+      demo: "/video/Demo-Raturu.mp4",
       download:
         "https://drive.google.com/drive/folders/1tVfJwvPPmfe2QeAdjtUlrre100QB2GNN?usp=sharing",
     },
@@ -37,8 +37,8 @@ const Projects = () => {
       description:
         "Created the Game mechanics for the last level(Malware Attack), Debugging the last level(Malware Attack) for the WebGL Games.",
       tech: ["Unity", "C#"],
-      image: "/img/Cyber Edu Games.png",
-      demo: "/video/Demo Cyber.mp4",
+      image: "/img/Cyber-Edu-Games.png",
+      demo: "/video/Demo-Cyber.mp4",
       download:
         "https://drive.google.com/drive/folders/1tl5Ma4flqQRTwkkx8YfGy7_xrSJwlvN7?usp=sharing",
     },
