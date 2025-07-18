@@ -8,7 +8,7 @@ const Footer = () => {
           <div className="mb-4 md:mb-0">
             <div className="text-2xl font-bold text-white mb-2">
               <span className="text-[#00d4ff]">{"<"}</span>
-              Rizwan
+              RizwanDev
               <span className="text-[#00d4ff]">{"/>"}</span>
             </div>
             <p className="text-white/60 text-sm">
