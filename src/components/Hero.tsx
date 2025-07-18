@@ -1,5 +1,6 @@
 import { Github, Linkedin, MessageCircle, Download } from "lucide-react";
 import profileImg from "/img/Profile.png";
+import CV from "/pdf/Curriculum Vitae.pdf";
 
 const Hero = () => {
   return (
@@ -76,7 +77,7 @@ const Hero = () => {
                 View Projects
               </a>
               <a
-                href="/pdf/Curriculum Vitae.pdf"
+                href={CV}
                 className="px-8 py-3 backdrop-blur-lg bg-white/10 border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 flex items-center gap-2"
               >
                 <Download size={20} className="animate-bounce-slow" />
