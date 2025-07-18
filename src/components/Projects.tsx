@@ -1,6 +1,14 @@
 import { ExternalLink } from "lucide-react";
 import AbyssWalkerImg from "../../public/img/Abyss-Walker.png";
 import AbyssWalkerVid from "../../public/video/Demo-Abyss-Walker.mp4";
+import AnomalyImg from "../../public/img/Anomaly.jpg";
+import AnomalyVid from "../../public/video/Demo-Anomaly.mp4";
+import RaturuImg from "../../public/img/Raturu.jpg";
+import RaturuVid from "../../public/video/Demo-Raturu.mp4";
+import MalwareImg from "../../public/img/Cyber.png";
+import MalwareVid from "../../public/video/Demo-Cyber.mp4";
+import JapaneseImg from "../../public/img/Japanese.png";
+import VNImg from "../../public/img/VN.png";
 
 const Projects = () => {
   const projects = [
@@ -19,8 +27,8 @@ const Projects = () => {
       description:
         "Created the Game Character, Game mechanics and Debugging the codes",
       tech: ["Blender", "Unity", "C#"],
-      image: "/img/Anomaly.jpg",
-      demo: "/video/Demo-Anomaly.mp4",
+      image: AnomalyImg,
+      demo: AnomalyVid,
       download:
         "https://drive.google.com/drive/folders/1UB4JwxtIXJ0uAskvVuYqfE6oUMoKOJWq?usp=sharing",
     },
@@ -29,8 +37,8 @@ const Projects = () => {
       description:
         "Created a 3D low poly design for the Game Environment, Game Icon, and thumbnail",
       tech: ["Blender", "Unity"],
-      image: "/img/Raturu.jpg",
-      demo: "/video/Demo-Raturu.mp4",
+      image: RaturuImg,
+      demo: RaturuVid,
       download:
         "https://drive.google.com/drive/folders/1tVfJwvPPmfe2QeAdjtUlrre100QB2GNN?usp=sharing",
     },
@@ -39,8 +47,8 @@ const Projects = () => {
       description:
         "Created the Game mechanics for the last level(Malware Attack), Debugging the last level(Malware Attack) for the WebGL Games.",
       tech: ["Unity", "C#"],
-      image: "/img/Cyber-Edu-Games.png",
-      demo: "/video/Demo-Cyber.mp4",
+      image: MalwareImg,
+      demo: MalwareVid,
       download:
         "https://drive.google.com/drive/folders/1tl5Ma4flqQRTwkkx8YfGy7_xrSJwlvN7?usp=sharing",
     },
@@ -49,7 +57,7 @@ const Projects = () => {
       description:
         "Designed the 2D Pixel Character, Animation, and Environment games",
       tech: ["Aseprite"],
-      image: "/img/Japanese.png",
+      image: JapaneseImg,
       github: "#",
       demo: "#",
       status: "development",
@@ -59,7 +67,7 @@ const Projects = () => {
       description:
         "Designed The 2D Pixel for Game Character and Environment, Created the Game Mechanics using python",
       tech: ["Aseprite", "Renpy", "Python"],
-      image: "/img/VN.png",
+      image: VNImg,
       github: "#",
       demo: "#",
       status: "development",
