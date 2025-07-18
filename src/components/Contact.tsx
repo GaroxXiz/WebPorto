@@ -10,17 +10,13 @@ import {
 } from "lucide-react";
 
 const Contact = () => {
-  // State for form inputs
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
 
-  // Ref for the form element
   const form = useRef<HTMLFormElement>(null);
-
-  // State to manage submission status
   const [submissionStatus, setSubmissionStatus] = useState<
     "idle" | "sending" | "success" | "error"
   >("idle");
@@ -33,24 +29,19 @@ const Contact = () => {
 
     emailjs
       .sendForm(
-        "service_7jny6tq", // Your Service ID
-        "template_u5odr7y", // Your Template ID
+        "service_7jny6tq",
+        "template_u5odr7y",
         form.current,
-        "s3M7TdqeFLQYzazeX" // Your Public Key
+        "s3M7TdqeFLQYzazeX"
       )
       .then(
-        (result) => {
-          console.log("SUCCESS!", result.text);
+        () => {
           setSubmissionStatus("success");
-          // Clear form fields after successful submission
           setFormData({ name: "", email: "", message: "" });
-          // Reset status after a few seconds
           setTimeout(() => setSubmissionStatus("idle"), 4000);
         },
-        (error) => {
-          console.log("FAILED...", error.text);
+        () => {
           setSubmissionStatus("error");
-          // Reset status after a few seconds
           setTimeout(() => setSubmissionStatus("idle"), 4000);
         }
       );
@@ -65,7 +56,6 @@ const Contact = () => {
     });
   };
 
-  // Dynamic button content based on submission status
   const getButtonContent = () => {
     switch (submissionStatus) {
       case "sending":
@@ -99,7 +89,6 @@ const Contact = () => {
     }
   };
 
-  // Dynamic button styles
   const getButtonClassName = () => {
     let baseClasses =
       "w-full px-8 py-3 text-black font-semibold rounded-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2";
@@ -133,7 +122,7 @@ const Contact = () => {
               </h3>
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-full bg-[#00d4ff]/20 text-[#00d4ff]">
+                  <div className="p-3 rounded-full bg-[#00d4ff]/20 text-[#00d4ff] transition-all duration-300 hover:scale-110">
                     <Mail size={20} />
                   </div>
                   <div>
@@ -143,7 +132,7 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-full bg-[#00d4ff]/20 text-[#00d4ff]">
+                  <div className="p-3 rounded-full bg-[#00d4ff]/20 text-[#00d4ff] transition-all duration-300 hover:scale-110">
                     <Phone size={20} />
                   </div>
                   <div>
@@ -153,7 +142,7 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-full bg-[#00d4ff]/20 text-[#00d4ff]">
+                  <div className="p-3 rounded-full bg-[#00d4ff]/20 text-[#00d4ff] transition-all duration-300 hover:scale-110">
                     <MapPin size={20} />
                   </div>
                   <div>
@@ -164,7 +153,6 @@ const Contact = () => {
               </div>
             </div>
           </div>
-
           {/* Right Side: Contact Form */}
           <div className="p-6 rounded-xl backdrop-blur-lg bg-white/5 border border-white/10">
             <form ref={form} onSubmit={handleSubmit} className="space-y-6">
@@ -201,7 +189,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-[#00d4ff]/50 focus:bg-white/20 transition-all duration-300"
-                  placeholder="maulanarizwan84@gmail.com"
+                  placeholder="Your Email"
                   required
                 />
               </div>

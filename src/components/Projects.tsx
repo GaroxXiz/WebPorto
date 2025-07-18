@@ -1,4 +1,7 @@
+"use client";
+
 import { ExternalLink } from "lucide-react";
+import { motion } from "framer-motion";
 import AbyssWalkerImg from "../../public/img/Abyss-Walker.png";
 import AbyssWalkerVid from "../../public/video/Demo-Abyss-Walker.mp4";
 import AnomalyImg from "../../public/img/Anomaly.jpg";
@@ -94,7 +97,6 @@ const Projects = () => {
               className="group rounded-xl backdrop-blur-lg bg-white/5 border border-white/10 overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105"
             >
               <div className="relative overflow-hidden h-48">
-                {/* Gambar selalu ditampilkan */}
                 <img
                   src={project.image}
                   alt={project.title}
@@ -105,7 +107,6 @@ const Projects = () => {
                   }`}
                 />
 
-                {/* Video hanya muncul jika bukan development */}
                 {project.status !== "development" && project.demo !== "#" && (
                   <video
                     src={project.demo}
@@ -119,7 +120,6 @@ const Projects = () => {
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none"></div>
 
-                {/* Status badge */}
                 {project.status === "development" && (
                   <div className="absolute top-3 right-3 z-10">
                     <span className="px-3 py-1 text-xs bg-yellow-500/90 text-black rounded-full font-semibold backdrop-blur-sm">
@@ -139,12 +139,16 @@ const Projects = () => {
 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.map((tech, techIndex) => (
-                    <span
+                    <motion.span
+                      whileHover={{
+                        scale: 1.1,
+                        boxShadow: "0px 0px 8px rgba(0, 212, 255, 0.5)",
+                      }}
                       key={techIndex}
-                      className="px-3 py-1 text-xs bg-[#00d4ff]/20 text-[#00d4ff] rounded-full border border-[#00d4ff]/30"
+                      className="px-3 py-1 text-xs bg-[#00d4ff]/20 text-[#00d4ff] rounded-full border border-[#00d4ff]/30 transition-all duration-300 hover:bg-[#00d4ff]/40 hover:scale-105"
                     >
                       {tech}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
 
@@ -155,14 +159,21 @@ const Projects = () => {
                       Coming Soon
                     </span>
                   ) : (
-                    <a
+                    <motion.a
+                      whileHover={{
+                        scale: 1.05,
+                        rotate: -1.5,
+                      }}
+                      whileTap={{
+                        scale: 0.95,
+                      }}
                       href={project.download}
                       download
-                      className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black rounded-lg hover:shadow-lg hover:shadow-[#00d4ff]/25 transition-all duration-300 text-sm"
+                      className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black rounded-lg transition-all duration-300 text-sm hover:scale-105 hover:shadow-md hover:shadow-[#00d4ff]/50"
                     >
                       <ExternalLink size={16} />
                       Download
-                    </a>
+                    </motion.a>
                   )}
                 </div>
               </div>

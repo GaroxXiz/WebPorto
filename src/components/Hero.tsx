@@ -11,13 +11,15 @@ const Hero = () => {
 
   useEffect(() => {
     let index = 0;
+
     const typingInterval = setInterval(() => {
-      setTypedText((prev) => prev + fullText[index]);
+      setTypedText(fullText.substring(0, index));
       index++;
-      if (index === fullText.length) {
+
+      if (index > fullText.length) {
         clearInterval(typingInterval);
       }
-    }, 15); // Kecepatan ketik
+    }, 40);
 
     return () => clearInterval(typingInterval);
   }, []);
@@ -60,14 +62,13 @@ const Hero = () => {
               Game Developer
             </p>
 
-            {/* Typing Animation */}
+            {/* Typing Text + Cursor */}
             <p className="text-white/60 mb-8 max-w-2xl mx-auto whitespace-pre-line font-mono">
               {typedText}
-              {typedText.length < fullText.length && (
-                <span className="animate-pulse">|</span>
-              )}
+              <span className="animate-pulse">|</span>
             </p>
 
+            {/* Socials */}
             <div className="flex justify-center space-x-6 mb-8 animate-fadeInUp animate-delay-700">
               <a
                 href="https://github.com/GaroxXiz"
@@ -89,6 +90,7 @@ const Hero = () => {
               </a>
             </div>
 
+            {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp animate-delay-800">
               <a
                 href="#projects"

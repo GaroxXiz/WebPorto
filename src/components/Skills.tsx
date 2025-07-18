@@ -1,3 +1,8 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
+
 const Skills = () => {
   const skillCategories = [
     {
@@ -27,8 +32,17 @@ const Skills = () => {
     },
   ];
 
+  const [ref, inView] = useInView({ triggerOnce: true });
+  const [animateBars, setAnimateBars] = useState(false);
+
+  useEffect(() => {
+    if (inView) {
+      setAnimateBars(true);
+    }
+  }, [inView]);
+
   return (
-    <section id="skills" className="py-20 relative">
+    <section id="skills" className="py-20 relative" ref={ref}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -63,7 +77,9 @@ const Skills = () => {
                     <div className="w-full bg-white/10 rounded-full h-2">
                       <div
                         className="bg-gradient-to-r from-[#00d4ff] to-[#0066ff] h-2 rounded-full transition-all duration-1000 ease-out"
-                        style={{ width: `${skill.level}%` }}
+                        style={{
+                          width: animateBars ? `${skill.level}%` : "0%",
+                        }}
                       ></div>
                     </div>
                   </div>
