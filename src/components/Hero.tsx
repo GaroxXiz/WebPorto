@@ -1,25 +1,24 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { Github, Linkedin, MessageCircle, Download } from "lucide-react";
 import profileImg from "/img/Profile.png";
 import CV from "/pdf/CV Rizwan.pdf";
 
 const Hero = () => {
-  const fullText =
-    "A highly motivated Informatics student at President University with a concentration in Game Development. Passionate about creating immersive games using Unity, Blender, Aseprite. Looking for an opportunity to apply my technical and creative skills in a professional game development environment.";
-
-  const [typedText, setTypedText] = useState("");
+  const nameText = "Maulana Rizwan Ahmad";
+  const [typedName, setTypedName] = useState("");
 
   useEffect(() => {
     let index = 0;
-
     const typingInterval = setInterval(() => {
-      setTypedText(fullText.substring(0, index));
+      setTypedName(nameText.substring(0, index));
       index++;
 
-      if (index > fullText.length) {
+      if (index > nameText.length) {
         clearInterval(typingInterval);
       }
-    }, 40);
+    }, 100);
 
     return () => clearInterval(typingInterval);
   }, []);
@@ -55,17 +54,24 @@ const Hero = () => {
             <h1 className="text-2xl md:text-4xl font-bold text-white mb-3">
               Hi, I'm{" "}
             </h1>
-            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 text-[#00d4ff] glow-text">
-              Maulana Rizwan Ahmad
+
+            {/* Typing Animation Name */}
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 text-[#00d4ff] glow-text font-mono">
+              {typedName}
+              <span className="animate-pulse">|</span>
             </h1>
+
             <p className="text-xl md:text-2xl text-white/80 mb-6">
               Game Developer
             </p>
 
-            {/* Typing Text + Cursor */}
-            <p className="text-white/60 mb-8 max-w-2xl mx-auto whitespace-pre-line font-mono">
-              {typedText}
-              <span className="animate-pulse">|</span>
+            {/* Static Description */}
+            <p className="text-white/60 mb-8 max-w-2xl mx-auto whitespace-pre-line">
+              A highly motivated Informatics student at President University
+              with a concentration in Game Development. Passionate about
+              creating immersive games using Unity, Blender, Aseprite. Looking
+              for an opportunity to apply my technical and creative skills in a
+              professional game development environment.
             </p>
 
             {/* Socials */}
@@ -102,7 +108,7 @@ const Hero = () => {
                 href={CV}
                 className="px-8 py-3 backdrop-blur-lg bg-white/10 border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 flex items-center gap-2"
               >
-                <Download size={20} className="animate-bounce-slow" />
+                <Download size={20} />
                 Download CV
               </a>
             </div>
