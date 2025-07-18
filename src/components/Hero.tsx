@@ -1,6 +1,6 @@
 import { Github, Linkedin, MessageCircle, Download } from "lucide-react";
 import profileImg from "/img/Profile.png";
-import CV from "/pdf/Curriculum Vitae.pdf";
+import CV from "/pdf/CV Rizwan.pdf";
 
 const Hero = () => {
   return (
