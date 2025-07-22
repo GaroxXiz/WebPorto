@@ -56,7 +56,7 @@ const Hero = () => {
             </h1>
 
             {/* Typing Animation Name */}
-            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 text-[#00d4ff] glow-text font-mono">
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 text-white font-mono">
               {typedName}
               <span className="animate-pulse">|</span>
             </h1>

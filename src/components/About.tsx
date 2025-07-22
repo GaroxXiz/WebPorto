@@ -28,6 +28,38 @@ const About = () => {
     },
   ];
 
+  const organizationExperience = [
+    {
+      year: "2024 - Present",
+      organization: "PUFA Computer Science",
+      position: "Vice of Art and Sport Division",
+      description:
+        "Assisted the Division Head in managing and organizing creative and sports-related activities that encourage students to explore their talents in visual arts and athletics. Responsible for coordinating team members, supporting event execution, and ensuring smooth internal communication. Contributed to idea development, activity planning, and post-event evaluations to enhance student engagement in both artistic and athletic fields.",
+    },
+    {
+      year: "February 2025",
+      organization: "PUFA Art and Sport Division Event",
+      position:
+        "Project Manager at Computer Science Sport & Games Olympiad (CSGO) 2025",
+      description:
+        "Led the end-to-end planning and execution of a major department-wide event combining physical sports and e-sports competitions. Oversaw cross-functional teams, managed timelines and budgets, and ensured smooth coordination across all divisions. Successfully delivered an engaging and inclusive experience that fostered teamwork, competitive spirit, and community among Computer Science students",
+    },
+    {
+      year: "2023 - 2024",
+      organization: "PUMA Informatics",
+      position: "Vice of Art and Sport Division",
+      description:
+        "Supported the Division Head in planning and executing arts and sports programs aimed at nurturing non-academic talents among Informatics students. Coordinated internal teams, assisted in managing events, and ensured smooth communication and collaboration. Contributed to creating a dynamic and inclusive environment for students to express their creativity and athletic interests",
+    },
+    {
+      year: "February 2024",
+      organization: "PUFA Art and Sport Division Event",
+      position:
+        "PIC Games(Stumble Guys) at Computer Science Sport & Games Olympiad (CSGO) 2024",
+      description:
+        "Acted as the PIC for the Stumble Guys competition at CSGO 2024, overseeing end-to-end tournament management including player registration, technical setup, match supervision, real-time coordination with the event team, enforcement of game rules, and ensuring a fair and enjoyable experience for all participants.",
+    },
+  ];
   return (
     <section id="about" className="py-20 relative">
       <div className="container mx-auto px-4">
@@ -80,6 +112,35 @@ const About = () => {
                 <p className="text-white/60 text-sm">{service.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+
+        <div className="mt-20">
+          <div className="backdrop-blur-lg bg-white/5 border border-white/10 rounded-xl p-6">
+            <div className="text-center mb-12">
+              <h3 className="text-2xl sm:text-3xl font-semibold text-white mb-1 sm:mb-0">
+                Experience
+              </h3>
+            </div>
+
+            <div className="space-y-6">
+              {organizationExperience.map((exp, index) => (
+                <div
+                  key={index}
+                  className="p-6 rounded-xl bg-white/5 border border-white/10"
+                >
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
+                    <h4 className="text-lg font-semibold text-white mb-2">
+                      {exp.position} - {exp.organization}
+                    </h4>
+                    <span className="text-white/50 text-sm whitespace-nowrap">
+                      {exp.year}
+                    </span>
+                  </div>
+                  <p className="text-white/70 text-sm">{exp.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
