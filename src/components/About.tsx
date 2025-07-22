@@ -72,9 +72,7 @@ const About = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
           <div className="space-y-6">
             <div className="p-6 rounded-xl backdrop-blur-lg bg-white/5 border border-white/10">
-              <h3 className="text-center text-2xl font-bold text-white mb-4">
-                My Journey
-              </h3>
+              <h3 className="text-2xl font-bold text-white mb-4">My Journey</h3>
               <p className="text-white/80 leading-relaxed">
                 I'm Maulana Rizwan Ahmad, a passionate game developer based in
                 Bekasi, with 1 year of experience creating interactive and
