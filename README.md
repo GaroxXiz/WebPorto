@@ -46,7 +46,8 @@ To run this project on your local machine:
 
    http://localhost:3000
 
-##📬 Contact
+## 📬 Let's Connect
+
 Feel free to reach out for collaboration, job opportunities, or just to say hi!
 
 Email: [maulanarziwan84@gmail.com]
@@ -54,7 +55,3 @@ Email: [maulanarziwan84@gmail.com]
 LinkedIn: [Maulana Rizwan Ahmad]
 
 GitHub: [GaroxXiz]
-
-```
-
-```
