@@ -78,31 +78,32 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 relative">
-      <div className="container mx-auto px-4">
+    <section id="projects" className="py-12 md:py-20 relative">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
             My <span className="text-[#00d4ff]">Projects</span>
           </h2>
-          <p className="text-white/60 max-w-2xl mx-auto">
+          <p className="text-white/60 max-w-2xl mx-auto text-sm sm:text-base">
             Here are some of my recent projects that showcase my skills and
             creativity
           </p>
         </div>
+
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
           viewport={{ once: false, amount: 0.4 }}
-          className="p-8 rounded-2xl backdrop-blur-lg bg-white/0 border border-white/0 mb-12"
+          className="p-4 sm:p-6 md:p-8 rounded-2xl backdrop-blur-lg bg-white/0 border border-white/0 mb-12"
         >
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => (
               <div
                 key={index}
-                className="group max-w-lg rounded-xl backdrop-blur-lg bg-white/5 border border-white/10 overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105"
+                className="group w-full rounded-xl backdrop-blur-lg bg-white/5 border border-white/10 overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105"
               >
-                <div className="relative overflow-hidden h-48">
+                <div className="relative overflow-hidden h-40 sm:h-48">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -124,7 +125,7 @@ const Projects = () => {
                     />
                   )}
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
 
                   {project.status === "development" && (
                     <div className="absolute top-3 right-3 z-10">
@@ -135,11 +136,11 @@ const Projects = () => {
                   )}
                 </div>
 
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-white mb-3">
+                <div className="p-4 sm:p-6">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
                     {project.title}
                   </h3>
-                  <p className="text-x1 text-white/80 mb-4 text-sm">
+                  <p className="text-sm text-white/80 mb-4">
                     {project.description}
                   </p>
 
