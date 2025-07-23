@@ -30,11 +30,20 @@ To run this project on your local machine:
    ```
 
 2. Install dependencies:
+
+   ```bash
    npm install
 
+   ```
+
 3. Start the development server:
+
+   ```bash
    npm run dev
+   ```
+
 4. Open the provided link in your terminal (CTRL + Click):
+
    http://localhost:3000
 
 ##📬 Contact
@@ -45,3 +54,7 @@ Email: [maulanarziwan84@gmail.com]
 LinkedIn: [Maulana Rizwan Ahmad]
 
 GitHub: [GaroxXiz]
+
+```
+
+```
