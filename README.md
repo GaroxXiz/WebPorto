@@ -17,6 +17,7 @@ Welcome to my personal **Game Developer Portfolio Website** — a responsive and
 - **Tailwind CSS**
 - **HTML5 & CSS3**
 - **JavaScript (ES6+)**
+- **Typescript**
 
 ## 🚀 Getting Started Locally
 
