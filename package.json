@@ -1,9 +1,9 @@
 {
-  "name": "rizwandev",
+  "name": "webpporto",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://GaroxXiz.github.io/Rizwandev",
+  "homepage": "https://GaroxXiz.github.io/WebPortov",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
