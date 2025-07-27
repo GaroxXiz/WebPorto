@@ -116,62 +116,71 @@ const Skills = () => {
             Technologies and tools I use to bring ideas to life
           </p>
         </div>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: false, amount: 0.4 }}
+          className="p-8 rounded-2xl backdrop-blur-lg bg-white/0 border border-white/0 mb-8"
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {skillCategories.map((category, index) => {
+              const currentIndex = slideIndex[category.title] || 0;
+              const currentSkill = category.skills[currentIndex];
+              const slideDir = direction[category.title] || 1;
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skillCategories.map((category, index) => {
-            const currentIndex = slideIndex[category.title] || 0;
-            const currentSkill = category.skills[currentIndex];
-            const slideDir = direction[category.title] || 1;
+              return (
+                <div
+                  key={index}
+                  className="p-6 rounded-xl h-full backdrop-blur-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 flex flex-col items-center"
+                >
+                  <h3 className="text-xl font-bold text-white mb-6 text-center">
+                    {category.title}
+                  </h3>
 
-            return (
-              <div
-                key={index}
-                className="p-6 rounded-xl h-full backdrop-blur-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 flex flex-col items-center"
-              >
-                <h3 className="text-xl font-bold text-white mb-6 text-center">
-                  {category.title}
-                </h3>
+                  <div className="relative w-full">
+                    {/* Arrow Buttons */}
+                    <button
+                      onClick={() => handleSlide(category.title, "left")}
+                      className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 z-10"
+                    >
+                      <ChevronLeft />
+                    </button>
+                    <button
+                      onClick={() => handleSlide(category.title, "right")}
+                      className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 z-10"
+                    >
+                      <ChevronRight />
+                    </button>
 
-                <div className="relative w-full">
-                  {/* Arrow Buttons */}
-                  <button
-                    onClick={() => handleSlide(category.title, "left")}
-                    className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 z-10"
-                  >
-                    <ChevronLeft />
-                  </button>
-                  <button
-                    onClick={() => handleSlide(category.title, "right")}
-                    className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 z-10"
-                  >
-                    <ChevronRight />
-                  </button>
-
-                  {/* Animated Skill Icon */}
-                  <div className="flex justify-center">
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={currentSkill.name}
-                        initial={{ x: slideDir * 100, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        exit={{ x: -slideDir * 100, opacity: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="flex flex-col items-center text-white text-sm"
-                      >
-                        <img
-                          src={currentSkill.icon}
-                          alt={currentSkill.name}
-                          className="w-16 h-16 object-contain mb-2"
-                        />
-                        <span className="text-center">{currentSkill.name}</span>
-                      </motion.div>
-                    </AnimatePresence>
+                    {/* Animated Skill Icon */}
+                    <div className="flex justify-center">
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={currentSkill.name}
+                          initial={{ x: slideDir * 100, opacity: 0 }}
+                          animate={{ x: 0, opacity: 1 }}
+                          exit={{ x: -slideDir * 100, opacity: 0 }}
+                          transition={{ duration: 0.5 }}
+                          className="flex flex-col items-center text-white text-sm"
+                        >
+                          <img
+                            src={currentSkill.icon}
+                            alt={currentSkill.name}
+                            className="w-16 h-16 object-contain mb-2"
+                          />
+                          <span className="text-center">
+                            {currentSkill.name}
+                          </span>
+                        </motion.div>
+                      </AnimatePresence>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
