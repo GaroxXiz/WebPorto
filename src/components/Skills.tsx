@@ -53,7 +53,7 @@ const Skills = () => {
         { name: "Renpy", icon: RENPY },
         { name: "GitHub", icon: GITHUB },
         { name: "Visual Studio", icon: VS },
-        { name: "VS Code", icon: VSC },
+        { name: "Visual Studio Code", icon: VSC },
       ],
     },
     {

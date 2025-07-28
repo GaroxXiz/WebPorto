@@ -1,190 +1,178 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { Github, Linkedin, MessageCircle, Download } from "lucide-react";
-import profileImg from "/img/Profile.png";
-import CV from "/pdf/CV Rizwan.pdf";
 import { motion, useInView } from "framer-motion";
 
-type StatCounterProps = {
-  label: string;
-  target: number;
-  decimal?: boolean;
-};
-
-const StatCounter = ({ label, target, decimal = false }: StatCounterProps) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false }); // animasi bisa berjalan berulang
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!isInView) return;
-
-    let frame = 0;
-    const duration = 2000;
-    const frameRate = 30;
-    const totalFrames = Math.round(duration / frameRate);
-
-    const counter = setInterval(() => {
-      frame++;
-      const progress = frame / totalFrames;
-      const current = decimal
-        ? Number((target * progress).toFixed(2))
-        : Math.round(target * progress);
-      setCount(current);
-
-      if (frame === totalFrames) clearInterval(counter);
-    }, frameRate);
-
-    return () => clearInterval(counter);
-  }, [isInView, target]);
-
-  return (
-    <div ref={ref}>
-      <div className="text-2xl md:text-3xl font-bold">{count}</div>
-      <div className="text-sm md:text-base text-white/60">{label}</div>
-    </div>
-  );
+type LanguageGreeting = {
+  lang: string;
+  greeting: string;
 };
 
 const Hero = () => {
-  const names = ["Maulana Rizwan Ahmad", "Known as Rizwan"];
-  const [currentNameIndex, setCurrentNameIndex] = useState(0);
-  const [typedName, setTypedName] = useState("");
+  const [greetings, setGreetings] = useState<LanguageGreeting[]>([]);
+  const [displayText, setDisplayText] = useState("");
+  const [index, setIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [hasFadedIn, setHasFadedIn] = useState(false);
 
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-100px" });
+  const isInView = useInView(ref, { once: false });
+  const [hasAnimated, setHasAnimated] = useState(false); // 👈 track animasi
 
   useEffect(() => {
-    const fullText = names[currentNameIndex];
-    let typingSpeed = isDeleting ? 50 : 100;
+    if (isInView && !hasAnimated) {
+      setHasFadedIn(false); // reset fade saat masuk kembali ke view
+      setHasAnimated(true); // animasi sudah diputar
+    }
 
-    const handleTyping = () => {
-      setTypedName((prev) =>
-        isDeleting
-          ? fullText.substring(0, prev.length - 1)
-          : fullText.substring(0, prev.length + 1)
-      );
+    if (!isInView && hasAnimated) {
+      setHasAnimated(false); // reset status ketika keluar view
+      setDisplayText(""); // reset teks saat keluar
+      setCharIndex(0); // reset typing
+      setIndex(0);
+      setIsDeleting(false);
+    }
+  }, [isInView]);
 
-      if (!isDeleting && typedName === fullText) {
-        setTimeout(() => setIsDeleting(true), 1500);
-      } else if (isDeleting && typedName === "") {
-        setIsDeleting(false);
-        setCurrentNameIndex((prev) => (prev + 1) % names.length);
-      }
+  useEffect(() => {
+    const now = new Date();
+    const hour = now.getHours();
+
+    const determineGreeting = (
+      morning: string,
+      afternoon: string,
+      evening: string,
+      night: string
+    ): string => {
+      if (hour >= 4 && hour < 10) return morning;
+      else if (hour >= 10 && hour < 15) return afternoon;
+      else if (hour >= 15 && hour < 18) return evening;
+      else return night;
     };
 
-    const timer = setTimeout(handleTyping, typingSpeed);
-    return () => clearTimeout(timer);
-  }, [typedName, isDeleting]);
+    const greetingList: LanguageGreeting[] = [
+      {
+        lang: "Indonesia",
+        greeting: determineGreeting(
+          "Selamat Pagi",
+          "Selamat Siang",
+          "Selamat Sore",
+          "Selamat Malam"
+        ),
+      },
+      {
+        lang: "English",
+        greeting: determineGreeting(
+          "Good Morning",
+          "Good Afternoon",
+          "Good Evening",
+          "Good Night"
+        ),
+      },
+      {
+        lang: "日本語",
+        greeting: determineGreeting(
+          "おはようございます",
+          "こんにちは",
+          "こんばんは",
+          "おやすみなさい"
+        ),
+      },
+      {
+        lang: "中文",
+        greeting: determineGreeting("早上好", "中午好", "下午好", "晚上好"),
+      },
+      {
+        lang: "Русский",
+        greeting: determineGreeting(
+          "Доброе Утро",
+          "Добрый День",
+          "Добрый Вечер",
+          "Спокойной Ночи"
+        ),
+      },
+    ];
+
+    setGreetings(greetingList);
+  }, []);
+
+  useEffect(() => {
+    if (!isInView || greetings.length === 0) return;
+
+    const currentGreeting = greetings[index].greeting + "!";
+
+    const typingSpeed = isDeleting ? 60 : 120;
+    const timeout = setTimeout(() => {
+      setDisplayText(currentGreeting.slice(0, charIndex));
+
+      if (!isDeleting) {
+        if (charIndex < currentGreeting.length) {
+          setCharIndex((prev) => prev + 1);
+          if (charIndex === 1 && !hasFadedIn) {
+            setHasFadedIn(true); // fade-in hanya sekali
+          }
+        } else {
+          setTimeout(() => setIsDeleting(true), 1500);
+        }
+      } else {
+        if (charIndex > 0) {
+          setCharIndex((prev) => prev - 1);
+        } else {
+          setIsDeleting(false);
+          setIndex((prev) => (prev + 1) % greetings.length);
+        }
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [charIndex, isDeleting, greetings, index, hasFadedIn, isInView]);
 
   return (
     <section
       ref={ref}
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden px-4"
     >
-      {/* Animated Background */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-[#00d4ff]/20 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#0066ff]/20 rounded-full blur-3xl animate-float animate-delay-300"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl animate-rotate-slow"></div>
+      {/* Background Blur */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none z-0">
+        <div className="absolute top-[20%] left-[10%] w-72 h-72 bg-[#00d4ff]/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-[60%] right-[10%] w-96 h-96 bg-[#0066ff]/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-[40%] left-1/2 transform -translate-x-1/2 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl"></div>
       </div>
 
+      {/* Konten Utama */}
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="container mx-auto px-4 py-20 relative z-10"
+        key={isInView ? "visible" : "hidden"} // 👉 memicu re-render tiap kali muncul
+        className="z-10 text-center max-w-2xl"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
       >
-        <div className="text-center">
-          <div className="inline-block p-8 rounded-2xl backdrop-blur-lg bg-white/5 border border-white/10 shadow-2xl">
-            <div className="flex flex-col md:flex-row items-center md:items-start gap-10">
-              {/* Right Side */}
-              <div className="flex flex-col items-center md:items-end justify-center md:justify-end mt-6 md:mt-12 space-y-6">
-                {/* Foto */}
-                <div className="relative group transition-transform duration-500">
-                  <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-[#00d4ff]/30 shadow-lg shadow-[#00d4ff]/25 transform scale-100 group-hover:scale-110 transition-transform duration-500 ease-in-out">
-                    <img
-                      src={profileImg}
-                      alt="Maulana Rizwan Ahmad"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="absolute -bottom-3 -right-3 w-10 h-10 bg-green-500 rounded-full border-4 border-[#0a0a0a] flex items-center justify-center transition-all duration-600 animate-bounce">
-                    <div className="w-4 h-4 bg-green-400 rounded-full animate-pulse"></div>
-                  </div>
-                </div>
+        <h1 className="text-4xl md:text-5xl font-bold mb-10 text-white">
+          <span
+            className={`inline-block ${
+              !hasFadedIn && displayText !== ""
+                ? "opacity-0 animate-fade-in"
+                : ""
+            }`}
+          >
+            {displayText}
+          </span>
+          <span className="animate-pulse">|</span>
+        </h1>
 
-                {/* Social Icons - DIPINDAHKAN */}
-                <div className="flex space-x-6 mt-6 md:mt-8">
-                  <a
-                    href="https://github.com/GaroxXiz"
-                    className="p-3 rounded-full backdrop-blur-lg bg-white/10 border border-white/20 hover:bg-[#00d4ff]/20 hover:border-[#00d4ff]/50 transition-all duration-300 hover:scale-110 hover:rotate-12"
-                  >
-                    <Github size={24} className="text-white" />
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/maulana-rizwan-ahmad-8a831728b"
-                    className="p-3 rounded-full backdrop-blur-lg bg-white/10 border border-white/20 hover:bg-[#00d4ff]/20 hover:border-[#00d4ff]/50 transition-all duration-300 hover:scale-110 hover:rotate-12"
-                  >
-                    <Linkedin size={24} className="text-white" />
-                  </a>
-                  <a
-                    href="https://api.whatsapp.com/send?phone=+6289530085684&text=Hello, Give me more information about you!"
-                    className="p-3 rounded-full backdrop-blur-lg bg-white/10 border border-white/20 hover:bg-[#00d4ff]/20 hover:border-[#00d4ff]/50 transition-all duration-300 hover:scale-110 hover:rotate-12"
-                  >
-                    <MessageCircle size={24} className="text-white" />
-                  </a>
-                </div>
-              </div>
+        <p className="text-white/80 mb-15 text-lg md:text-xl">
+          Welcome to my portfolio website
+        </p>
 
-              {/* Left Side */}
-              <div className="flex-1 text-center md:text-left">
-                <h1 className="text-2xl md:text-4xl font-bold text-white mb-3">
-                  Hi, I'm
-                </h1>
-                <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 font-mono">
-                  {typedName}
-                  <span className="animate-pulse">|</span>
-                </h1>
-                <p className="text-xl md:text-2xl text-white/80 mb-6">
-                  Game Developer
-                </p>
-                <p className="text-white/60 mb-8 max-w-2xl whitespace-pre-line">
-                  A highly motivated Informatics student at President University
-                  with a concentration in Game Development. Passionate about
-                  creating immersive games using Unity, Blender, Aseprite.
-                  Looking for an opportunity to apply my technical and creative
-                  skills in a professional game development environment.
-                </p>
-
-                {/* Stats Section */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 text-white text-center">
-                  <StatCounter label="GPA" target={3.51} decimal />
-                  <StatCounter label="Projects" target={10} />
-                  <StatCounter label="Experience (Years)" target={1} />
-                </div>
-
-                {/* Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                  <a
-                    href="#projects"
-                    className="flex items-center justify-center px-8 py-3 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black font-semibold rounded-lg hover:shadow-lg hover:shadow-[#00d4ff]/25 transition-all duration-300 hover:scale-105 hover:-translate-y-1"
-                  >
-                    View Projects
-                  </a>
-                  <a
-                    href={CV}
-                    className="flex items-center justify-center px-8 py-3 backdrop-blur-lg bg-white/10 border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 gap-2"
-                  >
-                    <Download size={20} />
-                    <span>Download CV</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+        {/* Button untuk navigasi ke bagian About */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="#about"
+            className="flex items-center justify-center px-8 py-3 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black font-semibold rounded-lg hover:shadow-lg hover:shadow-[#00d4ff]/25 transition-all duration-300 hover:scale-105 hover:-translate-y-1"
+          >
+            See More Details
+          </a>
         </div>
       </motion.div>
     </section>
