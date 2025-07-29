@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, useMotionValue, useAnimationFrame } from "framer-motion";
+import { useRef, useState } from "react";
 import CS from "../../public/img/Csharp.png";
 import PY from "../../public/img/Python.png";
 import HTML from "../../public/img/HTML.png";
@@ -30,12 +29,14 @@ type Skill = {
 type SkillCategory = {
   title: string;
   skills: Skill[];
+  speed?: number;
 };
 
 const Skills = () => {
   const skillCategories: SkillCategory[] = [
     {
       title: "Technical Skills",
+      speed: 0.05,
       skills: [
         { name: "C#", icon: CS },
         { name: "Python", icon: PY },
@@ -46,6 +47,7 @@ const Skills = () => {
     },
     {
       title: "Tools",
+      speed: 0.05,
       skills: [
         { name: "Unity", icon: UNITY },
         { name: "Blender", icon: BLENDER },
@@ -58,6 +60,7 @@ const Skills = () => {
     },
     {
       title: "Soft Skills",
+      speed: 0.05,
       skills: [
         { name: "Creativity", icon: CR },
         { name: "Communication", icon: CO },
@@ -69,120 +72,88 @@ const Skills = () => {
     },
   ];
 
-  const [slideIndex, setSlideIndex] = useState<Record<string, number>>({});
-  const [direction, setDirection] = useState<Record<string, number>>({});
-
-  // Auto slide every 3 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      skillCategories.forEach((category) => {
-        handleSlide(category.title, "right", false);
-      });
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const handleSlide = (
-    categoryTitle: string,
-    dir: "left" | "right",
-    isManual = true
-  ) => {
-    setSlideIndex((prev) => {
-      const current = prev[categoryTitle] || 0;
-      const total =
-        skillCategories.find((c) => c.title === categoryTitle)?.skills.length ||
-        0;
-      const next =
-        dir === "left" ? (current - 1 + total) % total : (current + 1) % total;
-      return { ...prev, [categoryTitle]: next };
-    });
-
-    if (isManual) {
-      setDirection((prev) => ({
-        ...prev,
-        [categoryTitle]: dir === "left" ? -1 : 1,
-      }));
-    }
-  };
-
   return (
-    <section id="skills" className="py-20 relative">
+    <section id="skills" className="py-16 sm:py-20 relative">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
             My <span className="text-[#00d4ff]">Skills</span>
           </h2>
-          <p className="text-white/60 max-w-2xl mx-auto">
+          <p className="text-white/60 max-w-2xl mx-auto text-sm sm:text-base">
             Technologies and tools I use to bring ideas to life
           </p>
         </div>
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          viewport={{ once: false, amount: 0.4 }}
-          className="p-8 rounded-2xl backdrop-blur-lg bg-white/0 border border-white/0 mb-8"
-        >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {skillCategories.map((category, index) => {
-              const currentIndex = slideIndex[category.title] || 0;
-              const currentSkill = category.skills[currentIndex];
-              const slideDir = direction[category.title] || 1;
 
-              return (
-                <div
-                  key={index}
-                  className="p-6 rounded-xl h-full backdrop-blur-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 flex flex-col items-center"
-                >
-                  <h3 className="text-xl font-bold text-white mb-6 text-center">
-                    {category.title}
-                  </h3>
-
-                  <div className="relative w-full">
-                    {/* Arrow Buttons */}
-                    <button
-                      onClick={() => handleSlide(category.title, "left")}
-                      className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 z-10"
-                    >
-                      <ChevronLeft />
-                    </button>
-                    <button
-                      onClick={() => handleSlide(category.title, "right")}
-                      className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 z-10"
-                    >
-                      <ChevronRight />
-                    </button>
-
-                    {/* Animated Skill Icon */}
-                    <div className="flex justify-center">
-                      <AnimatePresence mode="wait">
-                        <motion.div
-                          key={currentSkill.name}
-                          initial={{ x: slideDir * 100, opacity: 0 }}
-                          animate={{ x: 0, opacity: 1 }}
-                          exit={{ x: -slideDir * 100, opacity: 0 }}
-                          transition={{ duration: 0.5 }}
-                          className="flex flex-col items-center text-white text-sm"
-                        >
-                          <img
-                            src={currentSkill.icon}
-                            alt={currentSkill.name}
-                            className="w-16 h-16 object-contain mb-2"
-                          />
-                          <span className="text-center">
-                            {currentSkill.name}
-                          </span>
-                        </motion.div>
-                      </AnimatePresence>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+        <div className="p-4 sm:p-8 rounded-2xl backdrop-blur-lg bg-white/0 border border-white/0 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {skillCategories.map((category, index) => (
+              <MarqueeCategory key={index} category={category} />
+            ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
+  );
+};
+
+const MarqueeCategory = ({ category }: { category: SkillCategory }) => {
+  const x = useMotionValue(0);
+  const [paused, setPaused] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const speed = category.speed ?? 0.05;
+
+  useAnimationFrame((_, delta) => {
+    if (!paused && contentRef.current && containerRef.current) {
+      const contentWidth = contentRef.current.scrollWidth / 2;
+      let currentX = x.get();
+      let nextX = currentX - delta * speed;
+
+      if (Math.abs(nextX) >= contentWidth) {
+        nextX = 0;
+      }
+
+      x.set(nextX);
+    }
+  });
+
+  const repeatedSkills = [...category.skills, ...category.skills];
+
+  return (
+    <div
+      className="p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 flex flex-col items-center overflow-hidden"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <h3 className="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-6 text-center">
+        {category.title}
+      </h3>
+
+      <div className="relative w-full overflow-hidden" ref={containerRef}>
+        <motion.div
+          className="flex gap-6 sm:gap-8 w-max will-change-transform"
+          ref={contentRef}
+          style={{ x }}
+        >
+          {repeatedSkills.map((skill, idx) => (
+            <div
+              key={idx}
+              className="flex flex-col items-center text-white text-xs sm:text-sm w-16 sm:w-20"
+            >
+              <div className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center">
+                <img
+                  src={skill.icon}
+                  alt={skill.name}
+                  className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
+                />
+              </div>
+              <span className="text-center mt-2">{skill.name}</span>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </div>
   );
 };
 

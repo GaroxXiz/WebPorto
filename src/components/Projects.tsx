@@ -78,13 +78,13 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-12 md:py-20 relative">
+    <section id="projects" className="py-10 sm:py-14 md:py-20 relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+        <div className="text-center mb-10 sm:mb-14 md:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4">
             My <span className="text-[#00d4ff]">Projects</span>
           </h2>
-          <p className="text-white/60 max-w-2xl mx-auto text-sm sm:text-base">
+          <p className="text-white/60 max-w-xl mx-auto text-sm sm:text-base">
             Here are some of my recent projects that showcase my skills and
             creativity
           </p>
@@ -95,15 +95,15 @@ const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
           viewport={{ once: false, amount: 0.4 }}
-          className="p-4 sm:p-6 md:p-8 rounded-2xl backdrop-blur-lg bg-white/0 border border-white/0 mb-12"
+          className="p-3 sm:p-5 md:p-8 rounded-2xl backdrop-blur-lg bg-white/0 border border-white/0 mb-12"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => (
               <div
                 key={index}
-                className="group w-full rounded-xl backdrop-blur-lg bg-white/5 border border-white/10 overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-105"
+                className="group w-full rounded-xl backdrop-blur-lg bg-white/5 border border-white/10 overflow-hidden hover:bg-white/10 transition-all duration-300 hover:scale-[1.02]"
               >
-                <div className="relative overflow-hidden h-40 sm:h-48">
+                <div className="relative overflow-hidden h-44 sm:h-48 md:h-52">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -128,23 +128,23 @@ const Projects = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
 
                   {project.status === "development" && (
-                    <div className="absolute top-3 right-3 z-10">
-                      <span className="px-3 py-1 text-xs bg-yellow-500/90 text-black rounded-full font-semibold backdrop-blur-sm">
+                    <div className="absolute top-2 right-2 z-10">
+                      <span className="px-2 py-1 text-[10px] sm:text-xs bg-yellow-500/90 text-black rounded-full font-semibold backdrop-blur-sm">
                         In Development
                       </span>
                     </div>
                   )}
                 </div>
 
-                <div className="p-4 sm:p-6">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
+                <div className="p-3 sm:p-5">
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-1 sm:mb-2">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-white/80 mb-4">
+                  <p className="text-xs sm:text-sm text-white/80 mb-3 sm:mb-4">
                     {project.description}
                   </p>
 
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-2 mb-3">
                     {project.tech.map((tech, techIndex) => (
                       <motion.span
                         whileHover={{
@@ -152,17 +152,17 @@ const Projects = () => {
                           boxShadow: "0px 0px 8px rgba(0, 212, 255, 0.5)",
                         }}
                         key={techIndex}
-                        className="px-3 py-1 text-xs bg-[#00d4ff]/20 text-[#00d4ff] rounded-full border border-[#00d4ff]/30 transition-all duration-300 hover:bg-[#00d4ff]/40 hover:scale-105"
+                        className="px-2.5 py-1 text-[10px] sm:text-xs bg-[#00d4ff]/20 text-[#00d4ff] rounded-full border border-[#00d4ff]/30 transition-all duration-300 hover:bg-[#00d4ff]/40 hover:scale-105"
                       >
                         {tech}
                       </motion.span>
                     ))}
                   </div>
 
-                  <div className="flex gap-4">
+                  <div className="flex gap-3">
                     {project.status === "development" ? (
-                      <span className="flex items-center gap-2 px-4 py-2 bg-yellow-500/20 border border-yellow-500/30 text-yellow-400 rounded-lg text-sm cursor-not-allowed">
-                        <ExternalLink size={16} />
+                      <span className="flex items-center gap-1 px-3 py-2 bg-yellow-500/20 border border-yellow-500/30 text-yellow-400 rounded-lg text-xs sm:text-sm cursor-not-allowed">
+                        <ExternalLink size={14} />
                         Coming Soon
                       </span>
                     ) : (
@@ -176,9 +176,9 @@ const Projects = () => {
                         }}
                         href={project.download}
                         download
-                        className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black rounded-lg transition-all duration-300 text-sm hover:scale-105 hover:shadow-md hover:shadow-[#00d4ff]/50"
+                        className="flex items-center gap-1 px-3 py-2 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black rounded-lg transition-all duration-300 text-xs sm:text-sm hover:scale-105 hover:shadow-md hover:shadow-[#00d4ff]/50"
                       >
-                        <ExternalLink size={16} />
+                        <ExternalLink size={14} />
                         Download
                       </motion.a>
                     )}

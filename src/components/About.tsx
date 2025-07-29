@@ -149,7 +149,7 @@ const About = () => {
 
   return (
     <section id="about" className="py-20 relative">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">
             About <span className="text-[#00d4ff]">Me</span>
@@ -235,14 +235,14 @@ const About = () => {
                   </p>
 
                   {/* Stats Section */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 text-white text-center">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8 text-white text-center">
                     <StatCounter label="GPA" target={3.51} decimal />
                     <StatCounter label="Projects" target={10} />
                     <StatCounter label="Experience (Years)" target={1} />
                   </div>
 
                   {/* Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center sm:justify-start">
                     <a
                       href="#projects"
                       className="flex items-center justify-center px-8 py-3 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black font-semibold rounded-lg hover:shadow-lg hover:shadow-[#00d4ff]/25 transition-all duration-300 hover:scale-105 hover:-translate-y-1"
