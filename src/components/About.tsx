@@ -17,6 +17,7 @@ import PUFA from "../../public/img/PUFA.png";
 import CSGO2025 from "../../public/img/CSGO 2025.png";
 import PUMA from "../../public/img/PUMA.png";
 import CSGO2024 from "../../public/img/CSGO 2024.png";
+import PIXIELAB from "../../public/img/PIXIELAB.png";
 
 type StatCounterProps = {
   label: string;
@@ -87,6 +88,7 @@ const About = () => {
     const timer = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(timer);
   }, [typedName, isDeleting]);
+
   const services = [
     {
       icon: <Gamepad2 size={32} />,
@@ -144,6 +146,17 @@ const About = () => {
         "PIC Games (Stumble Guys) at Computer Science Sport & Games Olympiad (CSGO) 2024",
       side: "right",
       image: CSGO2024,
+    },
+  ];
+
+  const workExperience = [
+    {
+      year: "August 2025 - January 2026",
+      company: "PIXIELAB",
+      role: "Fullstack Junior Developer",
+      description: "Developed a website, game application, tiktok filter, etc.",
+      side: "left",
+      image: PIXIELAB,
     },
   ];
 
@@ -353,6 +366,53 @@ const About = () => {
                     </div>
 
                     {/* Titik timeline */}
+                    <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 bg-[#00d4ff] border-4 border-[#0a0a0a] rounded-full z-10"></div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+        <div className="mt-32">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold text-white">Work Experience</h3>
+          </div>
+
+          <div className="relative max-w-4xl mx-auto px-4 md:px-0">
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full border-l-2 border-[#00d4ff]/20"></div>
+
+            <div className="space-y-20">
+              {workExperience.map((exp, index) => {
+                const isLeft = exp.side === "left";
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: isLeft ? -100 : 100 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: false, amount: 0.6 }}
+                    className={`relative flex flex-col md:flex-row ${
+                      isLeft ? "" : "md:flex-row-reverse"
+                    } items-center gap-6`}
+                  >
+                    <div className="w-full md:w-1/2 flex gap-4 items-start">
+                      <img
+                        src={exp.image}
+                        className="w-20 h-20 object-contain"
+                        alt={exp.company}
+                      />
+                      <div className="text-white">
+                        <h4 className="font-semibold">{exp.role}</h4>
+                        <p className="text-white/60 text-sm">{exp.company}</p>
+                        <p className="text-white/40 text-xs italic">
+                          {exp.year}
+                        </p>
+                        <p className="text-white/70 text-sm mt-2">
+                          {exp.description}
+                        </p>
+                      </div>
+                    </div>
+
                     <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 bg-[#00d4ff] border-4 border-[#0a0a0a] rounded-full z-10"></div>
                   </motion.div>
                 );
