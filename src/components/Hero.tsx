@@ -281,6 +281,177 @@ const Hero = () => {
           "Chúc ngủ ngon"
         ),
       },
+      {
+        lang: "Swahili",
+        greeting: determineGreeting(
+          "Habari za Asubuhi",
+          "Habari za Mchana",
+          "Habari za Jioni",
+          "Usiku Mwema"
+        ),
+      },
+      {
+        lang: "Zulu",
+        greeting: determineGreeting(
+          "Sawubona Ekuseni",
+          "Sawubona Emini",
+          "Sawubona Kusihlwa",
+          "Ulale Kahle"
+        ),
+      },
+      {
+        lang: "Afrikaans",
+        greeting: determineGreeting(
+          "Goeiemôre",
+          "Goeiemiddag",
+          "Goeienaand",
+          "Goeienag"
+        ),
+      },
+      {
+        lang: "Urdu",
+        greeting: determineGreeting(
+          "صبح بخیر",
+          "دوپہر بخیر",
+          "شام بخیر",
+          "شب بخیر"
+        ),
+      },
+      {
+        lang: "Tamil",
+        greeting: determineGreeting(
+          "காலை வணக்கம்",
+          "மதிய வணக்கம்",
+          "மாலை வணக்கம்",
+          "இனிய இரவு"
+        ),
+      },
+      {
+        lang: "Telugu",
+        greeting: determineGreeting(
+          "శుభోదయం",
+          "శుభ మధ్యాహ్నం",
+          "శుభ సాయంత్రం",
+          "శుభ రాత్రి"
+        ),
+      },
+      {
+        lang: "Kazakh",
+        greeting: determineGreeting(
+          "Қайырлы таң",
+          "Қайырлы күн",
+          "Қайырлы кеш",
+          "Қайырлы түн"
+        ),
+      },
+      {
+        lang: "Uzbek",
+        greeting: determineGreeting(
+          "Xayrli tong",
+          "Xayrli kun",
+          "Xayrli kech",
+          "Xayrli tun"
+        ),
+      },
+      {
+        lang: "Rumania",
+        greeting: determineGreeting(
+          "Bună dimineața",
+          "Bună ziua",
+          "Bună seara",
+          "Noapte bună"
+        ),
+      },
+      {
+        lang: "Hungaria",
+        greeting: determineGreeting(
+          "Jó reggelt",
+          "Jó napot",
+          "Jó estét",
+          "Jó éjszakát"
+        ),
+      },
+      {
+        lang: "Ceko",
+        greeting: determineGreeting(
+          "Dobré ráno",
+          "Dobrý den",
+          "Dobrý večer",
+          "Dobrou noc"
+        ),
+      },
+      {
+        lang: "Slovakia",
+        greeting: determineGreeting(
+          "Dobré ráno",
+          "Dobrý deň",
+          "Dobrý večer",
+          "Dobrú noc"
+        ),
+      },
+      {
+        lang: "Finlandia",
+        greeting: determineGreeting(
+          "Hyvää huomenta",
+          "Hyvää päivää",
+          "Hyvää iltaa",
+          "Hyvää yötä"
+        ),
+      },
+      {
+        lang: "Norwegia",
+        greeting: determineGreeting(
+          "God morgen",
+          "God dag",
+          "God kveld",
+          "God natt"
+        ),
+      },
+      {
+        lang: "Denmark",
+        greeting: determineGreeting(
+          "God morgen",
+          "God dag",
+          "God aften",
+          "God nat"
+        ),
+      },
+      {
+        lang: "Mongolia",
+        greeting: determineGreeting(
+          "Өглөөний мэнд",
+          "Өдрийн мэнд",
+          "Оройн мэнд",
+          "Сайхан амраарай"
+        ),
+      },
+      {
+        lang: "Georgia",
+        greeting: determineGreeting(
+          "დილა მშვიდობისა",
+          "დღე მშვიდობისა",
+          "საღამო მშვიდობისა",
+          "ღამე მშვიდობისა"
+        ),
+      },
+      {
+        lang: "Armenia",
+        greeting: determineGreeting(
+          "Բարի առավոտ",
+          "Բարի օր",
+          "Բարի երեկո",
+          "Բարի գիշեր"
+        ),
+      },
+      {
+        lang: "Quechua",
+        greeting: determineGreeting(
+          "Allin p’unchay",
+          "Allin ch’isi",
+          "Allin sukha",
+          "Allin tuta"
+        ),
+      },
     ];
 
     const englishGreeting = greetingList.find((g) => g.lang === "Inggris")!;
