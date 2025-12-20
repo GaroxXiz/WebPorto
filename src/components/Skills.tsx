@@ -20,6 +20,7 @@ import TW from "../../public/img/Teamwork.png";
 import PS from "../../public/img/Problem Solving.png";
 import LS from "../../public/img/Leadership.png";
 import DC from "../../public/img/Decision.png";
+import EH from "../../public/img/Effect House.png";
 
 type Skill = {
   name: string;
@@ -56,6 +57,7 @@ const Skills = () => {
         { name: "GitHub", icon: GITHUB },
         { name: "Visual Studio", icon: VS },
         { name: "Visual Studio Code", icon: VSC },
+        { name: "Effect House", icon: EH },
       ],
     },
     {
