@@ -2,10 +2,19 @@
 
 import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import greetingsData from "../../src/data/greetings.json";
 
 type LanguageGreeting = {
   lang: string;
   greeting: string;
+};
+
+type GreetingData = {
+  lang: string;
+  morning: string;
+  afternoon: string;
+  evening: string;
+  night: string;
 };
 
 const shuffleArray = <T,>(array: T[]): T[] => {
@@ -45,414 +54,21 @@ const Hero = () => {
   }, [isInView]);
 
   useEffect(() => {
-    const now = new Date();
-    const hour = now.getHours();
+    const hour = new Date().getHours();
 
-    const determineGreeting = (
-      morning: string,
-      afternoon: string,
-      evening: string,
-      night: string
-    ): string => {
-      if (hour >= 4 && hour < 10) return morning;
-      else if (hour >= 10 && hour < 15) return afternoon;
-      else if (hour >= 15 && hour < 18) return evening;
-      else return night;
+    const determineGreeting = (g: GreetingData): string => {
+      if (hour >= 4 && hour < 10) return g.morning;
+      if (hour >= 10 && hour < 15) return g.afternoon;
+      if (hour >= 15 && hour < 18) return g.evening;
+      return g.night;
     };
 
-    const greetingList: LanguageGreeting[] = [
-      {
-        lang: "Indonesia",
-        greeting: determineGreeting(
-          "Selamat Pagi",
-          "Selamat Siang",
-          "Selamat Sore",
-          "Selamat Malam"
-        ),
-      },
-      {
-        lang: "Inggris",
-        greeting: determineGreeting(
-          "Good Morning",
-          "Good Afternoon",
-          "Good Evening",
-          "Good Night"
-        ),
-      },
-      {
-        lang: "Jepang",
-        greeting: determineGreeting(
-          "おはようございます",
-          "こんにちは",
-          "こんばんは",
-          "おやすみなさい"
-        ),
-      },
-      {
-        lang: "China(Mandarin)",
-        greeting: determineGreeting("早上好", "中午好", "下午好", "晚上好"),
-      },
-      {
-        lang: "Russia",
-        greeting: determineGreeting(
-          "Доброе утро",
-          "Добрый день",
-          "Добрый вечер",
-          "Спокойной ночи"
-        ),
-      },
-      {
-        lang: "Francis",
-        greeting: determineGreeting(
-          "Bonjour",
-          "Bon après-midi",
-          "Bonsoir",
-          "Bonne nuit"
-        ),
-      },
-      {
-        lang: "Spanyol",
-        greeting: determineGreeting(
-          "Buenos días",
-          "Buenas tardes",
-          "Buenas tardes",
-          "Buenas noches"
-        ),
-      },
-      {
-        lang: "Jerman",
-        greeting: determineGreeting(
-          "Guten Morgen",
-          "Guten Tag",
-          "Guten Abend",
-          "Gute Nacht"
-        ),
-      },
-      {
-        lang: "Portugal",
-        greeting: determineGreeting(
-          "Bom dia",
-          "Boa tarde",
-          "Boa tarde",
-          "Boa noite"
-        ),
-      },
-      {
-        lang: "Korea",
-        greeting: determineGreeting(
-          "좋은 아침",
-          "안녕하세요",
-          "좋은 저녁",
-          "안녕히 주무세요"
-        ),
-      },
-      {
-        lang: "Italia",
-        greeting: determineGreeting(
-          "Buongiorno",
-          "Buon pomeriggio",
-          "Buonasera",
-          "Buonanotte"
-        ),
-      },
-      {
-        lang: "Arab",
-        greeting: determineGreeting(
-          "صباح الخير",
-          "مساء الخير",
-          "مساء الخير",
-          "تصبح على خير"
-        ),
-      },
-      {
-        lang: "India",
-        greeting: determineGreeting(
-          "सुप्रभात",
-          "नमस्ते",
-          "शुभ संध्या",
-          "शुभ रात्रि"
-        ),
-      },
-      {
-        lang: "Thailand",
-        greeting: determineGreeting(
-          "สวัสดีตอนเช้า",
-          "สวัสดีตอนบ่าย",
-          "สวัสดีตอนเย็น",
-          "ราตรีสวัสดิ์"
-        ),
-      },
-      {
-        lang: "Turki",
-        greeting: determineGreeting(
-          "Günaydın",
-          "Tünaydın",
-          "İyi akşamlar",
-          "İyi geceler"
-        ),
-      },
-      {
-        lang: "Bangladesh",
-        greeting: determineGreeting(
-          "সুপ্রভাত",
-          "শুভ দুপুর",
-          "শুভ সন্ধ্যা",
-          "শুভ রাত্রি"
-        ),
-      },
-      {
-        lang: "Laos",
-        greeting: determineGreeting(
-          "ສະບາຍດີເຊົ້າ",
-          "ສະບາຍດີຕອນແລງ",
-          "ສະບາຍດີແລງ",
-          "ນອນຫຼັບຝັນດີ"
-        ),
-      },
-      {
-        lang: "Belanda",
-        greeting: determineGreeting(
-          "Goedemorgen",
-          "Goedemiddag",
-          "Goedenavond",
-          "Goedenacht"
-        ),
-      },
-      {
-        lang: "Polandia",
-        greeting: determineGreeting(
-          "Dzień dobry",
-          "Dzień dobry",
-          "Dobry wieczór",
-          "Dobranoc"
-        ),
-      },
-      {
-        lang: "Yunani",
-        greeting: determineGreeting(
-          "Καλημέρα",
-          "Καλό απόγευμα",
-          "Καλησπέρα",
-          "Καληνύχτα"
-        ),
-      },
-      {
-        lang: "Swedia",
-        greeting: determineGreeting(
-          "God morgon",
-          "God dag",
-          "God kväll",
-          "God natt"
-        ),
-      },
-      {
-        lang: "Ukraina",
-        greeting: determineGreeting(
-          "Доброго ранку",
-          "Доброго дня",
-          "Доброго вечора",
-          "На добраніч"
-        ),
-      },
-      {
-        lang: "Filipina",
-        greeting: determineGreeting(
-          "Magandang Umaga",
-          "Magandang Tanghali",
-          "Magandang Gabi",
-          "Magandang Gabi"
-        ),
-      },
-      {
-        lang: "Myanmar",
-        greeting: determineGreeting(
-          "မင်္ဂလာနံနက်ခင်းပါ",
-          "မင်္ဂလာနေ့လယ်ခင်းပါ",
-          "မင်္ဂလာညနေခင်းပါ",
-          "ကောင်းသောညပါ"
-        ),
-      },
-      {
-        lang: "Vietnam",
-        greeting: determineGreeting(
-          "Chào buổi sáng",
-          "Chào buổi trưa",
-          "Chào buổi chiều",
-          "Chúc ngủ ngon"
-        ),
-      },
-      {
-        lang: "Swahili",
-        greeting: determineGreeting(
-          "Habari za Asubuhi",
-          "Habari za Mchana",
-          "Habari za Jioni",
-          "Usiku Mwema"
-        ),
-      },
-      {
-        lang: "Zulu",
-        greeting: determineGreeting(
-          "Sawubona Ekuseni",
-          "Sawubona Emini",
-          "Sawubona Kusihlwa",
-          "Ulale Kahle"
-        ),
-      },
-      {
-        lang: "Afrikaans",
-        greeting: determineGreeting(
-          "Goeiemôre",
-          "Goeiemiddag",
-          "Goeienaand",
-          "Goeienag"
-        ),
-      },
-      {
-        lang: "Urdu",
-        greeting: determineGreeting(
-          "صبح بخیر",
-          "دوپہر بخیر",
-          "شام بخیر",
-          "شب بخیر"
-        ),
-      },
-      {
-        lang: "Tamil",
-        greeting: determineGreeting(
-          "காலை வணக்கம்",
-          "மதிய வணக்கம்",
-          "மாலை வணக்கம்",
-          "இனிய இரவு"
-        ),
-      },
-      {
-        lang: "Telugu",
-        greeting: determineGreeting(
-          "శుభోదయం",
-          "శుభ మధ్యాహ్నం",
-          "శుభ సాయంత్రం",
-          "శుభ రాత్రి"
-        ),
-      },
-      {
-        lang: "Kazakh",
-        greeting: determineGreeting(
-          "Қайырлы таң",
-          "Қайырлы күн",
-          "Қайырлы кеш",
-          "Қайырлы түн"
-        ),
-      },
-      {
-        lang: "Uzbek",
-        greeting: determineGreeting(
-          "Xayrli tong",
-          "Xayrli kun",
-          "Xayrli kech",
-          "Xayrli tun"
-        ),
-      },
-      {
-        lang: "Rumania",
-        greeting: determineGreeting(
-          "Bună dimineața",
-          "Bună ziua",
-          "Bună seara",
-          "Noapte bună"
-        ),
-      },
-      {
-        lang: "Hungaria",
-        greeting: determineGreeting(
-          "Jó reggelt",
-          "Jó napot",
-          "Jó estét",
-          "Jó éjszakát"
-        ),
-      },
-      {
-        lang: "Ceko",
-        greeting: determineGreeting(
-          "Dobré ráno",
-          "Dobrý den",
-          "Dobrý večer",
-          "Dobrou noc"
-        ),
-      },
-      {
-        lang: "Slovakia",
-        greeting: determineGreeting(
-          "Dobré ráno",
-          "Dobrý deň",
-          "Dobrý večer",
-          "Dobrú noc"
-        ),
-      },
-      {
-        lang: "Finlandia",
-        greeting: determineGreeting(
-          "Hyvää huomenta",
-          "Hyvää päivää",
-          "Hyvää iltaa",
-          "Hyvää yötä"
-        ),
-      },
-      {
-        lang: "Norwegia",
-        greeting: determineGreeting(
-          "God morgen",
-          "God dag",
-          "God kveld",
-          "God natt"
-        ),
-      },
-      {
-        lang: "Denmark",
-        greeting: determineGreeting(
-          "God morgen",
-          "God dag",
-          "God aften",
-          "God nat"
-        ),
-      },
-      {
-        lang: "Mongolia",
-        greeting: determineGreeting(
-          "Өглөөний мэнд",
-          "Өдрийн мэнд",
-          "Оройн мэнд",
-          "Сайхан амраарай"
-        ),
-      },
-      {
-        lang: "Georgia",
-        greeting: determineGreeting(
-          "დილა მშვიდობისა",
-          "დღე მშვიდობისა",
-          "საღამო მშვიდობისა",
-          "ღამე მშვიდობისა"
-        ),
-      },
-      {
-        lang: "Armenia",
-        greeting: determineGreeting(
-          "Բարի առավոտ",
-          "Բարի օր",
-          "Բարի երեկո",
-          "Բարի գիշեր"
-        ),
-      },
-      {
-        lang: "Quechua",
-        greeting: determineGreeting(
-          "Allin p’unchay",
-          "Allin ch’isi",
-          "Allin sukha",
-          "Allin tuta"
-        ),
-      },
-    ];
+    const greetingList: LanguageGreeting[] = greetingsData.map(
+      (g: GreetingData) => ({
+        lang: g.lang,
+        greeting: determineGreeting(g),
+      }),
+    );
 
     const englishGreeting = greetingList.find((g) => g.lang === "Inggris")!;
     const otherGreetings = greetingList.filter((g) => g.lang !== "Inggris");
@@ -466,6 +82,7 @@ const Hero = () => {
     const currentGreeting = greetings[index].greeting + "!";
 
     const typingSpeed = isDeleting ? 60 : 120;
+
     const timeout = setTimeout(() => {
       setDisplayText(currentGreeting.slice(0, charIndex));
 
@@ -496,22 +113,34 @@ const Hero = () => {
       ref={ref}
       className="min-h-screen flex items-center justify-center relative overflow-hidden px-4 py-16 sm:py-20"
     >
+      {/* VIDEO BACKGROUND */}
+      <video
+        src="/WebPorto/video/Background.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full z-[-1]"
+      ></video>
+
+      {/* DARK OVERLAY */}
+      <div className="absolute inset-0 bg-black/50 z-[-1]" />
+
       {/* Background Blur */}
       <div className="absolute inset-0 opacity-20 pointer-events-none z-0">
-        <div className="absolute top-[20%] left-[10%] w-48 h-48 sm:w-72 sm:h-72 bg-[#00d4ff]/20 rounded-full blur-2xl sm:blur-3xl"></div>
-        <div className="absolute top-[60%] right-[10%] w-64 h-64 sm:w-96 sm:h-96 bg-[#0066ff]/20 rounded-full blur-2xl sm:blur-3xl"></div>
-        <div className="absolute top-[40%] left-1/2 transform -translate-x-1/2 w-52 h-52 sm:w-64 sm:h-64 bg-purple-500/10 rounded-full blur-2xl sm:blur-3xl"></div>
+        <div className="absolute top-[20%] left-[10%] w-72 h-72 bg-[#00d4ff]/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-[60%] right-[10%] w-96 h-96 bg-[#0066ff]/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-[40%] left-1/2 transform -translate-x-1/2 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl"></div>
       </div>
 
-      {/* Konten Utama */}
       <motion.div
         key={isInView ? "visible" : "hidden"}
-        className="z-10 text-center w-full max-w-xs sm:max-w-md md:max-w-xl"
+        className="z-10 text-center w-full max-w-xl"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
       >
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-10 text-white">
+        <h1 className="text-4xl md:text-5xl font-bold mb-10 text-white">
           <span
             className={`inline-block ${
               !hasFadedIn && displayText !== ""
@@ -524,21 +153,18 @@ const Hero = () => {
           <span className="animate-pulse">|</span>
         </h1>
 
-        <p className="text-white/80 mb-10 text-base sm:text-lg md:text-xl">
+        <p className="text-white/80 mb-10 text-lg md:text-xl">
           Welcome to my portfolio website
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex justify-center">
           <motion.a
             href="#about"
-            className="w-full sm:w-auto text-center flex items-center justify-center px-6 sm:px-8 py-3 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black font-semibold rounded-lg hover:shadow-lg hover:shadow-[#00d4ff]/25 transition-all duration-300 hover:scale-105 hover:-translate-y-1"
-            animate={{
-              y: [0, -5, 0],
-            }}
+            className="px-8 py-3 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black font-semibold rounded-lg hover:shadow-lg hover:shadow-[#00d4ff]/25 transition-all duration-300 hover:scale-105 hover:-translate-y-1"
+            animate={{ y: [0, -5, 0] }}
             transition={{
               duration: 1.5,
               repeat: Infinity,
-              repeatType: "loop",
               ease: "easeInOut",
               delay: 2,
             }}

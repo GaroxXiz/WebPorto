@@ -21,6 +21,7 @@ import PS from "../../public/img/Problem Solving.png";
 import LS from "../../public/img/Leadership.png";
 import DC from "../../public/img/Decision.png";
 import EH from "../../public/img/Effect House.png";
+import PG from "../../public/img/PostGreeSQL.png";
 
 type Skill = {
   name: string;
@@ -44,6 +45,7 @@ const Skills = () => {
         { name: "HTML", icon: HTML },
         { name: "CSS", icon: CSS },
         { name: "JavaScript", icon: JS },
+        { name: "PostgreeSQL", icon: PG },
       ],
     },
     {

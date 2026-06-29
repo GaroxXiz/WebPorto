@@ -1,0 +1,135 @@
+[
+  {
+    "lang": "Indonesia",
+    "morning": "Selamat Pagi",
+    "afternoon": "Selamat Siang",
+    "evening": "Selamat Sore",
+    "night": "Selamat Malam"
+  },
+  {
+    "lang": "Inggris",
+    "morning": "Good Morning",
+    "afternoon": "Good Afternoon",
+    "evening": "Good Evening",
+    "night": "Good Night"
+  },
+  {
+    "lang": "Jepang",
+    "morning": "おはようございます",
+    "afternoon": "こんにちは",
+    "evening": "こんばんは",
+    "night": "おやすみなさい"
+  },
+  {
+    "lang": "China(Mandarin)",
+    "morning": "早上好",
+    "afternoon": "中午好",
+    "evening": "下午好",
+    "night": "晚上好"
+  },
+  {
+    "lang": "Russia",
+    "morning": "Доброе утро",
+    "afternoon": "Добрый день",
+    "evening": "Добрый вечер",
+    "night": "Спокойной ночи"
+  },
+  {
+    "lang": "Francis",
+    "morning": "Bonjour",
+    "afternoon": "Bon après-midi",
+    "evening": "Bonsoir",
+    "night": "Bonne nuit"
+  },
+  {
+    "lang": "Spanyol",
+    "morning": "Buenos días",
+    "afternoon": "Buenas tardes",
+    "evening": "Buenas tardes",
+    "night": "Buenas noches"
+  },
+  {
+    "lang": "Jerman",
+    "morning": "Guten Morgen",
+    "afternoon": "Guten Tag",
+    "evening": "Guten Abend",
+    "night": "Gute Nacht"
+  },
+  {
+    "lang": "Portugal",
+    "morning": "Bom dia",
+    "afternoon": "Boa tarde",
+    "evening": "Boa tarde",
+    "night": "Boa noite"
+  },
+  {
+    "lang": "Korea",
+    "morning": "좋은 아침",
+    "afternoon": "안녕하세요",
+    "evening": "좋은 저녁",
+    "night": "안녕히 주무세요"
+  },
+  {
+    "lang": "Italia",
+    "morning": "Buongiorno",
+    "afternoon": "Buon pomeriggio",
+    "evening": "Buonasera",
+    "night": "Buonanotte"
+  },
+  {
+    "lang": "Arab",
+    "morning": "صباح الخير",
+    "afternoon": "مساء الخير",
+    "evening": "مساء الخير",
+    "night": "تصبح على خير"
+  },
+  {
+    "lang": "India",
+    "morning": "सुप्रभात",
+    "afternoon": "नमस्ते",
+    "evening": "शुभ संध्या",
+    "night": "शुभ रात्रि"
+  },
+  {
+    "lang": "Thailand",
+    "morning": "สวัสดีตอนเช้า",
+    "afternoon": "สวัสดีตอนบ่าย",
+    "evening": "สวัสดีตอนเย็น",
+    "night": "ราตรีสวัสดิ์"
+  },
+  {
+    "lang": "Turki",
+    "morning": "Günaydın",
+    "afternoon": "Tünaydın",
+    "evening": "İyi akşamlar",
+    "night": "İyi geceler"
+  },
+  {
+    "lang": "Belanda",
+    "morning": "Goedemorgen",
+    "afternoon": "Goedemiddag",
+    "evening": "Goedenavond",
+    "night": "Goedenacht"
+  },
+  {
+    "lang": "Polandia",
+    "morning": "Dzień dobry",
+    "afternoon": "Dzień dobry",
+    "evening": "Dobry wieczór",
+    "night": "Dobranoc"
+  },
+  {
+    "lang": "Yunani",
+    "morning": "Καλημέρα",
+    "afternoon": "Καλό απόγευμα",
+    "evening": "Καλησπέρα",
+    "night": "Καληνύχτα"
+  },
+  {
+    "lang": "Swedia",
+    "morning": "God morgon",
+    "afternoon": "God dag",
+    "evening": "God kväll",
+    "night": "God natt"
+  }
+]

@@ -12,6 +12,7 @@ import MalwareImg from "../../public/img/Cyber.png";
 import MalwareVid from "../../public/video/Demo-Cyber.mp4";
 import JapaneseImg from "../../public/img/Japanese.png";
 import VNImg from "../../public/img/VN.png";
+import KAHFImg from "../../public/img/KAHF-HAIR.png";
 
 const Projects = () => {
   const projects = [
@@ -54,6 +55,15 @@ const Projects = () => {
       demo: MalwareVid,
       download:
         "https://drive.google.com/drive/folders/1tl5Ma4flqQRTwkkx8YfGy7_xrSJwlvN7?usp=sharing",
+    },
+    {
+      title: "KAHF DECODE HAIR ANALYZER",
+      description:
+        "Create the front-end design and the logic of the website, Created the database, Integrated the website with the backend using API, Debugging the website for the final release",
+      tech: ["HTML", "CSS", "JavaScript", "PostgreSQL", "NodeJS", "ExpressJS"],
+      image: KAHFImg,
+      demo: "#",
+      website: "https://hair-analyzer.kahfeveryday.com/",
     },
     {
       title: "Japanese Learning Language",
@@ -108,22 +118,24 @@ const Projects = () => {
                     src={project.image}
                     alt={project.title}
                     className={`w-full h-full object-cover transition-opacity duration-300 ${
-                      project.status !== "development"
+                      project.status !== "development" && !project.website
                         ? "group-hover:opacity-0"
                         : ""
                     }`}
                   />
 
-                  {project.status !== "development" && project.demo !== "#" && (
-                    <video
-                      src={project.demo}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className="absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    />
-                  )}
+                  {project.status !== "development" &&
+                    project.demo &&
+                    !project.website && (
+                      <video
+                        src={project.demo}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      />
+                    )}
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
 
@@ -152,7 +164,7 @@ const Projects = () => {
                           boxShadow: "0px 0px 8px rgba(0, 212, 255, 0.5)",
                         }}
                         key={techIndex}
-                        className="px-2.5 py-1 text-[10px] sm:text-xs bg-[#00d4ff]/20 text-[#00d4ff] rounded-full border border-[#00d4ff]/30 transition-all duration-300 hover:bg-[#00d4ff]/40 hover:scale-105"
+                        className="px-2.5 py-1 text-[10px] sm:text-xs bg-[#00d4ff]/20 text-[#00d4ff] rounded-full border border-[#00d4ff]/30"
                       >
                         {tech}
                       </motion.span>
@@ -165,18 +177,25 @@ const Projects = () => {
                         <ExternalLink size={14} />
                         Coming Soon
                       </span>
+                    ) : project.website ? (
+                      <motion.a
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        href={project.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 px-3 py-2 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black rounded-lg text-xs sm:text-sm"
+                      >
+                        <ExternalLink size={14} />
+                        Open Website
+                      </motion.a>
                     ) : (
                       <motion.a
-                        whileHover={{
-                          scale: 1.05,
-                          rotate: -1.5,
-                        }}
-                        whileTap={{
-                          scale: 0.95,
-                        }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                         href={project.download}
                         download
-                        className="flex items-center gap-1 px-3 py-2 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black rounded-lg transition-all duration-300 text-xs sm:text-sm hover:scale-105 hover:shadow-md hover:shadow-[#00d4ff]/50"
+                        className="flex items-center gap-1 px-3 py-2 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black rounded-lg text-xs sm:text-sm"
                       >
                         <ExternalLink size={14} />
                         Download

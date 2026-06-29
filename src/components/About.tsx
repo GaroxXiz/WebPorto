@@ -18,6 +18,7 @@ import CSGO2025 from "../../public/img/CSGO 2025.png";
 import PUMA from "../../public/img/PUMA.png";
 import CSGO2024 from "../../public/img/CSGO 2024.png";
 import PIXIELAB from "../../public/img/PIXIELAB.png";
+import ENSEVAL from "../../public/img/ENSEVAL.png";
 
 type StatCounterProps = {
   label: string;
@@ -74,7 +75,7 @@ const About = () => {
       setTypedName((prev) =>
         isDeleting
           ? fullText.substring(0, prev.length - 1)
-          : fullText.substring(0, prev.length + 1)
+          : fullText.substring(0, prev.length + 1),
       );
 
       if (!isDeleting && typedName === fullText) {
@@ -158,6 +159,14 @@ const About = () => {
       side: "left",
       image: PIXIELAB,
     },
+    {
+      year: "April 2026 - Present",
+      company: "ENSEVAL",
+      role: "Web Developer Intern",
+      description: "Developed and maintained enterprise web applications, implemented REST APIs, optimized database queries, and collaborated with the development team to deliver business solutions.",
+      side: "right",
+      image: ENSEVAL,
+    }
   ];
 
   return (
@@ -229,28 +238,38 @@ const About = () => {
                     <span className="animate-pulse">|</span>
                   </h1>
                   <p className="text-xl md:text-2xl text-white/80 mb-6">
-                    Game Developer
+                    Game Developer & Fullstack Developer
                   </p>
                   <p className="text-white/60 mb-8 max-w-2xl whitespace-pre-line">
-                    I'm Maulana Rizwan Ahmad, a highly motivated Informatics
+                    I’m Maulana Rizwan Ahmad, a highly motivated Informatics
                     student at President University with a concentration in Game
-                    Development, based in Bekasi. I have 1 year of experience
-                    creating interactive and meaningful game experiences, and
-                    I'm passionate about building immersive digital worlds using
-                    tools like Unity, Blender, and Aseprite. I specialize in 2D
-                    game development, combining engaging gameplay mechanics,
-                    pixel art, and clean code to bring ideas to life. Whether
-                    it’s an immersive RPG or an educational game, I love turning
-                    creative concepts into impactful and enjoyable experiences.
-                    I'm currently looking for an opportunity to apply my
-                    technical and creative skills in a professional game
+                    Development, based in Bekasi. I have around one year of
+                    experience building interactive and meaningful digital
+                    products, ranging from 2D games to web-based applications.
+                    I’m passionate about creating immersive experiences and
+                    scalable systems using technologies such as Unity, Blender,
+                    Aseprite, JavaScript, Node.js, and PostgreSQL. My core
+                    strength lies in 2D game development, where I combine
+                    engaging gameplay mechanics, pixel art, and clean,
+                    maintainable code. In addition, I have experience in
+                    full-stack web development, including designing responsive
+                    front-end interfaces, building back-end APIs, managing
+                    databases, and integrating systems into complete,
+                    production-ready applications. This combination allows me to
+                    approach projects holistically from gameplay and visual
+                    design to architecture and deployment. Whether developing an
+                    immersive RPG, an educational game, or a functional web
+                    platform, I focus on turning creative ideas into polished
+                    and impactful products. I’m currently seeking an opportunity
+                    where I can contribute both my game development expertise
+                    and full-stack engineering skills within a professional
                     development environment.
                   </p>
 
                   {/* Stats Section */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8 text-white text-center">
                     <StatCounter label="GPA" target={3.51} decimal />
-                    <StatCounter label="Projects" target={10} />
+                    <StatCounter label="Projects" target={13} />
                     <StatCounter label="Experience (Years)" target={1} />
                   </div>
 
@@ -285,12 +304,18 @@ const About = () => {
           >
             <h3 className="text-2xl font-bold text-white mb-2">What I Do</h3>
             <p className="text-white/80 leading-relaxed">
-              From concept to deployment, I craft engaging and scalable games
-              across desktop, mobile, and web platforms. I collaborate with
-              indie teams and studios to bring creative visions to life using
-              modern game engines, pixel-perfect art, and industry best
-              practices. Whether it's an immersive RPG or an educational
-              experience, I build games that players remember.
+              From concept to deployment, I build engaging and scalable digital
+              products across desktop, mobile, and web platforms ranging from
+              interactive games to full-stack web applications. I collaborate
+              with indie teams and small studios to bring creative ideas into
+              production using modern game engines, structured back-end systems,
+              and clean front-end architecture. My work spans gameplay
+              programming, pixel-art implementation, API integration, and
+              database design, allowing me to handle both the creative and
+              technical sides of development. Whether it’s an immersive RPG, an
+              educational experience, or a functional web platform, I focus on
+              delivering products that are technically solid, maintainable, and
+              meaningful for users.
             </p>
           </motion.div>
         </div>
