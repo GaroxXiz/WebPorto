@@ -192,8 +192,8 @@ const Projects = () => {
     {
       title: "GARIONX AI",
       description:
-        "Developed a multi-agent AI chat platform featuring custom agent creation. Built a highly responsive Next.js frontend and a secure ASP.NET Core 9.0 Web API backend integrated with PostgreSQL. Features include dynamic LLM routing (Groq, Gemini, Claude, OpenAI), multimedia attachments, YouTube video summarization, and AI image-to-video generation powered by Segmind and Replicate.",
-      tech: ["Next.js", "React", "TypeScript" , "Tailwind CSS" , "ASP.NET Core" , "PostgreSQL" , "Firebase Auth" , "Docker" , "AI APIs"],
+        "Developed a multi-agent AI chat platform with custom agent creation, dynamic LLM routing, and AI-powered multimedia tools.",
+      tech: ["Next.js", "React", "TypeScript" , "Tailwind CSS" , "ASP.NET Core" , "PostgreSQL" , "Firebase Auth" , "Docker" , "Groq API" , "AI APIs"],
       image: GARIONXImg,
       demo: "#",
       website: "https://garionx.vercel.app/",
