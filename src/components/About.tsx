@@ -119,7 +119,7 @@ const About = () => {
 
   const organizationExperience = [
     {
-      year: "2024 - Present",
+      year: "2024 - 2025",
       organization: "PUFA Computer Science",
       position: "Vice of Art and Sport Division",
       side: "left",
@@ -348,97 +348,122 @@ const About = () => {
 
         {/* Experience Timeline */}
         <div className="mt-32">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-white">Experience</h3>
+          <div className="text-center mb-16">
+            <h3 className="text-3xl md:text-4xl font-bold text-white">Experience</h3>
           </div>
 
           <div className="relative max-w-4xl mx-auto px-4 md:px-0">
             {/* Garis vertikal tengah */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full border-l-2 border-[#00d4ff]/20"></div>
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#00d4ff]/0 via-[#00d4ff]/30 to-[#00d4ff]/0 -translate-x-1/2"></div>
 
-            <div className="space-y-20">
+            <div className="space-y-12">
               {organizationExperience.map((exp, index) => {
                 const isLeft = exp.side.toLowerCase() === "left";
                 return (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, x: isLeft ? -100 : 100 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    viewport={{ once: false, amount: 0.6 }}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    viewport={{ once: false, amount: 0.3 }}
                     className={`relative flex flex-col md:flex-row ${
-                      isLeft ? "md:flex-row" : "md:flex-row-reverse"
-                    } items-center md:items-start text-center md:text-left gap-6`}
+                      isLeft ? "md:justify-start" : "md:justify-end"
+                    } items-start w-full group`}
                   >
-                    {/* Konten pengalaman */}
-                    <div className="w-full md:w-1/2 flex flex-col md:flex-row items-center md:items-start gap-4">
-                      <img
-                        src={exp.image}
-                        alt={`${exp.organization} logo`}
-                        className="w-40 h-28 object-contain"
-                      />
-                      <div className="text-white">
-                        <h4 className="text-lg font-semibold mb-2">
-                          {exp.position}
-                        </h4>
-                        <p className="text-white/60 text-sm mb-1">
-                          {exp.organization}
-                        </p>
-                        <p className="text-white/40 text-sm italic">
-                          {exp.year}
-                        </p>
+                    {/* Card container */}
+                    <div className="w-full md:w-[calc(50%-2rem)] pl-12 md:pl-0">
+                      <div className="p-6 rounded-2xl backdrop-blur-md bg-white/5 border border-white/10 hover:border-[#00d4ff]/40 transition-all duration-300 hover:shadow-[0_0_25px_rgba(0,212,255,0.15)] flex flex-col sm:flex-row gap-5 items-start">
+                        {/* Logo container */}
+                        <div className="flex-shrink-0 w-24 h-20 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center p-2 group-hover:scale-105 transition-transform duration-300">
+                          <img
+                            src={exp.image}
+                            alt={`${exp.organization} logo`}
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                        {/* Text */}
+                        <div className="flex-grow space-y-2 text-left">
+                          <h4 className="text-lg font-bold text-white group-hover:text-[#00d4ff] transition-colors duration-300 leading-snug">
+                            {exp.position}
+                          </h4>
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="text-white/60 text-xs font-semibold px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10">
+                              {exp.organization}
+                            </span>
+                            <span className="text-white/40 text-xs font-mono">
+                              {exp.year}
+                            </span>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
                     {/* Titik timeline */}
-                    <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 bg-[#00d4ff] border-4 border-[#0a0a0a] rounded-full z-10"></div>
+                    <div className="absolute left-4 md:left-1/2 top-10 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-[#00d4ff] border-4 border-[#0a0a0a] rounded-full z-10 shadow-[0_0_10px_#00d4ff] group-hover:scale-125 group-hover:bg-[#00e5ff] group-hover:shadow-[0_0_15px_#00d4ff] transition-all duration-300"></div>
                   </motion.div>
                 );
               })}
             </div>
           </div>
         </div>
+
+        {/* Work Experience Timeline */}
         <div className="mt-32">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-white">Work Experience</h3>
+          <div className="text-center mb-16">
+            <h3 className="text-3xl md:text-4xl font-bold text-white">Work Experience</h3>
           </div>
 
           <div className="relative max-w-4xl mx-auto px-4 md:px-0">
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full border-l-2 border-[#00d4ff]/20"></div>
+            {/* Garis vertikal tengah */}
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#00d4ff]/0 via-[#00d4ff]/30 to-[#00d4ff]/0 -translate-x-1/2"></div>
 
-            <div className="space-y-20">
+            <div className="space-y-12">
               {workExperience.map((exp, index) => {
                 const isLeft = exp.side === "left";
                 return (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, x: isLeft ? -100 : 100 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: false, amount: 0.6 }}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    viewport={{ once: false, amount: 0.3 }}
                     className={`relative flex flex-col md:flex-row ${
-                      isLeft ? "" : "md:flex-row-reverse"
-                    } items-center gap-6`}
+                      isLeft ? "md:justify-start" : "md:justify-end"
+                    } items-start w-full group`}
                   >
-                    <div className="w-full md:w-1/2 flex gap-4 items-start">
-                      <img
-                        src={exp.image}
-                        className="w-20 h-20 object-contain"
-                        alt={exp.company}
-                      />
-                      <div className="text-white">
-                        <h4 className="font-semibold">{exp.role}</h4>
-                        <p className="text-white/60 text-sm">{exp.company}</p>
-                        <p className="text-white/40 text-xs italic">
-                          {exp.year}
-                        </p>
-                        <p className="text-white/70 text-sm mt-2">
-                          {exp.description}
-                        </p>
+                    {/* Card container */}
+                    <div className="w-full md:w-[calc(50%-2rem)] pl-12 md:pl-0">
+                      <div className="p-6 rounded-2xl backdrop-blur-md bg-white/5 border border-white/10 hover:border-[#00d4ff]/40 transition-all duration-300 hover:shadow-[0_0_25px_rgba(0,212,255,0.15)] flex flex-col sm:flex-row gap-5 items-start">
+                        {/* Logo container */}
+                        <div className="flex-shrink-0 w-24 h-20 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center p-2 group-hover:scale-105 transition-transform duration-300">
+                          <img
+                            src={exp.image}
+                            alt={`${exp.company} logo`}
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                        {/* Text */}
+                        <div className="flex-grow space-y-2 text-left w-full">
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                            <h4 className="text-lg font-bold text-white group-hover:text-[#00d4ff] transition-colors duration-300 leading-snug">
+                              {exp.role}
+                            </h4>
+                            <span className="text-[#00d4ff] text-xs font-semibold px-2.5 py-0.5 rounded-full bg-[#00d4ff]/10 border border-[#00d4ff]/20 w-fit">
+                              {exp.company}
+                            </span>
+                          </div>
+                          <p className="text-white/40 text-xs font-mono">
+                            {exp.year}
+                          </p>
+                          <p className="text-white/70 text-sm leading-relaxed pt-2 border-t border-white/5">
+                            {exp.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
 
-                    <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5 h-5 bg-[#00d4ff] border-4 border-[#0a0a0a] rounded-full z-10"></div>
+                    {/* Titik timeline */}
+                    <div className="absolute left-4 md:left-1/2 top-10 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-[#00d4ff] border-4 border-[#0a0a0a] rounded-full z-10 shadow-[0_0_10px_#00d4ff] group-hover:scale-125 group-hover:bg-[#00e5ff] group-hover:shadow-[0_0_15px_#00d4ff] transition-all duration-300"></div>
                   </motion.div>
                 );
               })}
