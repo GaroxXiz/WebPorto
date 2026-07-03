@@ -19,6 +19,7 @@ import PUMA from "../../public/img/PUMA.png";
 import CSGO2024 from "../../public/img/CSGO 2024.png";
 import PIXIELAB from "../../public/img/PIXIELAB.png";
 import ENSEVAL from "../../public/img/ENSEVAL.png";
+import { useLanguage } from "../context/LanguageContext";
 
 type StatCounterProps = {
   label: string;
@@ -62,7 +63,11 @@ const StatCounter = ({ label, target, decimal = false }: StatCounterProps) => {
 };
 
 const About = () => {
-  const names = ["Maulana Rizwan Ahmad", "Known as Rizwan"];
+  const { language, t } = useLanguage();
+  const names = [
+    "Maulana Rizwan Ahmad",
+    language === "en" ? "Known as Rizwan" : "Dikenal sebagai Rizwan",
+  ];
   const [currentNameIndex, setCurrentNameIndex] = useState(0);
   const [typedName, setTypedName] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -88,32 +93,28 @@ const About = () => {
 
     const timer = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(timer);
-  }, [typedName, isDeleting]);
+  }, [typedName, isDeleting, currentNameIndex, names]);
 
   const services = [
     {
       icon: <Gamepad2 size={32} />,
-      title: "Game Development",
-      description:
-        "Designing and developing 2D games with engaging mechanics and polished gameplay",
+      title: t("aboutServiceGameDev"),
+      description: t("aboutServiceGameDevDesc"),
     },
     {
       icon: <Layers size={32} />,
-      title: "Level Design",
-      description:
-        "Crafting immersive game environments and balanced level progression",
+      title: t("aboutServiceLevelDesign"),
+      description: t("aboutServiceLevelDesignDesc"),
     },
     {
       icon: <Paintbrush size={32} />,
-      title: "Pixel Art & Animation",
-      description:
-        "Creating original pixel-based assets and frame-by-frame character animations",
+      title: t("aboutServicePixelArt"),
+      description: t("aboutServicePixelArtDesc"),
     },
     {
       icon: <Settings2 size={32} />,
-      title: "Gameplay Programming",
-      description:
-        "Implementing core systems like movement, combat, and interaction using C# in Unity",
+      title: t("aboutServiceGameplayProg"),
+      description: t("aboutServiceGameplayProgDesc"),
     },
   ];
 
@@ -121,30 +122,32 @@ const About = () => {
     {
       year: "2024 - 2025",
       organization: "PUFA Computer Science",
-      position: "Vice of Art and Sport Division",
+      position: language === "en" ? "Vice of Art and Sport Division" : "Wakil Divisi Seni dan Olahraga",
       side: "left",
       image: PUFA,
     },
     {
       year: "February 2025",
       organization: "PUFA Art and Sport Division Event",
-      position:
-        "Project Manager at Computer Science Sport & Games Olympiad (CSGO) 2025",
+      position: language === "en"
+        ? "Project Manager at Computer Science Sport & Games Olympiad (CSGO) 2025"
+        : "Manajer Proyek di Computer Science Sport & Games Olympiad (CSGO) 2025",
       side: "right",
       image: CSGO2025,
     },
     {
       year: "2023 - 2024",
       organization: "PUMA Informatics",
-      position: "Vice of Art and Sport Division",
+      position: language === "en" ? "Vice of Art and Sport Division" : "Wakil Divisi Seni dan Olahraga",
       side: "left",
       image: PUMA,
     },
     {
       year: "February 2024",
       organization: "PUFA Art and Sport Division Event",
-      position:
-        "PIC Games (Stumble Guys) at Computer Science Sport & Games Olympiad (CSGO) 2024",
+      position: language === "en"
+        ? "PIC Games (Stumble Guys) at Computer Science Sport & Games Olympiad (CSGO) 2024"
+        : "PIC Game (Stumble Guys) di Computer Science Sport & Games Olympiad (CSGO) 2024",
       side: "right",
       image: CSGO2024,
     },
@@ -154,16 +157,20 @@ const About = () => {
     {
       year: "August 2025 - January 2026",
       company: "PIXIELAB",
-      role: "Fullstack Junior Developer",
-      description: "Developed a website, game application, tiktok filter, etc.",
+      role: language === "en" ? "Fullstack Junior Developer" : "Developer Junior Fullstack",
+      description: language === "en"
+        ? "Developed a website, game application, tiktok filter, etc."
+        : "Mengembangkan situs web, aplikasi game, filter tiktok, dll.",
       side: "left",
       image: PIXIELAB,
     },
     {
       year: "April 2026 - Present",
       company: "ENSEVAL",
-      role: "Web Developer Intern",
-      description: "Developed and maintained enterprise web applications, implemented REST APIs, optimized database queries, and collaborated with the development team to deliver business solutions.",
+      role: language === "en" ? "Web Developer Intern" : "Magang Developer Web",
+      description: language === "en"
+        ? "Developed and maintained enterprise web applications, implemented REST APIs, optimized database queries, and collaborated with the development team to deliver business solutions."
+        : "Mengembangkan dan memelihara aplikasi web korporat, mengimplementasikan API REST, mengoptimalkan kueri basis data, dan berkolaborasi dengan tim pengembangan untuk menghadirkan solusi bisnis.",
       side: "right",
       image: ENSEVAL,
     }
@@ -174,7 +181,7 @@ const About = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">
-            About <span className="text-[#00d4ff]">Me</span>
+            {t("aboutTitle")} <span className="text-[#00d4ff]">{t("aboutMe")}</span>
           </h2>
         </div>
         {/* Wrapper untuk semua konten awal */}
@@ -201,7 +208,7 @@ const About = () => {
                       />
                     </div>
                     <div className="absolute -bottom-3 -right-3 w-10 h-10 bg-green-500 rounded-full border-4 border-[#0a0a0a] flex items-center justify-center transition-all duration-600 animate-bounce">
-                      <div className="w-4 h-4 bg-green-400 rounded-full animate-pulse"></div>
+                      <div className="w-44-4 bg-green-400 rounded-full animate-pulse"></div>
                     </div>
                   </div>
 
@@ -231,46 +238,24 @@ const About = () => {
                 {/* Left Side */}
                 <div className="flex-1 text-center md:text-left">
                   <h1 className="text-2xl md:text-4xl font-bold text-white mb-3">
-                    Hi, I'm
+                    {t("aboutJourneyTitle")}
                   </h1>
                   <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 font-mono">
                     {typedName}
                     <span className="animate-pulse">|</span>
                   </h1>
                   <p className="text-xl md:text-2xl text-white/80 mb-6">
-                    Game Developer & Fullstack Developer
+                    {t("aboutJourneySubtitle")}
                   </p>
-                  <p className="text-white/60 mb-8 max-w-2xl whitespace-pre-line">
-                    I’m Maulana Rizwan Ahmad, a highly motivated Informatics
-                    student at President University with a concentration in Game
-                    Development, based in Bekasi. I have around one year of
-                    experience building interactive and meaningful digital
-                    products, ranging from 2D games to web-based applications.
-                    I’m passionate about creating immersive experiences and
-                    scalable systems using technologies such as Unity, Blender,
-                    Aseprite, JavaScript, Node.js, and PostgreSQL. My core
-                    strength lies in 2D game development, where I combine
-                    engaging gameplay mechanics, pixel art, and clean,
-                    maintainable code. In addition, I have experience in
-                    full-stack web development, including designing responsive
-                    front-end interfaces, building back-end APIs, managing
-                    databases, and integrating systems into complete,
-                    production-ready applications. This combination allows me to
-                    approach projects holistically from gameplay and visual
-                    design to architecture and deployment. Whether developing an
-                    immersive RPG, an educational game, or a functional web
-                    platform, I focus on turning creative ideas into polished
-                    and impactful products. I’m currently seeking an opportunity
-                    where I can contribute both my game development expertise
-                    and full-stack engineering skills within a professional
-                    development environment.
+                  <p className="text-white/60 mb-8 max-w-2xl whitespace-pre-line text-justify">
+                    {t("aboutJourneyDesc")}
                   </p>
 
                   {/* Stats Section */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8 text-white text-center">
-                    <StatCounter label="GPA" target={3.51} decimal />
-                    <StatCounter label="Projects" target={13} />
-                    <StatCounter label="Experience (Years)" target={1} />
+                    <StatCounter label={t("aboutJourneyGPA")} target={3.51} decimal />
+                    <StatCounter label={t("aboutJourneyProjects")} target={13} />
+                    <StatCounter label={t("aboutJourneyExp")} target={1} />
                   </div>
 
                   {/* Buttons */}
@@ -279,14 +264,14 @@ const About = () => {
                       href="#projects"
                       className="flex items-center justify-center px-8 py-3 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black font-semibold rounded-lg hover:shadow-lg hover:shadow-[#00d4ff]/25 transition-all duration-300 hover:scale-105 hover:-translate-y-1"
                     >
-                      View Projects
+                      {t("aboutBtnProjects")}
                     </a>
                     <a
                       href={CV}
                       className="flex items-center justify-center px-8 py-3 backdrop-blur-lg bg-white/10 border border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 gap-2"
                     >
                       <Download size={20} />
-                      <span>Download CV</span>
+                      <span>{t("aboutBtnCV")}</span>
                     </a>
                   </div>
                 </div>
@@ -302,20 +287,9 @@ const About = () => {
             viewport={{ once: false, amount: 0.4 }}
             className="p-8 rounded-2xl backdrop-blur-lg bg-white/5 border border-white/10 mb-8"
           >
-            <h3 className="text-2xl font-bold text-white mb-2">What I Do</h3>
-            <p className="text-white/80 leading-relaxed">
-              From concept to deployment, I build engaging and scalable digital
-              products across desktop, mobile, and web platforms ranging from
-              interactive games to full-stack web applications. I collaborate
-              with indie teams and small studios to bring creative ideas into
-              production using modern game engines, structured back-end systems,
-              and clean front-end architecture. My work spans gameplay
-              programming, pixel-art implementation, API integration, and
-              database design, allowing me to handle both the creative and
-              technical sides of development. Whether it’s an immersive RPG, an
-              educational experience, or a functional web platform, I focus on
-              delivering products that are technically solid, maintainable, and
-              meaningful for users.
+            <h3 className="text-2xl font-bold text-white mb-2">{t("aboutWhatIDo")}</h3>
+            <p className="text-white/80 leading-relaxed text-justify">
+              {t("aboutWhatIDoDesc")}
             </p>
           </motion.div>
         </div>
@@ -336,7 +310,7 @@ const About = () => {
               </div>
 
               {/* Title */}
-              <h4 className="text-lg-2x1 font-semibold text-white mb-6">
+              <h4 className="text-lg font-semibold text-white mb-6">
                 {service.title}
               </h4>
 
@@ -349,7 +323,7 @@ const About = () => {
         {/* Experience Timeline */}
         <div className="mt-32">
           <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold text-white">Experience</h3>
+            <h3 className="text-3xl md:text-4xl font-bold text-white">{t("aboutExpTitle")}</h3>
           </div>
 
           <div className="relative max-w-4xl mx-auto px-4 md:px-0">
@@ -410,7 +384,7 @@ const About = () => {
         {/* Work Experience Timeline */}
         <div className="mt-32">
           <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold text-white">Work Experience</h3>
+            <h3 className="text-3xl md:text-4xl font-bold text-white">{t("aboutWorkExpTitle")}</h3>
           </div>
 
           <div className="relative max-w-4xl mx-auto px-4 md:px-0">

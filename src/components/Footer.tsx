@@ -1,6 +1,9 @@
 import { Github, Linkedin, MessageCircle } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="py-12 backdrop-blur-lg bg-white/5 border-t border-white/10">
       <div className="container mx-auto px-4">
@@ -12,7 +15,7 @@ const Footer = () => {
               <span className="text-[#00d4ff]">{"/>"}</span>
             </div>
             <p className="text-white/60 text-sm">
-              Crafting immersive game experiences with passion and precision.
+              {t("footerCrafting")}
             </p>
           </div>
 
@@ -40,7 +43,7 @@ const Footer = () => {
 
         <div className="mt-8 pt-8 border-t border-white/10 text-center">
           <p className="text-white/60 text-sm flex items-center justify-center gap-2">
-            &#169; Maulana Rizwan Ahmad. All rigths reserved
+            &#169; {t("footerReserved")}
           </p>
         </div>
       </div>

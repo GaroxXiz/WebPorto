@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useAnimationFrame } from "framer-motion";
 import { useRef, useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
 import CS from "../../public/img/Csharp.png";
 import PY from "../../public/img/Python.png";
 import HTML from "../../public/img/HTML.png";
@@ -35,9 +36,11 @@ type SkillCategory = {
 };
 
 const Skills = () => {
+  const { t } = useLanguage();
+
   const skillCategories: SkillCategory[] = [
     {
-      title: "Technical Skills",
+      title: t("skillsTech"),
       speed: 0.05,
       skills: [
         { name: "C#", icon: CS },
@@ -49,7 +52,7 @@ const Skills = () => {
       ],
     },
     {
-      title: "Tools",
+      title: t("skillsTools"),
       speed: 0.05,
       skills: [
         { name: "Unity", icon: UNITY },
@@ -63,7 +66,7 @@ const Skills = () => {
       ],
     },
     {
-      title: "Soft Skills",
+      title: t("skillsSoft"),
       speed: 0.05,
       skills: [
         { name: "Creativity", icon: CR },
@@ -81,10 +84,10 @@ const Skills = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
-            My <span className="text-[#00d4ff]">Skills</span>
+            {t("skillsTitle")} <span className="text-[#00d4ff]">{t("skillsSpan")}</span>
           </h2>
           <p className="text-white/60 max-w-2xl mx-auto text-sm sm:text-base">
-            Technologies and tools I use to bring ideas to life
+            {t("skillsSubtitle")}
           </p>
         </div>
 

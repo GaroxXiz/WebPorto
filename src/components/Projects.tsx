@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { ExternalLink } from "lucide-react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useLanguage } from "../context/LanguageContext";
 import AbyssWalkerImg from "../../public/img/Abyss-Walker.png";
 import AbyssWalkerVid from "../../public/video/Demo-Abyss-Walker.mp4";
 import AnomalyImg from "../../public/img/Anomaly.jpg";
@@ -22,6 +23,7 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   // Track scroll progress of this specific card relative to the viewport
   const { scrollYProgress } = useScroll({
@@ -73,7 +75,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         {project.status === "development" && (
           <div className="absolute top-2 right-2 z-10">
             <span className="px-2 py-1 text-[10px] sm:text-xs bg-yellow-500/90 text-black rounded-full font-semibold backdrop-blur-sm">
-              In Development
+              {t("projectsInDevelopment")}
             </span>
           </div>
         )}
@@ -83,7 +85,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         <h3 className="text-lg sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-[#00d4ff] transition-colors duration-300">
           {project.title}
         </h3>
-        <p className="text-xs sm:text-sm text-white/80 mb-3 sm:mb-4">
+        <p className="text-xs sm:text-sm text-white/80 mb-3 sm:mb-4 min-h-[4.5rem]">
           {project.description}
         </p>
 
@@ -106,7 +108,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           {project.status === "development" ? (
             <span className="flex items-center gap-1 px-3 py-2 bg-yellow-500/20 border border-yellow-500/30 text-yellow-400 rounded-lg text-xs sm:text-sm cursor-not-allowed">
               <ExternalLink size={14} />
-              Coming Soon
+              {t("projectsComingSoon")}
             </span>
           ) : project.website ? (
             <motion.a
@@ -118,7 +120,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
               className="flex items-center gap-1 px-3 py-2 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black rounded-lg text-xs sm:text-sm"
             >
               <ExternalLink size={14} />
-              Open Website
+              {t("projectsOpenWebsite")}
             </motion.a>
           ) : (
             <motion.a
@@ -129,7 +131,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
               className="flex items-center gap-1 px-3 py-2 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black rounded-lg text-xs sm:text-sm"
             >
               <ExternalLink size={14} />
-              Download
+              {t("projectsDownload")}
             </motion.a>
           )}
         </div>
@@ -139,11 +141,12 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 };
 
 const Projects = () => {
+  const { t } = useLanguage();
+
   const projects = [
     {
       title: "Abyss Walker",
-      description:
-        "Full-stack created 2D Pixel Games with aseprite and unity using C#",
+      description: t("projectAbyssWalkerDesc"),
       tech: ["Aseprite", "Unity", "C#"],
       image: AbyssWalkerImg,
       demo: AbyssWalkerVid,
@@ -152,8 +155,7 @@ const Projects = () => {
     },
     {
       title: "Anomaly Chase",
-      description:
-        "Created the Game Character, Game mechanics and Debugging the codes",
+      description: t("projectAnomalyChaseDesc"),
       tech: ["Blender", "Unity", "C#"],
       image: AnomalyImg,
       demo: AnomalyVid,
@@ -162,8 +164,7 @@ const Projects = () => {
     },
     {
       title: "RATURU : Home Fever",
-      description:
-        "Created a 3D low poly design for the Game Environment, Game Icon, and thumbnail",
+      description: t("projectRaturuDesc"),
       tech: ["Blender", "Unity"],
       image: RaturuImg,
       demo: RaturuVid,
@@ -172,8 +173,7 @@ const Projects = () => {
     },
     {
       title: "Cyber Educational Games(Level 4: Malware Attack)",
-      description:
-        "Created the Game mechanics for the last level(Malware Attack), Debugging the last level(Malware Attack) for the WebGL Games.",
+      description: t("projectMalwareDesc"),
       tech: ["Unity", "C#"],
       image: MalwareImg,
       demo: MalwareVid,
@@ -182,8 +182,7 @@ const Projects = () => {
     },
     {
       title: "KAHF DECODE HAIR ANALYZER",
-      description:
-        "Create the front-end design and the logic of the website, Created the database, Integrated the website with the backend using API, Debugging the website for the final release",
+      description: t("projectKahfDesc"),
       tech: ["HTML", "CSS", "JavaScript", "PostgreSQL", "NodeJS", "ExpressJS"],
       image: KAHFImg,
       demo: "#",
@@ -191,8 +190,7 @@ const Projects = () => {
     },
     {
       title: "GARIONX AI",
-      description:
-        "Developed a multi-agent AI chat platform with custom agent creation, dynamic LLM routing, and AI-powered multimedia tools.",
+      description: t("projectGarionxDesc"),
       tech: ["Next.js", "React", "TypeScript" , "Tailwind CSS" , "ASP.NET Core" , "PostgreSQL" , "Firebase Auth" , "Docker" , "Groq API" , "AI APIs"],
       image: GARIONXImg,
       demo: "#",
@@ -200,8 +198,7 @@ const Projects = () => {
     },
     {
       title: "Japanese Learning Language",
-      description:
-        "Designed the 2D Pixel Character, Animation, and Environment games",
+      description: t("projectJapaneseDesc"),
       tech: ["Aseprite"],
       image: JapaneseImg,
       github: "#",
@@ -210,8 +207,7 @@ const Projects = () => {
     },
     {
       title: "The Everlasting Love",
-      description:
-        "Designed The 2D Pixel for Game Character and Environment, Created the Game Mechanics using python",
+      description: t("projectVnDesc"),
       tech: ["Aseprite", "Renpy", "Python"],
       image: VNImg,
       github: "#",
@@ -225,11 +221,10 @@ const Projects = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-14 md:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4">
-            My <span className="text-[#00d4ff]">Projects</span>
+            {t("projectsTitle")} <span className="text-[#00d4ff]">{t("projectsSpan")}</span>
           </h2>
           <p className="text-white/60 max-w-xl mx-auto text-sm sm:text-base">
-            Here are some of my recent projects that showcase my skills and
-            creativity
+            {t("projectsSubtitle")}
           </p>
         </div>
 

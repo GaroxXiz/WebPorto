@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useLanguage } from "../context/LanguageContext";
 import greetingsData from "../../src/data/greetings.json";
 
 type LanguageGreeting = {
@@ -27,6 +28,7 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 };
 
 const Hero = () => {
+  const { t } = useLanguage();
   const [greetings, setGreetings] = useState<LanguageGreeting[]>([]);
   const [displayText, setDisplayText] = useState("");
   const [index, setIndex] = useState(0);
@@ -154,7 +156,7 @@ const Hero = () => {
         </h1>
 
         <p className="text-white/80 mb-10 text-lg md:text-xl">
-          Welcome to my portfolio website
+          {t("heroWelcome")}
         </p>
 
         <div className="flex justify-center">
@@ -169,7 +171,7 @@ const Hero = () => {
               delay: 2,
             }}
           >
-            See More Details
+            {t("heroBtn")}
           </motion.a>
         </div>
       </motion.div>
