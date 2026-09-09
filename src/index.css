@@ -6,6 +6,13 @@ body {
   overflow-x: hidden;
 }
 
+/* Hide native cursor on desktop devices with fine pointers */
+@media (pointer: fine) {
+  body, a, button, input, textarea, select, [role="button"], .cursor-pointer {
+    cursor: none !important;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
