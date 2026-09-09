@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { ExternalLink, Gamepad2, Globe, Sparkles } from "lucide-react";
-import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import AbyssWalkerImg from "../../public/img/Abyss-Walker.png";
 import AbyssWalkerVid from "../../public/video/Demo-Abyss-Walker.mp4";
@@ -30,32 +30,16 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
-  const cardRef = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
-
-  // Track scroll progress of this specific card relative to the viewport
-  const { scrollYProgress } = useScroll({
-    target: cardRef,
-    offset: ["start end", "end start"],
-  });
-
-  // Smooth scroll translation (parallax) and edge-fade out of viewport
-  const yVal = useTransform(scrollYProgress, [0, 1], [40, -40]);
-  const opacity = useTransform(scrollYProgress, [0, 0.85, 1], [1, 1, 0.3]);
-
-  // Spring physics for buttery smooth motion
-  const y = useSpring(yVal, { stiffness: 80, damping: 20, mass: 0.5 });
 
   return (
     <motion.div
-      ref={cardRef}
       layout
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      style={{ y, opacity }}
+      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: -20, scale: 0.95 }}
       whileHover={{ scale: 1.03 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      transition={{ duration: 0.35, ease: "easeOut" }}
       className="group w-full rounded-xl backdrop-blur-lg bg-white/5 border border-white/10 overflow-hidden hover:bg-white/10 transition-all duration-300 hover:border-[#00d4ff]/30 shadow-lg flex flex-col justify-between"
     >
       <div>
