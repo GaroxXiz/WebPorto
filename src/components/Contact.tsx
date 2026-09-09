@@ -222,35 +222,59 @@ const Contact = () => {
                   {t("contactConnect")}
                 </h3>
                 <div className="space-y-4">
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 rounded-full bg-[#00d4ff]/20 text-[#00d4ff] transition-all duration-300 hover:scale-110">
+                  {/* Email Item -> Open Gmail compose in new tab */}
+                  <a
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=maulanarizwan84@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 p-2 rounded-xl hover:bg-white/10 transition-all duration-300 group cursor-pointer"
+                  >
+                    <div className="p-3 rounded-full bg-[#00d4ff]/20 text-[#00d4ff] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#00d4ff] group-hover:text-black">
                       <Mail size={20} />
                     </div>
                     <div>
                       <p className="text-white/60 text-sm">{t("contactEmailLabel")}</p>
-                      <p className="text-white">maulanarizwan84@gmail.com</p>
+                      <p className="text-white group-hover:text-[#00d4ff] transition-colors duration-300 font-medium">
+                        maulanarizwan84@gmail.com
+                      </p>
                     </div>
-                  </div>
+                  </a>
 
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 rounded-full bg-[#00d4ff]/20 text-[#00d4ff] transition-all duration-300 hover:scale-110">
+                  {/* Phone Item -> Open WhatsApp in new tab */}
+                  <a
+                    href="https://api.whatsapp.com/send?phone=+6289530085684&text=Hello%20Rizwan,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 p-2 rounded-xl hover:bg-white/10 transition-all duration-300 group cursor-pointer"
+                  >
+                    <div className="p-3 rounded-full bg-[#00d4ff]/20 text-[#00d4ff] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#00d4ff] group-hover:text-black">
                       <Phone size={20} />
                     </div>
                     <div>
                       <p className="text-white/60 text-sm">{t("contactPhone")}</p>
-                      <p className="text-white">+62 895-3008-5684</p>
+                      <p className="text-white group-hover:text-[#00d4ff] transition-colors duration-300 font-medium">
+                        +62 895-3008-5684
+                      </p>
                     </div>
-                  </div>
+                  </a>
 
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 rounded-full bg-[#00d4ff]/20 text-[#00d4ff] transition-all duration-300 hover:scale-110">
+                  {/* Location Item -> Open Google Maps in new tab */}
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Bekasi,+Indonesia"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 p-2 rounded-xl hover:bg-white/10 transition-all duration-300 group cursor-pointer"
+                  >
+                    <div className="p-3 rounded-full bg-[#00d4ff]/20 text-[#00d4ff] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#00d4ff] group-hover:text-black">
                       <MapPin size={20} />
                     </div>
                     <div>
                       <p className="text-white/60 text-sm">{t("contactLocation")}</p>
-                      <p className="text-white">{t("contactBekasi")}</p>
+                      <p className="text-white group-hover:text-[#00d4ff] transition-colors duration-300 font-medium">
+                        {t("contactBekasi")}
+                      </p>
                     </div>
-                  </div>
+                  </a>
                 </div>
               </div>
             </div>
