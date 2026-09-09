@@ -115,7 +115,6 @@ const Hero = () => {
       ref={ref}
       className="min-h-screen flex items-center justify-center relative overflow-hidden px-4 py-16 sm:py-20"
     >
-      {/* VIDEO BACKGROUND */}
       <video
         src="/WebPorto/video/Background.mp4"
         autoPlay

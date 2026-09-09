@@ -53,6 +53,11 @@ const translations = {
     skillsTools: "Tools",
     skillsSoft: "Soft Skills",
 
+    // GitHub Contributions
+    githubTitle: "GitHub",
+    githubSpan: "Contributions",
+    githubSubtitle: "My coding activity and contribution graph on GitHub",
+
     // Projects
     projectsTitle: "My",
     projectsSpan: "Projects",
@@ -137,6 +142,11 @@ const translations = {
     skillsTech: "Keahlian Teknis",
     skillsTools: "Peralatan",
     skillsSoft: "Soft Skill",
+
+    // GitHub Contributions
+    githubTitle: "Kontribusi",
+    githubSpan: "GitHub",
+    githubSubtitle: "Grafik aktivitas pemrograman dan kontribusi saya di GitHub",
 
     // Projects
     projectsTitle: "Proyek",
