@@ -10,6 +10,7 @@ const Header = () => {
     { name: t("navHome"), id: "Home" },
     { name: t("navAbout"), id: "About" },
     { name: t("navSkills"), id: "Skills" },
+    { name: t("navGithub"), id: "Github" },
     { name: t("navProjects"), id: "Projects" },
     { name: t("navContact"), id: "Contact" },
   ];

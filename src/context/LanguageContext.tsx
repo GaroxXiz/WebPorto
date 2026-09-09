@@ -14,6 +14,7 @@ const translations = {
     navHome: "Home",
     navAbout: "About",
     navSkills: "Skills",
+    navGithub: "GitHub",
     navProjects: "Projects",
     navContact: "Contact",
 
@@ -57,11 +58,15 @@ const translations = {
     githubTitle: "GitHub",
     githubSpan: "Contributions",
     githubSubtitle: "My coding activity and contribution graph on GitHub",
+    githubReposTitle: "Featured Repositories",
 
     // Projects
     projectsTitle: "My",
     projectsSpan: "Projects",
     projectsSubtitle: "Here are some of my recent projects that showcase my skills and creativity",
+    projectsFilterAll: "All Projects",
+    projectsFilterGame: "Game Dev",
+    projectsFilterWeb: "Web Dev",
     projectsInDevelopment: "In Development",
     projectsComingSoon: "Coming Soon",
     projectsOpenWebsite: "Open Website",
@@ -104,6 +109,7 @@ const translations = {
     navHome: "Beranda",
     navAbout: "Tentang Saya",
     navSkills: "Keahlian",
+    navGithub: "GitHub",
     navProjects: "Proyek",
     navContact: "Kontak",
 
@@ -147,11 +153,15 @@ const translations = {
     githubTitle: "Kontribusi",
     githubSpan: "GitHub",
     githubSubtitle: "Grafik aktivitas pemrograman dan kontribusi saya di GitHub",
+    githubReposTitle: "Repositori Unggulan",
 
     // Projects
     projectsTitle: "Proyek",
     projectsSpan: "Saya",
     projectsSubtitle: "Berikut adalah beberapa proyek terbaru saya yang menunjukkan keahlian dan kreativitas saya",
+    projectsFilterAll: "Semua Proyek",
+    projectsFilterGame: "Pengembangan Game",
+    projectsFilterWeb: "Pengembangan Web",
     projectsInDevelopment: "Dalam Pengembangan",
     projectsComingSoon: "Segera Hadir",
     projectsOpenWebsite: "Buka Situs Web",
