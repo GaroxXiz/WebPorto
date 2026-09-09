@@ -99,6 +99,9 @@ const translations = {
     contactBtnSuccess: "Message Sent!",
     contactBtnError: "Failed! Try Again",
     contactEmailError: "Please enter a valid email address (e.g., name@example.com).",
+    contactProfanityError: "Please use polite and respectful language in your message.",
+    contactSpamCooldownError: "Please wait a moment before sending another message.",
+    contactMessageTooShort: "Message must be at least 10 characters long.",
 
     // Footer
     footerCrafting: "Crafting immersive game experiences with passion and precision.",
@@ -194,6 +197,9 @@ const translations = {
     contactBtnSuccess: "Pesan Terkirim!",
     contactBtnError: "Gagal! Coba Lagi",
     contactEmailError: "Silakan masukkan alamat email yang valid (contoh: nama@example.com).",
+    contactProfanityError: "Mohon gunakan bahasa yang sopan dan santun.",
+    contactSpamCooldownError: "Harap tunggu sejenak sebelum mengirim pesan lagi.",
+    contactMessageTooShort: "Pesan harus terdiri dari minimal 10 karakter.",
 
     // Footer
     footerCrafting: "Membuat pengalaman game yang imersif dengan dedikasi dan presisi.",

@@ -9,7 +9,42 @@ import {
   Send,
   CheckCircle,
   AlertCircle,
+  ShieldAlert,
 } from "lucide-react";
+
+// List of inappropriate words (Indonesian & English)
+const BAD_WORDS = [
+  // Indonesian
+  "anjing", "anjrit", "anjir", "babi", "bangsat", "kontol", "memek", "pantek", 
+  "pukimak", "goblok", "tolol", "bajingan", "bego", "pepek", "ngentot", "itil", 
+  "kampret", "asu", "jancok", "jembut", "titit", "peler", "lonte", "kimak", "bgst", "kntl",
+  // English
+  "fuck", "fucking", "shit", "bitch", "asshole", "cunt", "bastard", "dick", 
+  "pussy", "nigger", "motherfucker", "whore", "slut", "cock", "prick", "retard"
+];
+
+// Helper to check if text contains bad words (including leetspeak evasions)
+const hasProfanity = (text: string): boolean => {
+  if (!text) return false;
+  
+  // Normalize leetspeak & special characters
+  const normalized = text
+    .toLowerCase()
+    .replace(/0/g, "o")
+    .replace(/1/g, "i")
+    .replace(/3/g, "e")
+    .replace(/4/g, "a")
+    .replace(/5/g, "s")
+    .replace(/7/g, "t")
+    .replace(/@/g, "a")
+    .replace(/\$/g, "s")
+    .replace(/[^a-z0-9\s]/g, " ");
+
+  const words = normalized.split(/\s+/);
+  return BAD_WORDS.some((badWord) => {
+    return words.some((word) => word === badWord) || normalized.includes(badWord);
+  });
+};
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -20,7 +55,9 @@ const Contact = () => {
     message: "",
   });
 
+  const [botWebsite, setBotWebsite] = useState(""); // Honeypot field for anti-spam
   const [emailError, setEmailError] = useState("");
+  const [formError, setFormError] = useState("");
   const form = useRef<HTMLFormElement>(null);
   const [submissionStatus, setSubmissionStatus] = useState<
     "idle" | "sending" | "success" | "error"
@@ -30,13 +67,46 @@ const Contact = () => {
     e.preventDefault();
     if (!form.current) return;
 
-    // Email validation using a robust regex pattern
+    setFormError("");
+    setEmailError("");
+
+    // 1. Honeypot check (Anti-spam bot trap)
+    if (botWebsite.trim() !== "") {
+      // Fake successful submit for bots so they don't retry
+      setSubmissionStatus("sending");
+      setTimeout(() => {
+        setSubmissionStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setSubmissionStatus("idle"), 4000);
+      }, 1000);
+      return;
+    }
+
+    // 2. Cooldown check (Anti-spam rate limit: max 1 email per 45s)
+    const lastSubmitTime = localStorage.getItem("last_contact_submit");
+    if (lastSubmitTime && Date.now() - parseInt(lastSubmitTime, 10) < 45000) {
+      setFormError(t("contactSpamCooldownError"));
+      return;
+    }
+
+    // 3. Email validation
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(formData.email)) {
       setEmailError(t("contactEmailError"));
       return;
     }
-    setEmailError("");
+
+    // 4. Message length check
+    if (formData.message.trim().length < 10) {
+      setFormError(t("contactMessageTooShort"));
+      return;
+    }
+
+    // 5. Profanity filter check (Name & Message)
+    if (hasProfanity(formData.name) || hasProfanity(formData.message)) {
+      setFormError(t("contactProfanityError"));
+      return;
+    }
 
     setSubmissionStatus("sending");
 
@@ -49,6 +119,7 @@ const Contact = () => {
       )
       .then(
         () => {
+          localStorage.setItem("last_contact_submit", Date.now().toString());
           setSubmissionStatus("success");
           setFormData({ name: "", email: "", message: "" });
           setTimeout(() => setSubmissionStatus("idle"), 4000);
@@ -68,6 +139,8 @@ const Contact = () => {
       ...formData,
       [name]: value,
     });
+
+    setFormError("");
 
     if (name === "email") {
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -111,8 +184,8 @@ const Contact = () => {
   };
 
   const getButtonClassName = () => {
-    let baseClasses =
-      "w-full px-8 py-3 text-black font-semibold rounded-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2";
+    const baseClasses =
+      "w-full px-8 py-3 text-black font-semibold rounded-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer";
     if (submissionStatus === "success") {
       return `${baseClasses} bg-green-500 hover:shadow-green-500/25`;
     }
@@ -181,9 +254,22 @@ const Contact = () => {
                 </div>
               </div>
             </div>
+
             {/* Right Side: Contact Form */}
             <div className="max-w-lg p-6 rounded-xl backdrop-blur-lg bg-white/5 border border-white/10">
               <form ref={form} onSubmit={handleSubmit} className="space-y-6">
+                {/* Honeypot hidden input for anti-spam bots */}
+                <div className="hidden" aria-hidden="true">
+                  <input
+                    type="text"
+                    name="bot_website"
+                    tabIndex={-1}
+                    value={botWebsite}
+                    onChange={(e) => setBotWebsite(e.target.value)}
+                    autoComplete="off"
+                  />
+                </div>
+
                 <div>
                   <label
                     htmlFor="name"
@@ -250,6 +336,18 @@ const Contact = () => {
                     required
                   />
                 </div>
+
+                {/* Validation & Anti-Spam / Profanity Error Alert */}
+                {formError && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-3.5 rounded-lg bg-red-500/20 border border-red-500/40 text-red-300 text-xs sm:text-sm flex items-center gap-2.5"
+                  >
+                    <ShieldAlert size={18} className="flex-shrink-0 text-red-400" />
+                    <span>{formError}</span>
+                  </motion.div>
+                )}
 
                 <button
                   type="submit"
