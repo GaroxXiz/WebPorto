@@ -1,9 +1,8 @@
-"use client";
-
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { GitHubCalendar } from "react-github-calendar";
 import { useLanguage } from "../context/LanguageContext";
-import { Github, ExternalLink, Star, GitFork, BookOpen, Code2 } from "lucide-react";
+import { Github, ExternalLink, Star, GitFork, BookOpen, Code2, Calendar as CalendarIcon } from "lucide-react";
 
 const customTheme = {
   dark: ["#161b22", "#003847", "#00708f", "#00a3cc", "#00d4ff"],
@@ -19,8 +18,19 @@ interface Repo {
   url: string;
 }
 
+type YearOption = "last" | number;
+
 const GithubContributions = () => {
   const { t } = useLanguage();
+  const [selectedYear, setSelectedYear] = useState<YearOption>("last");
+
+  const yearOptions: { value: YearOption; label: string }[] = [
+    { value: "last", label: t("githubYearLast") },
+    { value: 2026, label: "2026" },
+    { value: 2025, label: "2025" },
+    { value: 2024, label: "2024" },
+    { value: 2023, label: "2023" },
+  ];
 
   const featuredRepos: Repo[] = [
     {
@@ -75,7 +85,7 @@ const GithubContributions = () => {
         >
           {/* GitHub Calendar Heatmap */}
           <div className="p-6 sm:p-8 rounded-2xl backdrop-blur-lg bg-white/5 border border-white/10 hover:border-[#00d4ff]/30 transition-all duration-300 shadow-xl flex flex-col items-center overflow-x-auto">
-            <div className="w-full flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+            <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-white/10">
               <div className="flex items-center gap-3">
                 <div className="p-2.5 rounded-xl bg-white/10 text-[#00d4ff]">
                   <Github size={22} />
@@ -85,6 +95,7 @@ const GithubContributions = () => {
                   <p className="text-xs text-white/50">GitHub Activity Matrix</p>
                 </div>
               </div>
+
               <a
                 href="https://github.com/GaroxXiz"
                 target="_blank"
@@ -96,9 +107,34 @@ const GithubContributions = () => {
               </a>
             </div>
 
+            {/* Year Selection Tabs */}
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-6 w-full">
+              <div className="flex items-center gap-1.5 text-xs text-white/50 mr-2">
+                <CalendarIcon size={14} className="text-[#00d4ff]" />
+                <span>Year:</span>
+              </div>
+              {yearOptions.map((opt) => {
+                const isActive = selectedYear === opt.value;
+                return (
+                  <button
+                    key={String(opt.value)}
+                    onClick={() => setSelectedYear(opt.value)}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-300 cursor-pointer ${
+                      isActive
+                        ? "bg-[#00d4ff] text-black shadow-md shadow-[#00d4ff]/30 font-bold scale-105"
+                        : "bg-white/5 hover:bg-white/10 text-white/70 hover:text-white border border-white/10"
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                );
+              })}
+            </div>
+
             <div className="w-full flex justify-center py-2 min-w-[650px] overflow-x-auto">
               <GitHubCalendar
                 username="GaroxXiz"
+                year={selectedYear}
                 colorScheme="dark"
                 theme={customTheme}
                 blockSize={13}

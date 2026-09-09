@@ -59,6 +59,7 @@ const translations = {
     githubSpan: "Contributions",
     githubSubtitle: "My coding activity and contribution graph on GitHub",
     githubReposTitle: "Featured Repositories",
+    githubYearLast: "Last 365 Days",
 
     // Projects
     projectsTitle: "My",
@@ -157,6 +158,7 @@ const translations = {
     githubSpan: "GitHub",
     githubSubtitle: "Grafik aktivitas pemrograman dan kontribusi saya di GitHub",
     githubReposTitle: "Repositori Unggulan",
+    githubYearLast: "365 Hari Terakhir",
 
     // Projects
     projectsTitle: "Proyek",
