@@ -260,7 +260,7 @@ const Contact = () => {
 
                   {/* Location Item -> Open Google Maps in new tab */}
                   <a
-                    href="https://www.google.com/maps/search/?api=1&query=Bekasi,+Indonesia"
+                    href="https://www.google.com/maps/search/?api=1&query=Tambun,+Bekasi,+Jawa+Barat,+Indonesia"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-4 p-2 rounded-xl hover:bg-white/10 transition-all duration-300 group cursor-pointer"
