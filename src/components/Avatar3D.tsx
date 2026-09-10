@@ -5,7 +5,14 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, useAnimations, OrbitControls, Float } from "@react-three/drei";
 import * as THREE from "three";
 
-const MODEL_PATH = `${import.meta.env.BASE_URL}model/RizwanWaving.glb`;
+const getAssetPath = (path: string) => {
+  const base = import.meta.env.BASE_URL || "/";
+  const cleanBase = base.endsWith("/") ? base : `${base}/`;
+  const cleanPath = path.startsWith("/") ? path.slice(1) : path;
+  return `${cleanBase}${cleanPath}`;
+};
+
+const MODEL_PATH = getAssetPath("model/RizwanWaving.glb");
 
 function Model() {
   const group = useRef<THREE.Group>(null);

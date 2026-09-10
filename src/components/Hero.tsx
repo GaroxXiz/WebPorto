@@ -116,15 +116,6 @@ const Hero = () => {
       ref={ref}
       className="min-h-screen flex items-center justify-center relative overflow-hidden px-4 py-16 sm:py-20"
     >
-      <video
-        src="/WebPorto/video/Background.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full z-[-1]"
-      ></video>
-
       {/* DARK OVERLAY */}
       <div className="absolute inset-0 bg-black/50 z-[-1]" />
 
