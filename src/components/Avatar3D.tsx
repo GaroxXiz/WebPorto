@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, Suspense } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { useGLTF, useAnimations, OrbitControls, Float } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { useGLTF, useAnimations, Float } from "@react-three/drei";
 import * as THREE from "three";
 
 const getAssetPath = (path: string) => {
@@ -29,24 +29,8 @@ function Model() {
     }
   }, [actions]);
 
-  // Subtle mouse follow / rotation effect
-  useFrame((state) => {
-    if (!group.current) return;
-    const { x, y } = state.pointer;
-    group.current.rotation.y = THREE.MathUtils.lerp(
-      group.current.rotation.y,
-      x * 0.25,
-      0.05
-    );
-    group.current.rotation.x = THREE.MathUtils.lerp(
-      group.current.rotation.x,
-      -y * 0.08,
-      0.05
-    );
-  });
-
   return (
-    <group ref={group} position={[0, -1.35, 0]} scale={[2.4, 2.4, 2.4]}>
+    <group ref={group} position={[0, -2.6, 0]} scale={[2.1, 2.1, 2.1]}>
       <primitive object={scene} />
     </group>
   );
@@ -57,32 +41,23 @@ useGLTF.preload(MODEL_PATH);
 
 const Avatar3D = () => {
   return (
-    <div className="w-full h-full relative">
+    <div className="w-full h-full relative pointer-events-none">
       <Canvas
-        camera={{ position: [0, 0.2, 1.8], fov: 45 }}
+        camera={{ position: [0, 0.3, 2.4], fov: 45 }}
         style={{ background: "transparent" }}
         gl={{ alpha: true, antialias: true }}
       >
         {/* Ambient & Directional Lighting */}
-        <ambientLight intensity={1.4} />
+        <ambientLight intensity={1.5} />
         <directionalLight position={[5, 5, 5]} intensity={1.8} color="#ffffff" />
         <directionalLight position={[-5, 5, -5]} intensity={1.0} color="#00d4ff" />
         <pointLight position={[0, 2, 2]} intensity={1.2} color="#0066ff" />
 
         <Suspense fallback={null}>
-          <Float speed={1.2} rotationIntensity={0.15} floatIntensity={0.2}>
+          <Float speed={1.2} rotationIntensity={0.05} floatIntensity={0.15}>
             <Model />
           </Float>
         </Suspense>
-
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          minPolarAngle={Math.PI / 2.6}
-          maxPolarAngle={Math.PI / 1.8}
-          minAzimuthAngle={-Math.PI / 5}
-          maxAzimuthAngle={Math.PI / 5}
-        />
       </Canvas>
     </div>
   );
