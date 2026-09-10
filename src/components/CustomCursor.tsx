@@ -115,7 +115,7 @@ const CustomCursor = () => {
   if (isMobile || !isVisible) return null;
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden">
+    <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden">
       {/* Particle Trail */}
       {particles.map((p) => (
         <motion.div
@@ -129,7 +129,7 @@ const CustomCursor = () => {
             width: p.size,
             height: p.size,
           }}
-          className="fixed -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00d4ff] shadow-[0_0_8px_#00d4ff]"
+          className="fixed -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00d4ff] shadow-[0_0_8px_#00d4ff] z-[9999]"
         />
       ))}
 
@@ -143,7 +143,7 @@ const CustomCursor = () => {
           scale: isMouseDown ? 0.7 : isHovered ? 1.5 : 1,
         }}
         transition={{ duration: 0.15 }}
-        className="fixed -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-[#00d4ff] rounded-full shadow-[0_0_10px_#00d4ff] z-50"
+        className="fixed -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-[#00d4ff] rounded-full shadow-[0_0_10px_#00d4ff] z-[9999]"
       />
 
       {/* Outer Glowing Ring */}
@@ -160,7 +160,7 @@ const CustomCursor = () => {
             : "0 0 10px rgba(0, 212, 255, 0.3)",
         }}
         transition={{ duration: 0.15 }}
-        className="fixed -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full border border-[#00d4ff]/50 backdrop-blur-[1px] pointer-events-none z-40"
+        className="fixed -translate-x-1/2 -translate-y-1/2 w-9 h-9 rounded-full border border-[#00d4ff]/50 backdrop-blur-[1px] pointer-events-none z-[9999]"
       />
     </div>
   );
