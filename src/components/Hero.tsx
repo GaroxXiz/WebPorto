@@ -128,7 +128,7 @@ const Hero = () => {
 
       <motion.div
         key={isInView ? "visible" : "hidden"}
-        className="z-10 text-center w-full max-w-xl"
+        className="z-10 text-center w-full max-w-xl mb-24 sm:mb-28 md:mb-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
@@ -167,8 +167,8 @@ const Hero = () => {
         </div>
       </motion.div>
 
-      {/* 3D AVATAR MODEL (POJOK KANAN BAWAH HERO - MEDIUM PORTRAIT SHOT) */}
-      <div className="absolute bottom-0 right-4 sm:right-12 md:right-20 z-20 w-64 h-84 sm:w-76 sm:h-[400px] md:w-88 md:h-[450px] pointer-events-auto">
+      {/* 3D AVATAR MODEL (POJOK KANAN BAWAH HERO - RESPONSIVE MOBILE & DESKTOP) */}
+      <div className="absolute bottom-0 right-1 sm:right-6 md:right-20 z-20 w-48 h-64 sm:w-60 sm:h-80 md:w-88 md:h-[450px] pointer-events-auto">
         <Avatar3D />
       </div>
     </section>

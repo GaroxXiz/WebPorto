@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, Suspense } from "react";
+import { useEffect, useState, useRef, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { useGLTF, useAnimations, Float } from "@react-three/drei";
 import * as THREE from "three";
@@ -14,7 +14,11 @@ const getAssetPath = (path: string) => {
 
 const MODEL_PATH = getAssetPath("model/RizwanWaving.glb");
 
-function Model() {
+interface ModelProps {
+  isMobile: boolean;
+}
+
+function Model({ isMobile }: ModelProps) {
   const group = useRef<THREE.Group>(null);
   const { scene, animations } = useGLTF(MODEL_PATH);
   const { actions } = useAnimations(animations, group);
@@ -29,8 +33,17 @@ function Model() {
     }
   }, [actions]);
 
+  // Adjust model position & scale for mobile vs desktop
+  const modelPosition: [number, number, number] = isMobile
+    ? [0, -1.85, 0]
+    : [0, -2.0, 0];
+
+  const modelScale: [number, number, number] = isMobile
+    ? [1.55, 1.55, 1.55]
+    : [1.7, 1.7, 1.7];
+
   return (
-    <group ref={group} position={[0, -2.0, 0]} scale={[1.7, 1.7, 1.7]}>
+    <group ref={group} position={modelPosition} scale={modelScale}>
       <primitive object={scene} />
     </group>
   );
@@ -40,10 +53,25 @@ function Model() {
 useGLTF.preload(MODEL_PATH);
 
 const Avatar3D = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const cameraPosition: [number, number, number] = isMobile
+    ? [0, 0.48, 2.5]
+    : [0, 0.5, 2.8];
+
   return (
     <div className="w-full h-full relative pointer-events-none">
       <Canvas
-        camera={{ position: [0, 0.5, 2.8], fov: 45 }}
+        camera={{ position: cameraPosition, fov: 45 }}
         style={{ background: "transparent" }}
         gl={{ alpha: true, antialias: true }}
       >
@@ -55,7 +83,7 @@ const Avatar3D = () => {
 
         <Suspense fallback={null}>
           <Float speed={1.2} rotationIntensity={0.05} floatIntensity={0.15}>
-            <Model />
+            <Model isMobile={isMobile} />
           </Float>
         </Suspense>
       </Canvas>
