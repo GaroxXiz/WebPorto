@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import greetingsData from "../../src/data/greetings.json";
+import Avatar3D from "./Avatar3D";
 
 type LanguageGreeting = {
   lang: string;
@@ -174,6 +175,11 @@ const Hero = () => {
           </motion.a>
         </div>
       </motion.div>
+
+      {/* 3D AVATAR MODEL (POJOK KANAN BAWAH HERO) */}
+      <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-6 md:bottom-6 md:right-10 z-20 w-44 h-60 sm:w-56 sm:h-76 md:w-72 md:h-96 pointer-events-auto">
+        <Avatar3D />
+      </div>
     </section>
   );
 };
