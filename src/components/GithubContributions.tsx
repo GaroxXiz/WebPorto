@@ -20,17 +20,20 @@ interface Repo {
 
 type YearOption = "last" | number;
 
+const ACCOUNT_START_YEAR = 2024;
+
 const GithubContributions = () => {
   const { t } = useLanguage();
   const [selectedYear, setSelectedYear] = useState<YearOption>("last");
 
+  const currentYear = new Date().getFullYear();
   const yearOptions: { value: YearOption; label: string }[] = [
     { value: "last", label: t("githubYearLast") },
-    { value: 2026, label: "2026" },
-    { value: 2025, label: "2025" },
-    { value: 2024, label: "2024" },
-    { value: 2023, label: "2023" },
   ];
+
+  for (let y = currentYear; y >= ACCOUNT_START_YEAR; y--) {
+    yearOptions.push({ value: y, label: String(y) });
+  }
 
   const featuredRepos: Repo[] = [
     {
