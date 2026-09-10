@@ -167,8 +167,8 @@ const Hero = () => {
         </div>
       </motion.div>
 
-      {/* 3D AVATAR MODEL (POJOK KANAN BAWAH HERO - CLOSE UP PORTRAIT) */}
-      <div className="absolute bottom-0 right-2 sm:right-6 md:right-10 z-20 w-60 h-80 sm:w-72 sm:h-96 md:w-80 md:h-[420px] pointer-events-auto">
+      {/* 3D AVATAR MODEL (POJOK KANAN BAWAH HERO - MEDIUM PORTRAIT SHOT) */}
+      <div className="absolute bottom-0 right-4 sm:right-12 md:right-20 z-20 w-64 h-84 sm:w-76 sm:h-[400px] md:w-88 md:h-[450px] pointer-events-auto">
         <Avatar3D />
       </div>
     </section>

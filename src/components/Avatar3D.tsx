@@ -30,7 +30,7 @@ function Model() {
   }, [actions]);
 
   return (
-    <group ref={group} position={[0, -2.6, 0]} scale={[2.1, 2.1, 2.1]}>
+    <group ref={group} position={[0, -2.0, 0]} scale={[1.7, 1.7, 1.7]}>
       <primitive object={scene} />
     </group>
   );
@@ -43,7 +43,7 @@ const Avatar3D = () => {
   return (
     <div className="w-full h-full relative pointer-events-none">
       <Canvas
-        camera={{ position: [0, 0.3, 2.4], fov: 45 }}
+        camera={{ position: [0, 0.5, 2.8], fov: 45 }}
         style={{ background: "transparent" }}
         gl={{ alpha: true, antialias: true }}
       >
