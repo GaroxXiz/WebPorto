@@ -211,14 +211,14 @@ const Contact = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          viewport={{ once: false, amount: 0.4 }}
-          className="p-8 rounded-2xl backdrop-blur-lg bg-white/0 border border-white/0 mb-12"
+          viewport={{ once: true, amount: 0.05 }}
+          className="p-2 sm:p-8 rounded-2xl backdrop-blur-lg bg-white/0 border border-white/0 mb-12"
         >
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-12">
             {/* Left Side: Contact Info */}
-            <div className="space-y-8">
-              <div className="max-w-lg ml-auto p-6 rounded-xl backdrop-blur-lg bg-white/5 border border-white/10">
-                <h3 className="text-2xl font-bold text-white mb-6">
+            <div className="space-y-8 w-full">
+              <div className="max-w-lg mx-auto md:ml-auto p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/5 border border-white/10 w-full">
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-6">
                   {t("contactConnect")}
                 </h3>
                 <div className="space-y-4">
@@ -227,14 +227,14 @@ const Contact = () => {
                     href="https://mail.google.com/mail/?view=cm&fs=1&to=maulanarizwan84@gmail.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 p-2 rounded-xl hover:bg-white/10 transition-all duration-300 group cursor-pointer"
+                    className="flex items-center gap-3 sm:gap-4 p-2 rounded-xl hover:bg-white/10 transition-all duration-300 group cursor-pointer overflow-hidden"
                   >
-                    <div className="p-3 rounded-full bg-[#00d4ff]/20 text-[#00d4ff] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#00d4ff] group-hover:text-black">
-                      <Mail size={20} />
+                    <div className="p-2.5 sm:p-3 rounded-full bg-[#00d4ff]/20 text-[#00d4ff] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#00d4ff] group-hover:text-black flex-shrink-0">
+                      <Mail size={18} className="sm:w-5 sm:h-5" />
                     </div>
-                    <div>
-                      <p className="text-white/60 text-sm">{t("contactEmailLabel")}</p>
-                      <p className="text-white group-hover:text-[#00d4ff] transition-colors duration-300 font-medium">
+                    <div className="overflow-hidden">
+                      <p className="text-white/60 text-xs sm:text-sm">{t("contactEmailLabel")}</p>
+                      <p className="text-white group-hover:text-[#00d4ff] transition-colors duration-300 font-medium text-xs sm:text-base truncate">
                         maulanarizwan84@gmail.com
                       </p>
                     </div>
@@ -245,14 +245,14 @@ const Contact = () => {
                     href="https://api.whatsapp.com/send?phone=+6289530085684&text=Hello%20Rizwan,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 p-2 rounded-xl hover:bg-white/10 transition-all duration-300 group cursor-pointer"
+                    className="flex items-center gap-3 sm:gap-4 p-2 rounded-xl hover:bg-white/10 transition-all duration-300 group cursor-pointer overflow-hidden"
                   >
-                    <div className="p-3 rounded-full bg-[#00d4ff]/20 text-[#00d4ff] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#00d4ff] group-hover:text-black">
-                      <Phone size={20} />
+                    <div className="p-2.5 sm:p-3 rounded-full bg-[#00d4ff]/20 text-[#00d4ff] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#00d4ff] group-hover:text-black flex-shrink-0">
+                      <Phone size={18} className="sm:w-5 sm:h-5" />
                     </div>
-                    <div>
-                      <p className="text-white/60 text-sm">{t("contactPhone")}</p>
-                      <p className="text-white group-hover:text-[#00d4ff] transition-colors duration-300 font-medium">
+                    <div className="overflow-hidden">
+                      <p className="text-white/60 text-xs sm:text-sm">{t("contactPhone")}</p>
+                      <p className="text-white group-hover:text-[#00d4ff] transition-colors duration-300 font-medium text-xs sm:text-base truncate">
                         +62 895-3008-5684
                       </p>
                     </div>
@@ -263,14 +263,14 @@ const Contact = () => {
                     href="https://www.google.com/maps/search/?api=1&query=Tambun,+Bekasi,+Jawa+Barat,+Indonesia"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 p-2 rounded-xl hover:bg-white/10 transition-all duration-300 group cursor-pointer"
+                    className="flex items-center gap-3 sm:gap-4 p-2 rounded-xl hover:bg-white/10 transition-all duration-300 group cursor-pointer overflow-hidden"
                   >
-                    <div className="p-3 rounded-full bg-[#00d4ff]/20 text-[#00d4ff] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#00d4ff] group-hover:text-black">
-                      <MapPin size={20} />
+                    <div className="p-2.5 sm:p-3 rounded-full bg-[#00d4ff]/20 text-[#00d4ff] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#00d4ff] group-hover:text-black flex-shrink-0">
+                      <MapPin size={18} className="sm:w-5 sm:h-5" />
                     </div>
-                    <div>
-                      <p className="text-white/60 text-sm">{t("contactLocation")}</p>
-                      <p className="text-white group-hover:text-[#00d4ff] transition-colors duration-300 font-medium">
+                    <div className="overflow-hidden">
+                      <p className="text-white/60 text-xs sm:text-sm">{t("contactLocation")}</p>
+                      <p className="text-white group-hover:text-[#00d4ff] transition-colors duration-300 font-medium text-xs sm:text-base truncate">
                         {t("contactBekasi")}
                       </p>
                     </div>
@@ -280,7 +280,7 @@ const Contact = () => {
             </div>
 
             {/* Right Side: Contact Form */}
-            <div className="max-w-lg p-6 rounded-xl backdrop-blur-lg bg-white/5 border border-white/10">
+            <div className="max-w-lg mx-auto md:mr-auto p-4 sm:p-6 rounded-xl backdrop-blur-lg bg-white/5 border border-white/10 w-full">
               <form ref={form} onSubmit={handleSubmit} className="space-y-6">
                 {/* Honeypot hidden input for anti-spam bots */}
                 <div className="hidden" aria-hidden="true">

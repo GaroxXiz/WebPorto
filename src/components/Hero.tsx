@@ -128,12 +128,12 @@ const Hero = () => {
 
       <motion.div
         key={isInView ? "visible" : "hidden"}
-        className="z-10 text-center w-full max-w-xl mb-24 sm:mb-28 md:mb-0"
+        className="z-10 text-center w-full max-w-xl pt-16 sm:pt-20 md:pt-0 mb-64 sm:mb-72 md:mb-0 px-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
       >
-        <h1 className="text-4xl md:text-5xl font-bold mb-10 text-white">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-10 text-white">
           <span
             className={`inline-block ${
               !hasFadedIn && displayText !== ""
@@ -146,14 +146,14 @@ const Hero = () => {
           <span className="animate-pulse">|</span>
         </h1>
 
-        <p className="text-white/80 mb-10 text-lg md:text-xl">
+        <p className="text-white/80 mb-8 sm:mb-10 text-base sm:text-lg md:text-xl px-2">
           {t("heroWelcome")}
         </p>
 
         <div className="flex justify-center">
           <motion.a
             href="#about"
-            className="px-8 py-3 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black font-semibold rounded-lg hover:shadow-lg hover:shadow-[#00d4ff]/25 transition-all duration-300 hover:scale-105 hover:-translate-y-1"
+            className="px-6 sm:px-8 py-3 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black font-semibold rounded-lg hover:shadow-lg hover:shadow-[#00d4ff]/25 transition-all duration-300 hover:scale-105 hover:-translate-y-1 text-sm sm:text-base"
             animate={{ y: [0, -5, 0] }}
             transition={{
               duration: 1.5,
@@ -167,12 +167,12 @@ const Hero = () => {
         </div>
       </motion.div>
 
-      {/* 3D AVATAR MODEL (POJOK KANAN BAWAH HERO - CINEMATIC SMOOTH BOTTOM FADE) */}
+      {/* 3D AVATAR MODEL (CENTERED ON MOBILE WITH FULL MARGINS, BOTTOM-RIGHT ON DESKTOP) */}
       <div 
-        className="absolute bottom-0 right-4 sm:right-10 md:right-20 z-20 w-72 h-[390px] sm:w-88 sm:h-[500px] md:w-[560px] md:h-[620px] pointer-events-auto"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto md:right-16 z-20 w-[320px] h-[390px] sm:w-88 sm:h-[430px] md:w-[600px] md:h-[620px] pointer-events-auto"
         style={{
-          maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 98%)",
-          WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 98%)",
+          maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 98%)",
+          WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 98%)",
         }}
       >
         <Avatar3D />

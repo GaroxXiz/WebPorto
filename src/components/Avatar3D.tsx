@@ -33,17 +33,17 @@ function Model({ isMobile }: ModelProps) {
     }
   }, [actions]);
 
-  // Model position & scale scaled up slightly to fill canvas nicely
+  // Model position & scale tuned with generous left margin for waving hand
   const modelPosition: [number, number, number] = isMobile
-    ? [0.12, -2.05, 0]
-    : [0.25, -2.35, 0];
+    ? [0.22, -2.05, 0]
+    : [0.35, -2.35, 0];
 
   const modelScale: [number, number, number] = isMobile
-    ? [1.75, 1.75, 1.75]
-    : [1.75, 1.75, 1.75];
+    ? [1.45, 1.45, 1.45]
+    : [1.82, 1.82, 1.82];
 
   return (
-    <group ref={group} position={modelPosition} scale={modelScale}>
+    <group ref={group} position={modelPosition} rotation={[0, 0, 0]} scale={modelScale}>
       <primitive object={scene} />
     </group>
   );
@@ -65,8 +65,8 @@ const Avatar3D = () => {
   }, []);
 
   const cameraPosition: [number, number, number] = isMobile
-    ? [0.3, 0.48, 2.4]
-    : [0.3, 0.5, 2.6];
+    ? [0, 0.48, 2.5]
+    : [0, 0.5, 2.6];
 
   return (
     <div className="w-full h-full relative pointer-events-none">
@@ -82,7 +82,7 @@ const Avatar3D = () => {
         <pointLight position={[0, 2, 2]} intensity={1.2} color="#0066ff" />
 
         <Suspense fallback={null}>
-          <Float speed={1.2} rotationIntensity={0.05} floatIntensity={0.15}>
+          <Float speed={1.2} rotationIntensity={0} floatIntensity={0.1}>
             <Model isMobile={isMobile} />
           </Float>
         </Suspense>

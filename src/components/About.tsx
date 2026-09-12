@@ -191,8 +191,8 @@ const About = () => {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: false, amount: 0.4 }}
-            className="p-8 rounded-2xl backdrop-blur-lg bg-white/5 border border-white/10 mb-8"
+            viewport={{ once: true, amount: 0.05 }}
+            className="p-4 sm:p-8 rounded-2xl backdrop-blur-lg bg-white/5 border border-white/10 mb-8"
           >
             <div className="text-center">
               <div className="flex flex-col md:flex-row items-center md:items-start gap-10">
@@ -284,8 +284,8 @@ const About = () => {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: false, amount: 0.4 }}
-            className="p-8 rounded-2xl backdrop-blur-lg bg-white/5 border border-white/10 mb-8"
+            viewport={{ once: true, amount: 0.05 }}
+            className="p-4 sm:p-8 rounded-2xl backdrop-blur-lg bg-white/5 border border-white/10 mb-8"
           >
             <h3 className="text-2xl font-bold text-white mb-2">{t("aboutWhatIDo")}</h3>
             <p className="text-white/80 leading-relaxed text-justify">
@@ -301,7 +301,7 @@ const About = () => {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-              viewport={{ once: false, amount: 0.4 }}
+              viewport={{ once: true, amount: 0.05 }}
               className="w-64 aspect-square p-6 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105 group flex flex-col justify-start items-center text-center"
             >
               {/* Icon */}
@@ -339,7 +339,7 @@ const About = () => {
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    viewport={{ once: false, amount: 0.3 }}
+                    viewport={{ once: true, amount: 0.05 }}
                     className={`relative flex flex-col md:flex-row ${
                       isLeft ? "md:justify-start" : "md:justify-end"
                     } items-start w-full group`}
@@ -400,7 +400,7 @@ const About = () => {
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    viewport={{ once: false, amount: 0.3 }}
+                    viewport={{ once: true, amount: 0.05 }}
                     className={`relative flex flex-col md:flex-row ${
                       isLeft ? "md:justify-start" : "md:justify-end"
                     } items-start w-full group`}

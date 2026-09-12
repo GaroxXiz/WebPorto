@@ -76,11 +76,11 @@ const GithubContributions = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          viewport={{ once: false, amount: 0.2 }}
-          className="max-w-5xl mx-auto space-y-12"
+          viewport={{ once: true, amount: 0.05 }}
+          className="max-w-5xl mx-auto space-y-12 px-0 sm:px-4"
         >
           {/* GitHub Calendar Heatmap */}
-          <div className="p-6 sm:p-8 rounded-2xl backdrop-blur-lg bg-white/5 border border-white/10 hover:border-[#00d4ff]/30 transition-all duration-300 shadow-xl flex flex-col items-center overflow-x-auto">
+          <div className="p-4 sm:p-8 rounded-2xl backdrop-blur-lg bg-white/5 border border-white/10 hover:border-[#00d4ff]/30 transition-all duration-300 shadow-xl flex flex-col items-center w-full overflow-hidden">
             <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-white/10">
               <div className="flex items-center gap-3">
                 <div className="p-2.5 rounded-xl bg-white/10 text-[#00d4ff]">
@@ -127,16 +127,19 @@ const GithubContributions = () => {
               })}
             </div>
 
-            <div className="w-full flex justify-center py-2 min-w-[650px] overflow-x-auto">
-              <GitHubCalendar
-                username="GaroxXiz"
-                year={selectedYear}
-                colorScheme="dark"
-                theme={customTheme}
-                blockSize={13}
-                blockMargin={4}
-                fontSize={14}
-              />
+            {/* Scrollable Calendar Wrapper */}
+            <div className="w-full overflow-x-auto py-2">
+              <div className="min-w-[650px] flex justify-center">
+                <GitHubCalendar
+                  username="GaroxXiz"
+                  year={selectedYear}
+                  colorScheme="dark"
+                  theme={customTheme}
+                  blockSize={13}
+                  blockMargin={4}
+                  fontSize={14}
+                />
+              </div>
             </div>
           </div>
 
