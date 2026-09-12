@@ -37,13 +37,6 @@ const GithubContributions = () => {
 
   const featuredRepos: Repo[] = [
     {
-      name: "WebPorto",
-      description: "Personal interactive portfolio website built with React, Vite, TypeScript, and Tailwind CSS.",
-      language: "TypeScript",
-      langColor: "#3178c6",
-      url: "https://github.com/GaroxXiz/WebPorto",
-    },
-    {
       name: "Abyss-Walker",
       description: "2D Pixel Art RPG & Action Game created with Unity C# and custom Aseprite sprite animations.",
       language: "C#",
@@ -154,7 +147,7 @@ const GithubContributions = () => {
               <h3>{t("githubReposTitle")}</h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {featuredRepos.map((repo, idx) => (
                 <motion.a
                   key={idx}

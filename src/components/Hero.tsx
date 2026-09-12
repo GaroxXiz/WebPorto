@@ -167,8 +167,14 @@ const Hero = () => {
         </div>
       </motion.div>
 
-      {/* 3D AVATAR MODEL (POJOK KANAN BAWAH HERO - RESPONSIVE MOBILE & DESKTOP) */}
-      <div className="absolute bottom-0 right-1 sm:right-6 md:right-20 z-20 w-48 h-64 sm:w-60 sm:h-80 md:w-88 md:h-[450px] pointer-events-auto">
+      {/* 3D AVATAR MODEL (POJOK KANAN BAWAH HERO - CINEMATIC SMOOTH BOTTOM FADE) */}
+      <div 
+        className="absolute bottom-0 right-4 sm:right-10 md:right-20 z-20 w-72 h-[390px] sm:w-88 sm:h-[500px] md:w-[560px] md:h-[620px] pointer-events-auto"
+        style={{
+          maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 98%)",
+          WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 98%)",
+        }}
+      >
         <Avatar3D />
       </div>
     </section>

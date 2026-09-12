@@ -33,14 +33,14 @@ function Model({ isMobile }: ModelProps) {
     }
   }, [actions]);
 
-  // Adjust model position & scale for mobile vs desktop
+  // Model position & scale scaled up slightly to fill canvas nicely
   const modelPosition: [number, number, number] = isMobile
-    ? [0, -1.85, 0]
-    : [0, -2.0, 0];
+    ? [0.12, -2.05, 0]
+    : [0.25, -2.35, 0];
 
   const modelScale: [number, number, number] = isMobile
-    ? [1.55, 1.55, 1.55]
-    : [1.7, 1.7, 1.7];
+    ? [1.75, 1.75, 1.75]
+    : [1.75, 1.75, 1.75];
 
   return (
     <group ref={group} position={modelPosition} scale={modelScale}>
@@ -65,8 +65,8 @@ const Avatar3D = () => {
   }, []);
 
   const cameraPosition: [number, number, number] = isMobile
-    ? [0, 0.48, 2.5]
-    : [0, 0.5, 2.8];
+    ? [0.3, 0.48, 2.4]
+    : [0.3, 0.5, 2.6];
 
   return (
     <div className="w-full h-full relative pointer-events-none">
