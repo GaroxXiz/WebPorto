@@ -221,7 +221,7 @@ const About = () => {
                       <Github size={24} className="text-white" />
                     </a>
                     <a
-                      href="https://www.linkedin.com/in/maulana-rizwan-ahmad-8a831728b"
+                      href="https://www.linkedin.com/in/maulana-rizwan-ahmad-479bb8438"
                       className="p-3 rounded-full backdrop-blur-lg bg-white/10 border border-white/20 hover:bg-[#00d4ff]/20 hover:border-[#00d4ff]/50 transition-all duration-300 hover:scale-110 hover:rotate-12"
                     >
                       <Linkedin size={24} className="text-white" />
