@@ -12,7 +12,7 @@ const getAssetPath = (path: string) => {
   return `${cleanBase}${cleanPath}`;
 };
 
-const MODEL_PATH = getAssetPath("model/RizwanWaving.glb");
+const MODEL_PATH = getAssetPath("model/RizwanWavingComp.glb");
 
 interface ModelProps {
   isMobile: boolean;

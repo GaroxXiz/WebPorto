@@ -1,9 +1,9 @@
-import React from "react";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
 const Header = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
 
   const navItems = [
@@ -19,7 +19,7 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-black/20 border-b border-white/10">
       <div className="container mx-auto px-4 py-5">
         <div className="flex items-center justify-between">
-          <div className="text-2xl font-bold text-white">
+          <div className="text-2xl font-bold text-white flex items-center gap-1">
             <span className="text-[#00d4ff]">{"<"}</span>
             RizwanDev
             <span className="text-[#00d4ff]">{"/>"}</span>
@@ -45,7 +45,7 @@ const Header = () => {
                 onClick={() => setLanguage("en")}
                 className={`px-2.5 py-1 rounded-full transition-all duration-300 ${
                   language === "en"
-                    ? "bg-[#00d4ff] text-black shadow-md shadow-[#00d4ff]/20"
+                    ? "bg-[#00d4ff] text-black shadow-md shadow-[#00d4ff]/20 font-bold"
                     : "text-white/60 hover:text-white"
                 }`}
               >
@@ -55,7 +55,7 @@ const Header = () => {
                 onClick={() => setLanguage("id")}
                 className={`px-2.5 py-1 rounded-full transition-all duration-300 ${
                   language === "id"
-                    ? "bg-[#00d4ff] text-black shadow-md shadow-[#00d4ff]/20"
+                    ? "bg-[#00d4ff] text-black shadow-md shadow-[#00d4ff]/20 font-bold"
                     : "text-white/60 hover:text-white"
                 }`}
               >
@@ -96,7 +96,7 @@ const Header = () => {
                 }}
                 className={`px-3 py-1 rounded-full transition-all duration-300 ${
                   language === "en"
-                    ? "bg-[#00d4ff] text-black shadow-md shadow-[#00d4ff]/20"
+                    ? "bg-[#00d4ff] text-black shadow-md shadow-[#00d4ff]/20 font-bold"
                     : "text-white/60"
                 }`}
               >
@@ -109,7 +109,7 @@ const Header = () => {
                 }}
                 className={`px-3 py-1 rounded-full transition-all duration-300 ${
                   language === "id"
-                    ? "bg-[#00d4ff] text-black shadow-md shadow-[#00d4ff]/20"
+                    ? "bg-[#00d4ff] text-black shadow-md shadow-[#00d4ff]/20 font-bold"
                     : "text-white/60"
                 }`}
               >

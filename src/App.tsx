@@ -1,4 +1,5 @@
 import { LanguageProvider } from "./context/LanguageContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import Header from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -8,21 +9,27 @@ import GithubContributions from "./components/GithubContributions";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import CustomCursor from "./components/CustomCursor";
+import ParticleBackground from "./components/ParticleBackground";
 
 function App() {
   return (
     <LanguageProvider>
-      <div className="min-h-screen bg-gradient-to-br from-[#0a0a0a] via-[#1a1a2e] to-[#0a0a0a] text-white">
-        <CustomCursor />
-        <Header />
-        <Hero />
-        <About />
-        <Skills />
-        <GithubContributions />
-        <Projects />
-        <Contact />
-        <Footer />
-      </div>
+      <ThemeProvider>
+        <div className="min-h-screen bg-gradient-to-br from-[#0a0a0a] via-[#121225] to-[#0a0a0a] text-white relative">
+          <ParticleBackground />
+          <CustomCursor />
+          <Header />
+          <main className="relative z-10">
+            <Hero />
+            <About />
+            <Skills />
+            <GithubContributions />
+            <Projects />
+            <Contact />
+          </main>
+          <Footer />
+        </div>
+      </ThemeProvider>
     </LanguageProvider>
   );
 }

@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
+import { useTheme } from "../context/ThemeContext";
 import greetingsData from "../../src/data/greetings.json";
 import Avatar3D from "./Avatar3D";
 
@@ -23,13 +24,14 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    [shuffled[i], shuffled[j]] = [shuffled[i], shuffled[j]];
   }
   return shuffled;
 };
 
 const Hero = () => {
   const { t } = useLanguage();
+  const { colors } = useTheme();
   const [greetings, setGreetings] = useState<LanguageGreeting[]>([]);
   const [displayText, setDisplayText] = useState("");
   const [index, setIndex] = useState(0);
@@ -83,7 +85,6 @@ const Hero = () => {
     if (!isInView || greetings.length === 0) return;
 
     const currentGreeting = greetings[index].greeting + "!";
-
     const typingSpeed = isDeleting ? 60 : 120;
 
     const timeout = setTimeout(() => {
@@ -119,11 +120,20 @@ const Hero = () => {
       {/* DARK OVERLAY */}
       <div className="absolute inset-0 bg-black/50 z-[-1]" />
 
-      {/* Background Blur */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none z-0">
-        <div className="absolute top-[20%] left-[10%] w-72 h-72 bg-[#00d4ff]/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-[60%] right-[10%] w-96 h-96 bg-[#0066ff]/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-[40%] left-1/2 transform -translate-x-1/2 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl"></div>
+      {/* Background Glow Blobs */}
+      <div className="absolute inset-0 opacity-25 pointer-events-none z-0">
+        <div
+          className="absolute top-[20%] left-[10%] w-72 h-72 rounded-full blur-3xl transition-colors duration-700"
+          style={{ backgroundColor: colors.primary }}
+        />
+        <div
+          className="absolute top-[60%] right-[10%] w-96 h-96 rounded-full blur-3xl transition-colors duration-700"
+          style={{ backgroundColor: colors.secondary }}
+        />
+        <div
+          className="absolute top-[40%] left-1/2 transform -translate-x-1/2 w-64 h-64 rounded-full blur-3xl transition-colors duration-700"
+          style={{ backgroundColor: colors.accent }}
+        />
       </div>
 
       <motion.div
@@ -143,7 +153,9 @@ const Hero = () => {
           >
             {displayText}
           </span>
-          <span className="animate-pulse">|</span>
+          <span className="animate-pulse" style={{ color: colors.primary }}>
+            |
+          </span>
         </h1>
 
         <p className="text-white/80 mb-8 sm:mb-10 text-base sm:text-lg md:text-xl px-2">
@@ -153,7 +165,11 @@ const Hero = () => {
         <div className="flex justify-center">
           <motion.a
             href="#about"
-            className="px-6 sm:px-8 py-3 bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black font-semibold rounded-lg hover:shadow-lg hover:shadow-[#00d4ff]/25 transition-all duration-300 hover:scale-105 hover:-translate-y-1 text-sm sm:text-base"
+            className="px-6 sm:px-8 py-3 text-black font-semibold rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105 hover:-translate-y-1 text-sm sm:text-base"
+            style={{
+              background: `linear-gradient(to right, ${colors.primary}, ${colors.secondary})`,
+              boxShadow: `0 4px 20px ${colors.primary}33`,
+            }}
             animate={{ y: [0, -5, 0] }}
             transition={{
               duration: 1.5,
@@ -169,7 +185,7 @@ const Hero = () => {
 
       {/* 3D AVATAR MODEL (CENTERED ON MOBILE WITH FULL MARGINS, BOTTOM-RIGHT ON DESKTOP) */}
       <div 
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto md:right-16 z-20 w-[320px] h-[390px] sm:w-88 sm:h-[430px] md:w-[600px] md:h-[620px] pointer-events-auto"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto md:right-16 z-0 w-[320px] h-[390px] sm:w-88 sm:h-[430px] md:w-[600px] md:h-[620px] pointer-events-none"
         style={{
           maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 98%)",
           WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 98%)",

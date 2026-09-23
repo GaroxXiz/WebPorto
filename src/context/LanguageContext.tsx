@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 type Language = "en" | "id";
 
@@ -88,7 +88,7 @@ const translations = {
     contactConnect: "Let's Connect",
     contactPhone: "Phone",
     contactLocation: "Location",
-    contactBekasi: "Tambun, Bekasi, Jawa Barat, Indonesia",
+    contactBekasi: "Tambun, Bekasi, West Java, Indonesia",
     contactNameLabel: "Name",
     contactNamePlaceholder: "Your name",
     contactEmailLabel: "Email",
@@ -212,19 +212,24 @@ const translations = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>("en");
-
-  // Load language from localStorage if available
-  useEffect(() => {
-    const savedLang = localStorage.getItem("portfolio_lang") as Language;
-    if (savedLang === "en" || savedLang === "id") {
-      setLanguageState(savedLang);
+  const [language, setLanguageState] = useState<Language>(() => {
+    if (typeof window !== "undefined") {
+      const savedLang = localStorage.getItem("portfolio_lang") as Language;
+      if (savedLang === "en" || savedLang === "id") {
+        return savedLang;
+      }
+      // Auto-detect browser/system language
+      const browserLang = navigator.language?.toLowerCase() || "";
+      return browserLang.startsWith("id") ? "id" : "en";
     }
-  }, []);
+    return "en";
+  });
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem("portfolio_lang", lang);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("portfolio_lang", lang);
+    }
   };
 
   const t = (key: keyof typeof translations["en"]): string => {

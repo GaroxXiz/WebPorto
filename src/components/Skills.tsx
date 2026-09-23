@@ -7,6 +7,7 @@ import CS from "../../public/img/Csharp.png";
 import PY from "../../public/img/Python.png";
 import HTML from "../../public/img/HTML.png";
 import CSS from "../../public/img/Css.png";
+import GO from "../../public/img/Golang.png";
 import JS from "../../public/img/Javascript.png";
 import UNITY from "../../public/img/Unity.png";
 import BLENDER from "../../public/img/Blender.png";
@@ -15,6 +16,7 @@ import RENPY from "../../public/img/Renpy.png";
 import GITHUB from "../../public/img/Github.png";
 import VS from "../../public/img/VS.png";
 import VSC from "../../public/img/VSCode.png";
+import DBV from "../../public/img/DBeaver.png";
 import CR from "../../public/img/Creativity.png";
 import CO from "../../public/img/Communication.png";
 import TW from "../../public/img/Teamwork.png";
@@ -48,6 +50,7 @@ const Skills = () => {
         { name: "HTML", icon: HTML },
         { name: "CSS", icon: CSS },
         { name: "JavaScript", icon: JS },
+        { name: "Golang", icon: GO },
         { name: "PostgreeSQL", icon: PG },
       ],
     },
@@ -62,6 +65,7 @@ const Skills = () => {
         { name: "GitHub", icon: GITHUB },
         { name: "Visual Studio", icon: VS },
         { name: "Visual Studio Code", icon: VSC },
+        { name: "DBeaver", icon: DBV },
         { name: "Effect House", icon: EH },
       ],
     },

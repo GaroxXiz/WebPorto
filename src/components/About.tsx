@@ -127,7 +127,7 @@ const About = () => {
       image: PUFA,
     },
     {
-      year: "February 2025",
+      year: language === "en" ? "February 2025" : "Februari 2025",
       organization: "PUFA Art and Sport Division Event",
       position: language === "en"
         ? "Project Manager at Computer Science Sport & Games Olympiad (CSGO) 2025"
@@ -143,7 +143,7 @@ const About = () => {
       image: PUMA,
     },
     {
-      year: "February 2024",
+      year: language === "en" ? "February 2024" : "Februari 2024",
       organization: "PUFA Art and Sport Division Event",
       position: language === "en"
         ? "PIC Games (Stumble Guys) at Computer Science Sport & Games Olympiad (CSGO) 2024"
@@ -155,7 +155,7 @@ const About = () => {
 
   const workExperience = [
     {
-      year: "August 2025 - January 2026",
+      year: language === "en" ? "August 2025 - January 2026" : "Agustus 2025 - Januari 2026",
       company: "PIXIELAB",
       role: language === "en" ? "Fullstack Junior Developer" : "Developer Junior Fullstack",
       description: language === "en"
@@ -165,7 +165,7 @@ const About = () => {
       image: PIXIELAB,
     },
     {
-      year: "April 2026 - Present",
+      year: language === "en" ? "April 2026 - Present" : "April 2026 - Sekarang",
       company: "ENSEVAL",
       role: language === "en" ? "Web Developer Intern" : "Magang Developer Web",
       description: language === "en"
@@ -247,7 +247,7 @@ const About = () => {
                   <p className="text-xl md:text-2xl text-white/80 mb-6">
                     {t("aboutJourneySubtitle")}
                   </p>
-                  <p className="text-white/60 mb-8 max-w-2xl whitespace-pre-line text-justify">
+                  <p className="text-white/60 mb-8 max-w-2xl whitespace-pre-line text-left md:text-justify">
                     {t("aboutJourneyDesc")}
                   </p>
 
@@ -288,7 +288,7 @@ const About = () => {
             className="p-4 sm:p-8 rounded-2xl backdrop-blur-lg bg-white/5 border border-white/10 mb-8"
           >
             <h3 className="text-2xl font-bold text-white mb-2">{t("aboutWhatIDo")}</h3>
-            <p className="text-white/80 leading-relaxed text-justify">
+            <p className="text-white/80 leading-relaxed text-left md:text-justify">
               {t("aboutWhatIDoDesc")}
             </p>
           </motion.div>
