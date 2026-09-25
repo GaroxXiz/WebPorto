@@ -45,6 +45,16 @@ const translations = {
     aboutServiceGameplayProgDesc: "Implementing core systems like movement, combat, and interaction using C# in Unity",
     aboutExpTitle: "Experience",
     aboutWorkExpTitle: "Work Experience",
+    aboutClickToViewCert: "Click to view certificate",
+    aboutModalCertTitle: "Certificate Details",
+    aboutModalClose: "Close",
+    aboutModalViewOriginal: "View Full Certificate",
+    aboutModalRecipient: "Recipient",
+    aboutModalPeriod: "Period",
+    aboutModalSigner: "Signed By",
+    aboutModalTabCert: "Certificate",
+    aboutModalTabReveal: "Reveal Photo",
+    aboutModalViewReveal: "View Full Photo",
 
     // Skills
     skillsTitle: "My",
@@ -144,6 +154,16 @@ const translations = {
     aboutServiceGameplayProgDesc: "Mengimplementasikan sistem inti seperti pergerakan, pertempuran, dan interaksi menggunakan C# di Unity",
     aboutExpTitle: "Pengalaman Organisasi",
     aboutWorkExpTitle: "Pengalaman Kerja",
+    aboutClickToViewCert: "Klik untuk melihat sertifikat",
+    aboutModalCertTitle: "Detail Sertifikat",
+    aboutModalClose: "Tutup",
+    aboutModalViewOriginal: "Lihat Sertifikat Penuh",
+    aboutModalRecipient: "Penerima",
+    aboutModalPeriod: "Periode",
+    aboutModalSigner: "Ditandatangani Oleh",
+    aboutModalTabCert: "Sertifikat",
+    aboutModalTabReveal: "Foto Reveal",
+    aboutModalViewReveal: "Lihat Foto Penuh",
 
     // Skills
     skillsTitle: "Keahlian",
