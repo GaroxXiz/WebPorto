@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
+import { createPortal } from "react-dom";
 import {
   Gamepad2,
   Layers,
@@ -34,8 +35,8 @@ import SertifPUMA from "../../public/img/Organisation/Sertif PUMA.png";
 import SertifCSGO2024 from "../../public/img/Organisation/Sertif CSGO 2024.png";
 
 // Member & Committee Reveal Images from public/img/Organisation
-// import MemberRevealPUMA from "../../public/img/Organisation/Member Reveal PUMA.png";
-// import CommitteRevealCSGO2024 from "../../public/img/Organisation/Committe Reveal CSGO 2024.png";
+import MemberRevealPUMA from "../../public/img/Organisation/Member Reveal PUMA.png";
+import CommitteRevealCSGO2024 from "../../public/img/Organisation/Committe Reveal CSGO 2024.png";
 
 import { useLanguage } from "../context/LanguageContext";
 
@@ -226,11 +227,11 @@ const About = () => {
         ? "In recognition of dedication and commitment, who has provided a significant contribution as Vice of Art and Sport Division of President University Major Association of Informatics period November 2023 - September 2024."
         : "Sebagai pengakuan atas dedikasi dan komitmen, yang telah memberikan kontribusi signifikan sebagai Wakil Divisi Seni dan Olahraga President University Major Association of Informatics periode November 2023 - September 2024.",
       certificateSigner: "Rosalind, S.Kom., M.Kom (Head of Informatics Study Program)",
-      // revealImage: MemberRevealPUMA,
-      // revealType: language === "en" ? "Member Reveal" : "Member Reveal",
-      // revealDescription: language === "en"
-      //   ? "Official Member Reveal of President University Major Association of Informatics (PUMA Informatics) as Vice of Art and Sport Division (VOD) - IT 23."
-      //   : "Publikasi Resmi Member Reveal President University Major Association of Informatics (PUMA Informatics) sebagai Wakil Divisi Seni dan Olahraga (VOD) - IT 23.",
+      revealImage: MemberRevealPUMA,
+      revealType: language === "en" ? "Member Reveal" : "Member Reveal",
+      revealDescription: language === "en"
+        ? "Official Member Reveal of President University Major Association of Informatics (PUMA Informatics) as Vice of Art and Sport Division (VOD) - IT 23."
+        : "Publikasi Resmi Member Reveal President University Major Association of Informatics (PUMA Informatics) sebagai Wakil Divisi Seni dan Olahraga (VOD) - IT 23.",
     },
     {
       year: language === "en" ? "February 2024" : "Februari 2024",
@@ -249,11 +250,11 @@ const About = () => {
         ? "Awarded to Committee in recognition for hard work and dedication in division Stumble Guys CSGO 2024 PUFA Computing."
         : "Dianugerahkan kepada Panitia sebagai pengakuan atas kerja keras dan dedikasinya pada divisi Stumble Guys CSGO 2024 PUFA Computing.",
       certificateSigner: "Marizky Arfi Legoarto (Project Manager), Aura Shafarina Salsabila (Chairperson), Genta Sahuri S.Kom., M.Kom. (Advisor)",
-      // revealImage: CommitteRevealCSGO2024,
-      // revealType: language === "en" ? "Committee Reveal" : "Committee Reveal",
-      // revealDescription: language === "en"
-      //   ? "Official Committee Reveal of Computer Science Sport & Games Olympiad (CSGO) 2024 in division Stumble Guys PUFA Computing - IT 2023."
-      //   : "Publikasi Resmi Committee Reveal Computer Science Sport & Games Olympiad (CSGO) 2024 pada divisi Stumble Guys PUFA Computing - IT 2023.",
+      revealImage: CommitteRevealCSGO2024,
+      revealType: language === "en" ? "Committee Reveal" : "Committee Reveal",
+      revealDescription: language === "en"
+        ? "Official Committee Reveal of Computer Science Sport & Games Olympiad (CSGO) 2024 in division Stumble Guys PUFA Computing - IT 2023."
+        : "Publikasi Resmi Committee Reveal Computer Science Sport & Games Olympiad (CSGO) 2024 pada divisi Stumble Guys PUFA Computing - IT 2023.",
     },
   ];
 
@@ -582,202 +583,206 @@ const About = () => {
         </div>
       </div>
 
-      {/* CERTIFICATE & REVEAL DETAIL MODAL */}
-      <AnimatePresence>
-        {selectedOrg && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-            {/* Backdrop overlay */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              onClick={() => setSelectedOrg(null)}
-              className="fixed inset-0 bg-black/80 backdrop-blur-md"
-            />
-
-            {/* Modal Dialog Content */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.92, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.92, y: 20 }}
-              transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className="relative w-full max-w-3xl bg-[#0b101b] border border-[#00d4ff]/30 rounded-2xl shadow-[0_0_60px_rgba(0,212,255,0.25)] overflow-hidden flex flex-col my-auto max-h-[90vh] z-10"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* MODAL HEADER: Exactly matched with the card reference design */}
-              <div className="p-4 sm:p-6 bg-gradient-to-r from-white/[0.07] via-white/[0.04] to-transparent border-b border-white/10 flex items-start justify-between gap-4">
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5 flex-grow">
-                  {/* Organization Logo */}
-                  <div className="flex-shrink-0 w-16 h-14 sm:w-20 sm:h-16 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center p-2">
-                    <img
-                      src={selectedOrg.image}
-                      alt={`${selectedOrg.organization} logo`}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-
-                  {/* Position & Badges */}
-                  <div className="space-y-1.5 text-left">
-                    <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">
-                      {selectedOrg.position}
-                    </h3>
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-white/80 text-xs font-semibold px-2.5 py-0.5 rounded-full bg-white/10 border border-white/15">
-                        {selectedOrg.organization}
-                      </span>
-                      <span className="text-white/50 text-xs font-mono">
-                        {selectedOrg.year}
-                      </span>
-                      <span className="text-[#00d4ff] text-xs font-semibold px-2.5 py-0.5 rounded-full bg-[#00d4ff]/10 border border-[#00d4ff]/30 flex items-center gap-1">
-                        <Award size={12} />
-                        {selectedOrg.certificateType}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Close Button */}
-                <button
+      {/* CERTIFICATE & REVEAL DETAIL MODAL (Rendered via Portal to ensure top-level stacking above Navbar) */}
+      {typeof document !== "undefined" &&
+        createPortal(
+          <AnimatePresence>
+            {selectedOrg && (
+              <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-6 overflow-y-auto">
+                {/* Backdrop overlay */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25 }}
                   onClick={() => setSelectedOrg(null)}
-                  className="p-2 rounded-full bg-white/5 border border-white/10 text-white/70 hover:text-white hover:bg-white/15 transition-all duration-200 flex-shrink-0"
-                  aria-label="Close modal"
+                  className="fixed inset-0 bg-black/85 backdrop-blur-md"
+                />
+
+                {/* Modal Dialog Content */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.92, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.92, y: 20 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                  className="relative w-full max-w-3xl bg-[#0b101b] border border-[#00d4ff]/30 rounded-2xl shadow-[0_0_60px_rgba(0,212,255,0.3)] overflow-hidden flex flex-col my-auto max-h-[88vh] sm:max-h-[90vh] z-10"
+                  onClick={(e) => e.stopPropagation()}
                 >
-                  <X size={20} />
-                </button>
-              </div>
-
-              {/* TAB SWITCHER: Available if reveal image is present */}
-              {selectedOrg.revealImage && (
-                <div className="flex items-center gap-2 p-2 bg-white/[0.03] border-b border-white/10 px-4 sm:px-6">
-                  <button
-                    onClick={() => setActiveTab("certificate")}
-                    className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-300 ${
-                      activeTab === "certificate"
-                        ? "bg-[#00d4ff] text-black shadow-md shadow-[#00d4ff]/25 font-bold"
-                        : "text-white/60 hover:text-white hover:bg-white/5"
-                    }`}
-                  >
-                    <Award size={15} />
-                    <span>{t("aboutModalTabCert")}</span>
-                  </button>
-                  <button
-                    onClick={() => setActiveTab("reveal")}
-                    className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-300 ${
-                      activeTab === "reveal"
-                        ? "bg-[#00d4ff] text-black shadow-md shadow-[#00d4ff]/25 font-bold"
-                        : "text-white/60 hover:text-white hover:bg-white/5"
-                    }`}
-                  >
-                    <Sparkles size={15} />
-                    <span>{selectedOrg.revealType || t("aboutModalTabReveal")}</span>
-                  </button>
-                </div>
-              )}
-
-              {/* MODAL BODY */}
-              <div className="p-4 sm:p-6 overflow-y-auto space-y-5 custom-scrollbar">
-                {/* Image Preview (Certificate or Reveal) */}
-                <div className="relative rounded-xl overflow-hidden border border-white/15 bg-black/60 shadow-inner flex items-center justify-center min-h-[220px]">
-                  <img
-                    src={currentDisplayImage}
-                    alt={
-                      activeTab === "reveal"
-                        ? `${selectedOrg.position} Reveal Photo`
-                        : `${selectedOrg.position} Certificate`
-                    }
-                    className="w-full h-auto max-h-[52vh] object-contain mx-auto transition-all duration-300"
-                  />
-                </div>
-
-                {/* Meta Details according to active tab */}
-                {activeTab === "certificate" ? (
-                  <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 space-y-3 text-left">
-                    {/* Recipient & Period */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pb-3 border-b border-white/5">
-                      <div className="flex items-center gap-2 text-xs sm:text-sm text-white/80">
-                        <User size={16} className="text-[#00d4ff] flex-shrink-0" />
-                        <div>
-                          <span className="text-white/40 block text-[11px]">{t("aboutModalRecipient")}</span>
-                          <span className="font-semibold text-white">{selectedOrg.certificateRecipient}</span>
-                        </div>
+                  {/* MODAL HEADER: Exactly matched with the card reference design */}
+                  <div className="p-3.5 sm:p-5 md:p-6 bg-gradient-to-r from-white/[0.07] via-white/[0.04] to-transparent border-b border-white/10 flex items-start justify-between gap-3 sm:gap-4">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3.5 sm:gap-5 flex-grow">
+                      {/* Organization Logo */}
+                      <div className="flex-shrink-0 w-14 h-12 sm:w-20 sm:h-16 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center p-2">
+                        <img
+                          src={selectedOrg.image}
+                          alt={`${selectedOrg.organization} logo`}
+                          className="w-full h-full object-contain"
+                        />
                       </div>
-                      <div className="flex items-center gap-2 text-xs sm:text-sm text-white/80">
-                        <Calendar size={16} className="text-[#00d4ff] flex-shrink-0" />
-                        <div>
-                          <span className="text-white/40 block text-[11px]">{t("aboutModalPeriod")}</span>
-                          <span className="font-semibold text-white">{selectedOrg.period}</span>
+
+                      {/* Position & Badges */}
+                      <div className="space-y-1.5 text-left">
+                        <h3 className="text-base sm:text-xl font-bold text-white leading-snug">
+                          {selectedOrg.position}
+                        </h3>
+                        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                          <span className="text-white/80 text-[11px] sm:text-xs font-semibold px-2 sm:px-2.5 py-0.5 rounded-full bg-white/10 border border-white/15">
+                            {selectedOrg.organization}
+                          </span>
+                          <span className="text-white/50 text-[11px] sm:text-xs font-mono">
+                            {selectedOrg.year}
+                          </span>
+                          <span className="text-[#00d4ff] text-[11px] sm:text-xs font-semibold px-2 sm:px-2.5 py-0.5 rounded-full bg-[#00d4ff]/10 border border-[#00d4ff]/30 flex items-center gap-1">
+                            <Award size={12} />
+                            {selectedOrg.certificateType}
+                          </span>
                         </div>
                       </div>
                     </div>
 
-                    {/* Certificate Description */}
-                    <p className="text-white/70 text-xs sm:text-sm leading-relaxed italic">
-                      "{selectedOrg.certificateDescription}"
-                    </p>
+                    {/* Close Button */}
+                    <button
+                      onClick={() => setSelectedOrg(null)}
+                      className="p-1.5 sm:p-2 rounded-full bg-white/5 border border-white/10 text-white/70 hover:text-white hover:bg-white/15 transition-all duration-200 flex-shrink-0 cursor-pointer"
+                      aria-label="Close modal"
+                    >
+                      <X size={18} className="sm:w-5 sm:h-5" />
+                    </button>
+                  </div>
 
-                    {/* Certificate Signer / Authority */}
-                    <div className="pt-2 flex items-start gap-2 text-xs text-white/50">
-                      <CheckCircle2 size={14} className="text-green-400 mt-0.5 flex-shrink-0" />
+                  {/* TAB SWITCHER: Available if reveal image is present */}
+                  {selectedOrg.revealImage && (
+                    <div className="flex items-center gap-2 p-2 bg-white/[0.03] border-b border-white/10 px-3.5 sm:px-6">
+                      <button
+                        onClick={() => setActiveTab("certificate")}
+                        className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${
+                          activeTab === "certificate"
+                            ? "bg-[#00d4ff] text-black shadow-md shadow-[#00d4ff]/25 font-bold"
+                            : "text-white/60 hover:text-white hover:bg-white/5"
+                        }`}
+                      >
+                        <Award size={15} />
+                        <span>{t("aboutModalTabCert")}</span>
+                      </button>
+                      <button
+                        onClick={() => setActiveTab("reveal")}
+                        className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${
+                          activeTab === "reveal"
+                            ? "bg-[#00d4ff] text-black shadow-md shadow-[#00d4ff]/25 font-bold"
+                            : "text-white/60 hover:text-white hover:bg-white/5"
+                        }`}
+                      >
+                        <Sparkles size={15} />
+                        <span>{selectedOrg.revealType || t("aboutModalTabReveal")}</span>
+                      </button>
+                    </div>
+                  )}
+
+                  {/* MODAL BODY */}
+                  <div className="p-3.5 sm:p-5 md:p-6 overflow-y-auto space-y-4 sm:space-y-5 custom-scrollbar">
+                    {/* Image Preview (Certificate or Reveal) */}
+                    <div className="relative rounded-xl overflow-hidden border border-white/15 bg-black/60 shadow-inner flex items-center justify-center min-h-[180px] sm:min-h-[220px]">
+                      <img
+                        src={currentDisplayImage}
+                        alt={
+                          activeTab === "reveal"
+                            ? `${selectedOrg.position} Reveal Photo`
+                            : `${selectedOrg.position} Certificate`
+                        }
+                        className="w-full h-auto max-h-[46vh] sm:max-h-[52vh] object-contain mx-auto transition-all duration-300"
+                      />
+                    </div>
+
+                    {/* Meta Details according to active tab */}
+                    {activeTab === "certificate" ? (
+                      <div className="p-3.5 sm:p-4 rounded-xl bg-white/[0.03] border border-white/10 space-y-3 text-left">
+                        {/* Recipient & Period */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pb-3 border-b border-white/5">
+                          <div className="flex items-center gap-2 text-xs sm:text-sm text-white/80">
+                            <User size={16} className="text-[#00d4ff] flex-shrink-0" />
+                            <div>
+                              <span className="text-white/40 block text-[10px] sm:text-[11px]">{t("aboutModalRecipient")}</span>
+                              <span className="font-semibold text-white">{selectedOrg.certificateRecipient}</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2 text-xs sm:text-sm text-white/80">
+                            <Calendar size={16} className="text-[#00d4ff] flex-shrink-0" />
+                            <div>
+                              <span className="text-white/40 block text-[10px] sm:text-[11px]">{t("aboutModalPeriod")}</span>
+                              <span className="font-semibold text-white">{selectedOrg.period}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Certificate Description */}
+                        <p className="text-white/70 text-xs sm:text-sm leading-relaxed italic">
+                          "{selectedOrg.certificateDescription}"
+                        </p>
+
+                        {/* Certificate Signer / Authority */}
+                        <div className="pt-2 flex items-start gap-2 text-xs text-white/50">
+                          <CheckCircle2 size={14} className="text-green-400 mt-0.5 flex-shrink-0" />
+                          <span>
+                            <strong className="text-white/70 font-medium">{t("aboutModalSigner")}:</strong> {selectedOrg.certificateSigner}
+                          </span>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="p-3.5 sm:p-4 rounded-xl bg-white/[0.03] border border-white/10 space-y-3 text-left">
+                        <div className="flex items-center justify-between pb-3 border-b border-white/5">
+                          <div className="flex items-center gap-2 text-xs sm:text-sm text-white/80">
+                            <Sparkles size={16} className="text-[#00d4ff] flex-shrink-0" />
+                            <div>
+                              <span className="text-white/40 block text-[10px] sm:text-[11px]">Type</span>
+                              <span className="font-semibold text-white">{selectedOrg.revealType}</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2 text-xs sm:text-sm text-white/80">
+                            <Calendar size={16} className="text-[#00d4ff] flex-shrink-0" />
+                            <div>
+                              <span className="text-white/40 block text-[10px] sm:text-[11px]">{t("aboutModalPeriod")}</span>
+                              <span className="font-semibold text-white">{selectedOrg.year}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Reveal Description */}
+                        <p className="text-white/80 text-xs sm:text-sm leading-relaxed">
+                          {selectedOrg.revealDescription}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* MODAL FOOTER - Single prominent CTA button */}
+                  <div className="p-3.5 sm:p-5 bg-white/[0.02] border-t border-white/10 flex items-center justify-between gap-3">
+                    <a
+                      href={currentDisplayImage}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black font-semibold text-xs sm:text-sm hover:shadow-lg hover:shadow-[#00d4ff]/25 transition-all duration-300 flex items-center gap-2 hover:scale-[1.02]"
+                    >
+                      <ExternalLink size={15} />
                       <span>
-                        <strong className="text-white/70 font-medium">{t("aboutModalSigner")}:</strong> {selectedOrg.certificateSigner}
+                        {activeTab === "reveal"
+                          ? t("aboutModalViewReveal")
+                          : t("aboutModalViewOriginal")}
                       </span>
-                    </div>
+                    </a>
+
+                    <button
+                      onClick={() => setSelectedOrg(null)}
+                      className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/10 text-white font-semibold text-xs sm:text-sm transition-all duration-300 cursor-pointer"
+                    >
+                      {t("aboutModalClose")}
+                    </button>
                   </div>
-                ) : (
-                  <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 space-y-3 text-left">
-                    <div className="flex items-center justify-between pb-3 border-b border-white/5">
-                      <div className="flex items-center gap-2 text-xs sm:text-sm text-white/80">
-                        <Sparkles size={16} className="text-[#00d4ff] flex-shrink-0" />
-                        <div>
-                          <span className="text-white/40 block text-[11px]">Type</span>
-                          <span className="font-semibold text-white">{selectedOrg.revealType}</span>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2 text-xs sm:text-sm text-white/80">
-                        <Calendar size={16} className="text-[#00d4ff] flex-shrink-0" />
-                        <div>
-                          <span className="text-white/40 block text-[11px]">{t("aboutModalPeriod")}</span>
-                          <span className="font-semibold text-white">{selectedOrg.year}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Reveal Description */}
-                    <p className="text-white/80 text-xs sm:text-sm leading-relaxed">
-                      {selectedOrg.revealDescription}
-                    </p>
-                  </div>
-                )}
+                </motion.div>
               </div>
-
-              {/* MODAL FOOTER - Single prominent CTA button */}
-              <div className="p-4 sm:p-5 bg-white/[0.02] border-t border-white/10 flex items-center justify-between gap-3">
-                <a
-                  href={currentDisplayImage}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-[#00d4ff] to-[#0066ff] text-black font-semibold text-xs sm:text-sm hover:shadow-lg hover:shadow-[#00d4ff]/25 transition-all duration-300 flex items-center gap-2 hover:scale-[1.02]"
-                >
-                  <ExternalLink size={16} />
-                  <span>
-                    {activeTab === "reveal"
-                      ? t("aboutModalViewReveal")
-                      : t("aboutModalViewOriginal")}
-                  </span>
-                </a>
-
-                <button
-                  onClick={() => setSelectedOrg(null)}
-                  className="px-5 py-2.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/10 text-white font-semibold text-xs sm:text-sm transition-all duration-300"
-                >
-                  {t("aboutModalClose")}
-                </button>
-              </div>
-            </motion.div>
-          </div>
+            )}
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </section>
   );
 };
