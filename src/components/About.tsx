@@ -35,8 +35,10 @@ import SertifPUMA from "../../public/img/Organisation/Sertif PUMA.png";
 import SertifCSGO2024 from "../../public/img/Organisation/Sertif CSGO 2024.png";
 
 // Member & Committee Reveal Images from public/img/Organisation
-import MemberRevealPUMA from "../../public/img/Organisation/Member Reveal PUMA.png";
-import CommitteRevealCSGO2024 from "../../public/img/Organisation/Committe Reveal CSGO 2024.png";
+// import MemberRevealPUMA from "../../public/img/Organisation/Member Reveal PUMA.png";
+// import MemberRevealPUFA from "../../public/img/Organisation/Member Reveal PUFA.png";
+// import CommitteRevealCSGO2024 from "../../public/img/Organisation/Committe Reveal CSGO 2024.png";
+// import CommitteRevealCSGO2025 from "../../public/img/Organisation/Committe Reveal CSGO 2025.png";
 
 import { useLanguage } from "../context/LanguageContext";
 
@@ -227,11 +229,11 @@ const About = () => {
         ? "In recognition of dedication and commitment, who has provided a significant contribution as Vice of Art and Sport Division of President University Major Association of Informatics period November 2023 - September 2024."
         : "Sebagai pengakuan atas dedikasi dan komitmen, yang telah memberikan kontribusi signifikan sebagai Wakil Divisi Seni dan Olahraga President University Major Association of Informatics periode November 2023 - September 2024.",
       certificateSigner: "Rosalind, S.Kom., M.Kom (Head of Informatics Study Program)",
-      revealImage: MemberRevealPUMA,
-      revealType: language === "en" ? "Member Reveal" : "Member Reveal",
-      revealDescription: language === "en"
-        ? "Official Member Reveal of President University Major Association of Informatics (PUMA Informatics) as Vice of Art and Sport Division (VOD) - IT 23."
-        : "Publikasi Resmi Member Reveal President University Major Association of Informatics (PUMA Informatics) sebagai Wakil Divisi Seni dan Olahraga (VOD) - IT 23.",
+      // revealImage: MemberRevealPUMA,
+      // revealType: language === "en" ? "Member Reveal" : "Member Reveal",
+      // revealDescription: language === "en"
+      //   ? "Official Member Reveal of President University Major Association of Informatics (PUMA Informatics) as Vice of Art and Sport Division (VOD) - IT 23."
+      //   : "Publikasi Resmi Member Reveal President University Major Association of Informatics (PUMA Informatics) sebagai Wakil Divisi Seni dan Olahraga (VOD) - IT 23.",
     },
     {
       year: language === "en" ? "February 2024" : "Februari 2024",
@@ -250,11 +252,11 @@ const About = () => {
         ? "Awarded to Committee in recognition for hard work and dedication in division Stumble Guys CSGO 2024 PUFA Computing."
         : "Dianugerahkan kepada Panitia sebagai pengakuan atas kerja keras dan dedikasinya pada divisi Stumble Guys CSGO 2024 PUFA Computing.",
       certificateSigner: "Marizky Arfi Legoarto (Project Manager), Aura Shafarina Salsabila (Chairperson), Genta Sahuri S.Kom., M.Kom. (Advisor)",
-      revealImage: CommitteRevealCSGO2024,
-      revealType: language === "en" ? "Committee Reveal" : "Committee Reveal",
-      revealDescription: language === "en"
-        ? "Official Committee Reveal of Computer Science Sport & Games Olympiad (CSGO) 2024 in division Stumble Guys PUFA Computing - IT 2023."
-        : "Publikasi Resmi Committee Reveal Computer Science Sport & Games Olympiad (CSGO) 2024 pada divisi Stumble Guys PUFA Computing - IT 2023.",
+      // revealImage: CommitteRevealCSGO2024,
+      // revealType: language === "en" ? "Committee Reveal" : "Committee Reveal",
+      // revealDescription: language === "en"
+      //   ? "Official Committee Reveal of Computer Science Sport & Games Olympiad (CSGO) 2024 in division Stumble Guys PUFA Computing - IT 2023."
+      //   : "Publikasi Resmi Committee Reveal Computer Science Sport & Games Olympiad (CSGO) 2024 pada divisi Stumble Guys PUFA Computing - IT 2023.",
     },
   ];
 
