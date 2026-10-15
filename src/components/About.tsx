@@ -27,6 +27,7 @@ import PUMA from "../../public/img/PUMA.png";
 import CSGO2024 from "../../public/img/CSGO 2024.png";
 import PIXIELAB from "../../public/img/PIXIELAB.png";
 import ENSEVAL from "../../public/img/ENSEVAL.png";
+import EMOS from "../../public/img/EMOS.png";
 
 // Certificate Images from public/img/Organisation
 import SertifPUFA from "../../public/img/Organisation/Sertif PUFA.png";
@@ -272,7 +273,7 @@ const About = () => {
       image: PIXIELAB,
     },
     {
-      year: language === "en" ? "April 2026 - Present" : "April 2026 - Sekarang",
+      year: language === "en" ? "April 2026 - October 2026" : "April 2026 - Oktober 2026",
       company: "ENSEVAL",
       role: language === "en" ? "Web Developer Intern" : "Magang Developer Web",
       description: language === "en"
@@ -280,6 +281,16 @@ const About = () => {
         : "Mengembangkan dan memelihara aplikasi web korporat, mengimplementasikan API REST, mengoptimalkan kueri basis data, dan berkolaborasi dengan tim pengembangan untuk menghadirkan solusi bisnis.",
       side: "right",
       image: ENSEVAL,
+    },
+    {
+      year: language === "en" ? "October 2026 - Present" : "Oktober 2026 - Sekarang",
+      company: "EMOS",
+      role: language === "en" ? "Backend Developer" : "Developer Backend",
+      description: language === "en"
+        ? "Developed and maintained enterprise web applications, implemented REST APIs, optimized database queries, and collaborated with the development team to deliver business solutions."
+        : "Mengembangkan dan memelihara aplikasi web korporat, mengimplementasikan API REST, mengoptimalkan kueri basis data, dan berkolaborasi dengan tim pengembangan untuk menghadirkan solusi bisnis.",
+      side: "left",
+      image: EMOS,
     }
   ];
 
