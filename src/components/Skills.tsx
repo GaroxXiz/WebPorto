@@ -13,7 +13,7 @@ import UNITY from "../../public/img/Unity.png";
 import BLENDER from "../../public/img/Blender.png";
 import ASEPRITE from "../../public/img/Aseprite.png";
 import RENPY from "../../public/img/Renpy.png";
-import GITHUB from "../../public/img/Github.png";
+import GITHUB from "../../public/img/github.png";
 import VS from "../../public/img/VS.png";
 import VSC from "../../public/img/VSCode.png";
 import DBV from "../../public/img/DBeaver.png";
