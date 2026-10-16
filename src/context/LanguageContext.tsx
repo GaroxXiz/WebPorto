@@ -67,9 +67,12 @@ const translations = {
     // GitHub Contributions
     githubTitle: "GitHub",
     githubSpan: "Contributions",
-    githubSubtitle: "My coding activity and contribution graph on GitHub",
+    githubSubtitle: "My coding activity and contribution graph",
     githubReposTitle: "Featured Repositories",
     githubYearLast: "Last 365 Days",
+    githubTotalLast: "{{count}} contributions in the last year",
+    githubTotalYear: "{{count}} contributions in {{year}}",
+    githubTooltip: "{{count}} contributions on {{date}}",
 
     // Projects
     projectsTitle: "My",
@@ -176,9 +179,12 @@ const translations = {
     // GitHub Contributions
     githubTitle: "Kontribusi",
     githubSpan: "GitHub",
-    githubSubtitle: "Grafik aktivitas pemrograman dan kontribusi saya di GitHub",
+    githubSubtitle: "Grafik aktivitas pemrograman dan kontribusi saya",
     githubReposTitle: "Repositori Unggulan",
     githubYearLast: "365 Hari Terakhir",
+    githubTotalLast: "{{count}} kontribusi dalam setahun terakhir",
+    githubTotalYear: "{{count}} kontribusi pada {{year}}",
+    githubTooltip: "{{count}} kontribusi pada {{date}}",
 
     // Projects
     projectsTitle: "Proyek",

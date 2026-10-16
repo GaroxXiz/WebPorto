@@ -9,6 +9,7 @@ Welcome to my personal **Game Developer Portfolio Website** — a responsive and
 - 🛠️ **Skills** — Highlights of technical and creative capabilities.
 - 📂 **Projects** — Interactive showcase of past game/dev projects.
 - 📞 **Contact** — Contact form and social links.
+- 🟩 **Unified Contribution Heatmap** — Combined activity heatmap (see [setup guide](docs/CONTRIBUTIONS_SETUP.md)).
 
 ## 🧰 Tech Stack
 

@@ -1,0 +1,51 @@
+name: Sync contributions & deploy
+
+# Fetches GitHub + GitLab activity with repository secrets (server-side), writes an
+# anonymous daily-count JSON, builds the site and publishes it to the gh-pages branch.
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 */6 * * *" # every 6 hours
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # If this step fails (API error, rate limit, bad token) the job stops and the
+      # previously deployed site/data stays online untouched.
+      - name: Fetch unified contributions
+        run: node scripts/fetch-contributions.mjs
+        env:
+          GH_USERNAME: GaroxXiz
+          GH_CONTRIB_TOKEN: ${{ secrets.GH_CONTRIB_TOKEN }}
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+          GITLAB_URL: ${{ vars.GITLAB_URL }}
+          GITLAB_AUTHOR_EMAILS: ${{ secrets.GITLAB_AUTHOR_EMAILS }}
+          GITLAB_USERNAME: ${{ secrets.GITLAB_USERNAME }}
+          CONTRIB_TIMEZONE: ${{ vars.CONTRIB_TIMEZONE }}
+
+      - run: npm run build
+
+      - name: Publish to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

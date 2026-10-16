@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { GitHubCalendar } from "react-github-calendar";
+import { ActivityCalendar, type Activity } from "react-activity-calendar";
 import { useLanguage } from "../context/LanguageContext";
 import { Github, ExternalLink, Star, GitFork, BookOpen, Code2, Calendar as CalendarIcon } from "lucide-react";
 
+// Cyan theme scale matching portfolio styling (#00d4ff)
 const customTheme = {
   dark: ["#161b22", "#003847", "#00708f", "#00a3cc", "#00d4ff"],
 };
@@ -22,9 +24,55 @@ type YearOption = "last" | number;
 
 const ACCOUNT_START_YEAR = 2024;
 
+/**
+ * Loads the pre-aggregated daily counts produced server-side by
+ * scripts/fetch-contributions.mjs. The file only holds { date, count, level }.
+ * Resolves to "unavailable" on any failure so the UI can fall back gracefully.
+ */
+const useUnifiedContributions = () => {
+  const [days, setDays] = useState<Activity[] | null>(null);
+  const [status, setStatus] = useState<"loading" | "ready" | "unavailable">("loading");
+
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch(`${import.meta.env.BASE_URL}data/contributions.json`, {
+      signal: controller.signal,
+      cache: "no-cache",
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("no data");
+        return res.json();
+      })
+      .then((json) => {
+        const list: unknown = json?.days;
+        const valid =
+          Array.isArray(list) &&
+          list.length > 0 &&
+          list.every(
+            (d) =>
+              d &&
+              typeof d.date === "string" &&
+              /^\d{4}-\d{2}-\d{2}$/.test(d.date) &&
+              Number.isFinite(d.count) &&
+              [0, 1, 2, 3, 4].includes(d.level),
+          );
+        if (!valid) throw new Error("bad data");
+        setDays(list as Activity[]);
+        setStatus("ready");
+      })
+      .catch((err) => {
+        if (err?.name !== "AbortError") setStatus("unavailable");
+      });
+    return () => controller.abort();
+  }, []);
+
+  return { days, status };
+};
+
 const GithubContributions = () => {
   const { t } = useLanguage();
   const [selectedYear, setSelectedYear] = useState<YearOption>("last");
+  const { days, status } = useUnifiedContributions();
 
   const currentYear = new Date().getFullYear();
   const yearOptions: { value: YearOption; label: string }[] = [
@@ -34,6 +82,13 @@ const GithubContributions = () => {
   for (let y = currentYear; y >= ACCOUNT_START_YEAR; y--) {
     yearOptions.push({ value: y, label: String(y) });
   }
+
+  // Slice the unified series for the selected tab ("last" = trailing 365 days)
+  const visibleDays = useMemo<Activity[]>(() => {
+    if (!days) return [];
+    if (selectedYear === "last") return days.slice(-365);
+    return days.filter((d) => d.date.startsWith(`${selectedYear}-`));
+  }, [days, selectedYear]);
 
   const featuredRepos: Repo[] = [
     {
@@ -88,7 +143,7 @@ const GithubContributions = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-white">@GaroxXiz</h3>
-                  <p className="text-xs text-white/50">GitHub Activity Matrix</p>
+                  <p className="text-xs text-white/50">Contribution Activity</p>
                 </div>
               </div>
 
@@ -130,17 +185,45 @@ const GithubContributions = () => {
             {/* Scrollable Calendar Wrapper */}
             <div className="w-full overflow-x-auto py-2">
               <div className="min-w-[650px] flex justify-center">
-                <GitHubCalendar
-                  username="GaroxXiz"
-                  year={selectedYear}
-                  colorScheme="dark"
-                  theme={customTheme}
-                  blockSize={13}
-                  blockMargin={4}
-                  fontSize={14}
-                />
+                {status === "unavailable" ? (
+                  // Unified data not published yet / failed to load: keep the original GitHub-only graph
+                  <GitHubCalendar
+                    username="GaroxXiz"
+                    year={selectedYear}
+                    colorScheme="dark"
+                    theme={customTheme}
+                    blockSize={13}
+                    blockMargin={4}
+                    fontSize={14}
+                  />
+                ) : (
+                  <ActivityCalendar
+                    data={visibleDays}
+                    loading={status === "loading"}
+                    colorScheme="dark"
+                    theme={customTheme}
+                    blockSize={13}
+                    blockMargin={4}
+                    fontSize={14}
+                    labels={{
+                      totalCount:
+                        selectedYear === "last"
+                          ? t("githubTotalLast")
+                          : t("githubTotalYear"),
+                    }}
+                    tooltips={{
+                      activity: {
+                        text: (activity) =>
+                          t("githubTooltip")
+                            .replace("{{count}}", String(activity.count))
+                            .replace("{{date}}", activity.date),
+                      },
+                    }}
+                  />
+                )}
               </div>
             </div>
+
           </div>
 
           {/* Featured Repositories Grid */}
