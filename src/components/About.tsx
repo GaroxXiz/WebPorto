@@ -25,9 +25,9 @@ import PUFA from "../../public/img/PUFA.png";
 import CSGO2025 from "../../public/img/CSGO 2025.png";
 import PUMA from "../../public/img/PUMA.png";
 import CSGO2024 from "../../public/img/CSGO 2024.png";
-import PIXIELAB from "../../public/img/PIXIELAB.png";
-import ENSEVAL from "../../public/img/ENSEVAL.png";
-import EMOS from "../../public/img/EMOS.png";
+import PIXIELAB from "../../public/img/Pixielab.png";
+import ENSEVAL from "../../public/img/Enseval.png";
+import EMOS from "../../public/img/Emos.png";
 
 // Certificate Images from public/img/Organisation
 import SertifPUFA from "../../public/img/Organisation/Sertif PUFA.png";

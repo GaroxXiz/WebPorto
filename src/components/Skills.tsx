@@ -6,7 +6,7 @@ import { useLanguage } from "../context/LanguageContext";
 import CS from "../../public/img/Csharp.png";
 import PY from "../../public/img/Python.png";
 import HTML from "../../public/img/HTML.png";
-import CSS from "../../public/img/Css.png";
+import CSS from "../../public/img/CSS.png";
 import GO from "../../public/img/Golang.png";
 import JS from "../../public/img/Javascript.png";
 import UNITY from "../../public/img/Unity.png";
